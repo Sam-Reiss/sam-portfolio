@@ -445,6 +445,19 @@ const projects = [
 		color: #101010;
 	}
 
+	/* Guaranteed fallback: visible scatter pattern on pure hover */
+	[data-scatter-text]:hover .scatter-char:nth-child(3n + 1) {
+		transform: translate(-4px, -5px) rotate(-6deg);
+	}
+
+	[data-scatter-text]:hover .scatter-char:nth-child(3n + 2) {
+		transform: translate(4px, 3px) rotate(5deg);
+	}
+
+	[data-scatter-text]:hover .scatter-char:nth-child(3n) {
+		transform: translate(-2px, 5px) rotate(-4deg);
+	}
+
 	@media (max-width: 980px) {
 		.intro-grid {
 			grid-template-columns: 1fr;
