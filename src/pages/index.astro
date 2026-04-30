@@ -38,18 +38,21 @@ const projects = [
 		<section class="intro-grid accent-zone accent-zone-hero">
 			<div class="decorative-accent decorative-accent-arc" aria-hidden="true">
 				<svg
-					viewBox="0 0 560 250"
+					viewBox="0 0 760 300"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 					focusable="false"
 				>
 					<path
-						d="M38 183C67 104 132 48 218 34C310 19 392 59 445 129L385 177C351 130 293 103 231 114C173 124 130 164 108 219L38 183Z"
-						fill="var(--accent-green)"
+						d="M48 198C122 76 216 66 286 152C350 233 430 237 500 146C556 76 633 82 712 170"
+						stroke="var(--accent-yellow)"
+						stroke-width="72"
+						stroke-linecap="round"
+						stroke-linejoin="round"
 					></path>
 				</svg>
 			</div>
-			<div class="decorative-accent decorative-accent-circle" aria-hidden="true"></div>
+			<div class="decorative-accent decorative-accent-oval-blue" aria-hidden="true"></div>
 			<div class="identity-column">
 				<p class="eyebrow" data-scatter-text>Hi, I'm Sam Reiss</p>
 				<h1 class="hero-name">
@@ -115,6 +118,7 @@ const projects = [
 
 		<section class="how-grid accent-zone accent-zone-how" aria-labelledby="how-i-work-title">
 			<div class="decorative-accent decorative-accent-capsule" aria-hidden="true"></div>
+			<div class="decorative-accent decorative-accent-circle" aria-hidden="true"></div>
 			<div class="decorative-accent decorative-accent-oval-secondary" aria-hidden="true"></div>
 			<div class="decorative-accent decorative-accent-star-secondary" aria-hidden="true">
 				<svg
@@ -364,6 +368,11 @@ const projects = [
 		--accent-red: #ff3b30;
 		--accent-blue: #0b1b3a;
 		--accent-blue-soft: #3f5f9a;
+		--accent-yellow: #ffd400;
+		--accent-pink: #f3a8cf;
+		--accent-orange: #ff5a1f;
+		--accent-cream: #f6f1e6;
+		--accent-blue-light: #8bb9ff;
 	}
 
 	.home-main {
@@ -381,6 +390,13 @@ const projects = [
 	.accent-zone {
 		position: relative;
 		isolation: isolate;
+	}
+
+	.intro-grid > :not(.decorative-accent),
+	.how-grid > :not(.decorative-accent),
+	.work-column > :not(.decorative-accent) {
+		position: relative;
+		z-index: 2;
 	}
 
 	.intro-grid {
@@ -465,27 +481,27 @@ const projects = [
 	}
 
 	.decorative-accent-arc {
-		width: clamp(300px, 41vw, 540px);
-		top: clamp(0.4rem, 1.6vw, 1.3rem);
-		left: clamp(8.8rem, 14.6vw, 16.2rem);
-		opacity: 0.96;
+		width: clamp(366px, 49.3vw, 714px);
+		top: clamp(0.2rem, 1.1vw, 1rem);
+		left: clamp(7.2rem, 11.8vw, 12.8rem);
+		opacity: 0.93;
 		z-index: 1;
-		transform: translate3d(0, 0, 0) rotate(-6deg) scale(1);
+		transform: translate3d(0, 0, 0) rotate(-30deg) scale(1);
 		animation: accentArcDrift 8.2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
-		animation-delay: 220ms;
+		animation-delay: 0ms;
 		--proximity-radius: 260;
 		--proximity-strength: 9;
 		--proximity-ease: 0.12;
 	}
 
 	.decorative-accent-plus {
-		width: clamp(20px, 1.8vw, 30px);
+		width: clamp(37px, 3.1vw, 53px);
 		top: -0.62rem;
 		right: -0.02rem;
 		opacity: 0.96;
 		transform-origin: center;
 		transform: translate3d(0, 0, 0) rotate(-9deg) scale(1);
-		animation: accentPlusPulse 6.1s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+		animation: accentPlusPulse 18s linear infinite;
 		animation-delay: 900ms;
 		--proximity-radius: 170;
 		--proximity-strength: 11;
@@ -493,13 +509,13 @@ const projects = [
 	}
 
 	.decorative-accent-capsule {
-		width: clamp(96px, 9vw, 136px);
-		height: clamp(36px, 3.5vw, 52px);
-		border-radius: 999px;
-		background: var(--accent-blue-soft);
+		width: clamp(108px, 11.8vw, 184px);
+		height: clamp(66px, 7vw, 108px);
+		border-radius: 50%;
+		background: var(--accent-pink);
 		top: -0.7rem;
 		right: clamp(0.15rem, 1vw, 0.9rem);
-		opacity: 0.94;
+		opacity: 0.88;
 		transform-origin: center;
 		transform: translate3d(0, 0, 0) rotate(-10deg) scale(1);
 		animation: accentCapsuleDrift 7.6s cubic-bezier(0.37, 0, 0.63, 1) infinite;
@@ -510,12 +526,12 @@ const projects = [
 	}
 
 	.decorative-accent-circle {
-		width: clamp(28px, 3vw, 46px);
+		width: clamp(20px, 2.6vw, 58px);
 		aspect-ratio: 1;
 		border-radius: 999px;
-		background: var(--accent-blue);
-		top: clamp(2.9rem, 7vw, 5rem);
-		left: clamp(2rem, 5vw, 4.8rem);
+		background: var(--accent-blue-light);
+		top: clamp(4.1rem, 8.1vw, 6.5rem);
+		left: clamp(3.5rem, 7.4vw, 6.8rem);
 		opacity: 0.78;
 		transform: translate3d(0, 0, 0) scale(1);
 		animation: accentCircleFloat 9.4s cubic-bezier(0.22, 0.05, 0.28, 1) infinite;
@@ -525,14 +541,31 @@ const projects = [
 		--proximity-ease: 0.16;
 	}
 
+	.decorative-accent-oval-blue {
+		width: clamp(52px, 5.6vw, 108px);
+		height: clamp(18px, 2.2vw, 34px);
+		border-radius: 999px;
+		background: var(--accent-blue-light);
+		top: clamp(-0.7rem, 0.2vw, 0.25rem);
+		left: clamp(10rem, 16.1vw, 15.2rem);
+		opacity: 0.78;
+		transform-origin: center;
+		transform: translate3d(0, 0, 0) rotate(-10deg) scale(1);
+		animation: accentOvalBlueFloat 9.1s cubic-bezier(0.24, 0.06, 0.28, 1) infinite;
+		animation-delay: 610ms;
+		--proximity-radius: 185;
+		--proximity-strength: 9;
+		--proximity-ease: 0.15;
+	}
+
 	.decorative-accent-star-secondary {
-		width: clamp(30px, 2.8vw, 44px);
+		width: clamp(42px, 5.2vw, 86px);
 		top: clamp(15.6rem, 21vw, 20.4rem);
 		left: clamp(1.2rem, 6vw, 5rem);
-		opacity: 0.88;
+		opacity: 0.9;
 		transform-origin: center;
 		transform: translate3d(0, 0, 0) rotate(-6deg) scale(1);
-		animation: accentStarSecondaryFloat 7.4s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+		animation: accentStarSecondaryFloat 20s linear infinite;
 		animation-delay: 1200ms;
 		--proximity-radius: 150;
 		--proximity-strength: 12;
@@ -540,13 +573,13 @@ const projects = [
 	}
 
 	.decorative-accent-circle-secondary {
-		width: clamp(12px, 1.2vw, 18px);
+		width: clamp(8px, 0.8vw, 13px);
 		aspect-ratio: 1;
 		border-radius: 999px;
-		background: var(--accent-red);
+		background: var(--accent-blue);
 		top: clamp(7.8rem, 12vw, 11rem);
 		right: clamp(2.8rem, 4vw, 4rem);
-		opacity: 0.76;
+		opacity: 0.82;
 		transform: translate3d(0, 0, 0) scale(1);
 		animation: accentCircleSecondaryFloat 8.6s cubic-bezier(0.2, 0.05, 0.3, 1) infinite;
 		animation-delay: 430ms;
@@ -556,13 +589,13 @@ const projects = [
 	}
 
 	.decorative-accent-oval-secondary {
-		width: clamp(44px, 4.8vw, 78px);
-		height: clamp(18px, 2.1vw, 28px);
+		width: clamp(66px, 7.8vw, 142px);
+		height: clamp(22px, 2.8vw, 40px);
 		border-radius: 999px;
-		background: var(--accent-green);
+		background: var(--accent-orange);
 		top: clamp(11.6rem, 15.2vw, 14.1rem);
 		left: clamp(6.8rem, 11.8vw, 10.8rem);
-		opacity: 0.8;
+		opacity: 0.86;
 		transform-origin: center;
 		transform: translate3d(0, 0, 0) rotate(9deg) scale(1);
 		animation: accentOvalFloat 10.3s cubic-bezier(0.25, 0.05, 0.2, 1) infinite;
@@ -576,8 +609,12 @@ const projects = [
 		transform: translate3d(0.22rem, -0.12rem, 0) rotate(-4.4deg) scale(1.012);
 	}
 
-	.accent-zone-hero:hover .decorative-accent-circle {
-		transform: translate3d(0.12rem, -0.12rem, 0) scale(1.04);
+	.accent-zone-hero:hover .decorative-accent-oval-blue {
+		transform: translate3d(0.14rem, -0.09rem, 0) rotate(-6deg) scale(1.04);
+	}
+
+	.accent-zone-how:hover .decorative-accent-circle {
+		transform: translate3d(0.1rem, -0.12rem, 0) scale(1.04);
 	}
 
 	.accent-zone-how:hover .decorative-accent-capsule {
@@ -601,7 +638,8 @@ const projects = [
 	}
 
 	.accent-zone-hero:hover .decorative-accent-arc,
-	.accent-zone-hero:hover .decorative-accent-circle,
+	.accent-zone-hero:hover .decorative-accent-oval-blue,
+	.accent-zone-how:hover .decorative-accent-circle,
 	.accent-zone-how:hover .decorative-accent-capsule,
 	.accent-zone-how:hover .decorative-accent-oval-secondary,
 	.work-column:hover .decorative-accent-plus,
@@ -780,24 +818,32 @@ const projects = [
 		}
 
 		.decorative-accent-arc {
-			width: clamp(290px, 74vw, 500px);
-			left: clamp(3.4rem, 12vw, 7.4rem);
-			top: 0.18rem;
-			opacity: 0.9;
+			width: clamp(390px, 90vw, 700px);
+			left: clamp(2.8rem, 8vw, 5.6rem);
+			top: 0.08rem;
+			opacity: 0.88;
 		}
 
 		.decorative-accent-capsule {
-			width: clamp(86px, 14vw, 120px);
-			height: clamp(32px, 5vw, 44px);
+			width: clamp(98px, 20vw, 160px);
+			height: clamp(54px, 10.8vw, 88px);
 			top: -0.32rem;
 			right: 0.1rem;
-			opacity: 0.87;
+			opacity: 0.84;
 		}
 
 		.decorative-accent-circle {
 			width: clamp(24px, 4vw, 36px);
-			top: clamp(2.4rem, 7vw, 4.4rem);
-			left: clamp(0.9rem, 3vw, 1.8rem);
+			top: clamp(2.3rem, 8.8vw, 4.3rem);
+			left: clamp(1.6rem, 4.8vw, 2.8rem);
+			opacity: 0.72;
+		}
+
+		.decorative-accent-oval-blue {
+			width: clamp(44px, 8vw, 82px);
+			height: clamp(16px, 3.2vw, 28px);
+			top: clamp(-0.5rem, 1vw, 0.35rem);
+			left: clamp(7.2rem, 20vw, 11.3rem);
 			opacity: 0.72;
 		}
 
@@ -821,13 +867,17 @@ const projects = [
 		}
 
 		.decorative-accent-plus {
-			width: 20px;
+			width: 35px;
 			right: 0.02rem;
 			top: -0.18rem;
 			opacity: 0.82;
 		}
 
 		.decorative-accent-circle {
+			display: none;
+		}
+
+		.decorative-accent-oval-blue {
 			display: none;
 		}
 	}
@@ -839,31 +889,27 @@ const projects = [
 
 	@keyframes accentArcDrift {
 		0% {
-			transform: translate3d(-8px, 5px, 0) rotate(-8.4deg) scale(1);
+			transform: translate3d(-8px, 5px, 0) rotate(-31.8deg) scale(1);
 			opacity: 0.88;
 		}
 		50% {
-			transform: translate3d(11px, -8px, 0) rotate(-2.9deg) scale(1.05);
+			transform: translate3d(11px, -8px, 0) rotate(-26.4deg) scale(1.05);
 			opacity: 1;
 		}
 		100% {
-			transform: translate3d(-8px, 5px, 0) rotate(-8.4deg) scale(1);
+			transform: translate3d(-8px, 5px, 0) rotate(-31.8deg) scale(1);
 			opacity: 0.88;
 		}
 	}
 
 	@keyframes accentPlusPulse {
 		0% {
-			transform: translate3d(0, 0, 0) rotate(-11deg) scale(1);
-			opacity: 0.85;
-		}
-		50% {
-			transform: translate3d(-7px, -5px, 0) rotate(-1deg) scale(1.075);
-			opacity: 1;
+			transform: translate3d(-3px, -2px, 0) rotate(-11deg) scale(1.02);
+			opacity: 0.94;
 		}
 		100% {
-			transform: translate3d(0, 0, 0) rotate(-11deg) scale(1);
-			opacity: 0.85;
+			transform: translate3d(-3px, -2px, 0) rotate(349deg) scale(1.02);
+			opacity: 0.94;
 		}
 	}
 
@@ -897,18 +943,29 @@ const projects = [
 		}
 	}
 
-	@keyframes accentStarSecondaryFloat {
+	@keyframes accentOvalBlueFloat {
 		0% {
-			transform: translate3d(1px, 2px, 0) rotate(-6deg) scale(0.96);
-			opacity: 0.78;
+			transform: translate3d(2px, 1px, 0) rotate(-10deg) scale(0.98);
+			opacity: 0.72;
 		}
 		50% {
-			transform: translate3d(-3px, -5px, 0) rotate(3deg) scale(1.07);
-			opacity: 0.98;
+			transform: translate3d(-4px, -4px, 0) rotate(-5deg) scale(1.06);
+			opacity: 0.9;
 		}
 		100% {
-			transform: translate3d(1px, 2px, 0) rotate(-6deg) scale(0.96);
-			opacity: 0.78;
+			transform: translate3d(2px, 1px, 0) rotate(-10deg) scale(0.98);
+			opacity: 0.72;
+		}
+	}
+
+	@keyframes accentStarSecondaryFloat {
+		0% {
+			transform: translate3d(-2px, -3px, 0) rotate(-6deg) scale(1.01);
+			opacity: 0.9;
+		}
+		100% {
+			transform: translate3d(-2px, -3px, 0) rotate(354deg) scale(1.01);
+			opacity: 0.9;
 		}
 	}
 
@@ -970,8 +1027,8 @@ const projects = [
 
 		:global(html.motion-debug) .decorative-accent-arc {
 			animation: accentArcDrift 8.2s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
-			animation-delay: 220ms !important;
-			transform: translate3d(0, 0, 0) rotate(-6deg) scale(1) !important;
+			animation-delay: 0ms !important;
+			transform: translate3d(0, 0, 0) rotate(-30deg) scale(1) !important;
 		}
 
 		:global(html.motion-debug) .decorative-accent-capsule {
@@ -981,7 +1038,7 @@ const projects = [
 		}
 
 		:global(html.motion-debug) .decorative-accent-plus {
-			animation: accentPlusPulse 6.1s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
+			animation: accentPlusPulse 18s linear infinite !important;
 			animation-delay: 900ms !important;
 			transform: translate3d(0, 0, 0) rotate(-9deg) scale(1) !important;
 		}
@@ -992,8 +1049,14 @@ const projects = [
 			transform: translate3d(0, 0, 0) scale(1) !important;
 		}
 
+		:global(html.motion-debug) .decorative-accent-oval-blue {
+			animation: accentOvalBlueFloat 9.1s cubic-bezier(0.24, 0.06, 0.28, 1) infinite !important;
+			animation-delay: 610ms !important;
+			transform: translate3d(0, 0, 0) rotate(-10deg) scale(1) !important;
+		}
+
 		:global(html.motion-debug) .decorative-accent-star-secondary {
-			animation: accentStarSecondaryFloat 7.4s cubic-bezier(0.3, 0, 0.2, 1) infinite !important;
+			animation: accentStarSecondaryFloat 20s linear infinite !important;
 			animation-delay: 1200ms !important;
 			transform: translate3d(0, 0, 0) rotate(-6deg) scale(1) !important;
 		}
