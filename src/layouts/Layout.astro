@@ -16,6 +16,12 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
@@ -31,8 +37,11 @@ const {
 		--foreground: #181818;
 		--muted: #5e5e5e;
 		--muted-strong: #434343;
+		--accent-green: #00A95C;
+		--accent-red: #EF3E36;
+		--accent-blue: #1F3C88;
 		--line: #d9d5cf;
-		--container: 1200px;
+		--container: 1260px;
 		--space-xs: 0.5rem;
 		--space-sm: 0.875rem;
 		--space-md: 1.25rem;
@@ -65,7 +74,7 @@ const {
 	}
 
 	main {
-		width: min(var(--container), calc(100% - 3rem));
+		width: min(var(--container), calc(100% - 7rem));
 		margin: 0 auto;
 		padding: var(--space-2xl) 0;
 	}
@@ -121,7 +130,7 @@ const {
 
 	@media (max-width: 900px) {
 		main {
-			width: min(var(--container), calc(100% - 2rem));
+			width: min(var(--container), calc(100% - 2.5rem));
 			padding: 3.5rem 0;
 		}
 	}
