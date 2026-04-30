@@ -1,0 +1,31 @@
+---
+import CaseStudyTemplate from '../../components/CaseStudyTemplate.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Exploratory AI Work | Sam Reiss">
+	<main>
+		<p class="back-link"><a href="/">Back to homepage</a></p>
+		<CaseStudyTemplate
+			title="Exploratory AI Work"
+			overview="I led exploratory work focused on extending AI capabilities beyond chat, including productivity dashboards, code maps, and agent-driven workflows."
+			problem="As AI capabilities become more agentic, users need more visibility into what AI systems are doing, where they are acting, and how much impact they have on their work."
+			myRole="I helped facilitate cross-functional workshops with stakeholders, engineers, design, and research, then translated high-value opportunity areas into visual concepts and prototypes."
+			workflow="I used AI-assisted tools to quickly generate directions, compare concepts, and turn ambiguous ideas into tangible product artifacts."
+			designDecisions={[
+				'Explored productivity dashboards at both admin and individual user levels',
+				'Designed code map concepts to show which files and functions an agent may affect',
+				'Focused on explainability, visibility, and trust in agentic workflows',
+				'Balanced future-facing concepts with practical developer needs'
+			]}
+			outcome="These explorations helped align teams around emerging opportunities in AI-assisted development and informed future product direction."
+		/>
+	</main>
+</Layout>
+
+<style>
+	.back-link {
+		margin-bottom: 2rem;
+		font-size: 0.88rem;
+	}
+</style>

@@ -1,0 +1,31 @@
+---
+import CaseStudyTemplate from '../../components/CaseStudyTemplate.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="AI Chat Systems — IDE & Agent Platforms | Sam Reiss">
+	<main>
+		<p class="back-link"><a href="/">Back to homepage</a></p>
+		<CaseStudyTemplate
+			title="AI Chat Systems — IDE & Agent Platforms"
+			overview="I designed AI chat experiences across IDE and web surfaces, spanning IBM Watsonx Code Assistant and GitLab’s Duo Agent Platform. This work focused on making AI assistance feel contextual, useful, and integrated into developer workflows."
+			problem="AI chat experiences often feel disconnected from the user’s working context. At IBM, existing chat patterns were built for browser-based environments and needed to be adapted for IDE constraints. At GitLab, chat and agent platform experiences needed to support more complex workflows across product surfaces."
+			myRole="At IBM, I led a team of two UX designers and worked closely with engineering and the Carbon Design System team. At GitLab, I owned the Duo Agent Platform extension experience and supported chat UI work across GitLab surfaces."
+			workflow="I used AI-assisted prototyping to explore interaction patterns, generate interface variations, and accelerate alignment with engineering partners."
+			designDecisions={[
+				'Adapted AI chat patterns to constrained IDE environments',
+				'Prioritized low-friction interactions that did not interrupt developer flow',
+				'Designed feedback mechanisms to improve model iteration loops',
+				'Considered how chat evolves into agentic, multi-step workflows'
+			]}
+			outcome="At IBM, the updated chat UI contributed to an 87% increase in Watsonx Code Assistant downloads and enabled inline prompt-level feedback collection. Design patterns from the work were also adopted into Carbon’s AI chat components."
+		/>
+	</main>
+</Layout>
+
+<style>
+	.back-link {
+		margin-bottom: 2rem;
+		font-size: 0.88rem;
+	}
+</style>

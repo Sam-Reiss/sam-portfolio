@@ -1,0 +1,31 @@
+---
+import CaseStudyTemplate from '../../components/CaseStudyTemplate.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Vision Prototype: GitLab AI Catalog | Sam Reiss">
+	<main>
+		<p class="back-link"><a href="/">Back to homepage</a></p>
+		<CaseStudyTemplate
+			title="Vision Prototype: GitLab AI Catalog"
+			overview="I developed a forward-looking prototype exploring how AI capabilities could be organized, discovered, and composed within a developer ecosystem. The goal was to move beyond single chat interactions and toward a structured system for understanding and leveraging AI functionality."
+			problem="As AI capabilities expanded, users struggled to understand what tools were available, how they related to one another, and how to effectively use them in workflows. Existing experiences focused on chat, but lacked visibility into the broader system of capabilities."
+			myRole="I led design and prototyping end-to-end, using AI-assisted tools to rapidly generate and iterate on interface concepts. I defined the core interaction model and produced a high-fidelity prototype used to communicate product vision."
+			workflow="Instead of relying only on static design tools, I used AI to generate functional prototypes directly. My workflow involved generating UI structures with AI tools, iterating on interaction patterns through prompt-based refinement, and sharing working prototypes with engineers for faster alignment."
+			designDecisions={[
+				'Structured AI capabilities into a browsable system rather than a single chat interface',
+				'Introduced categorization and hierarchy to improve discoverability',
+				'Designed for composability, allowing users to understand how capabilities connect',
+				'Prioritized clarity and system understanding over novelty'
+			]}
+			outcome="The prototype served as a vision artifact for future product direction and demonstrated how AI-native workflows can accelerate both design and alignment across teams."
+		/>
+	</main>
+</Layout>
+
+<style>
+	.back-link {
+		margin-bottom: 2rem;
+		font-size: 0.88rem;
+	}
+</style>

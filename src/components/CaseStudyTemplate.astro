@@ -1,0 +1,117 @@
+---
+interface Props {
+	title: string;
+	overview: string;
+	problem: string;
+	myRole: string;
+	workflow: string;
+	designDecisions: string[];
+	outcome: string;
+}
+
+const {
+	title,
+	overview,
+	problem,
+	myRole,
+	workflow,
+	designDecisions,
+	outcome
+} = Astro.props;
+---
+
+<article class="case-study">
+	<header class="case-study-header">
+		<p class="section-kicker">Case Study</p>
+		<h1>{title}</h1>
+	</header>
+
+	<section class="case-section">
+		<h2>Overview</h2>
+		<p>{overview}</p>
+	</section>
+
+	<section class="case-section">
+		<h2>Problem</h2>
+		<p>{problem}</p>
+	</section>
+
+	<section class="case-section">
+		<h2>My Role</h2>
+		<p>{myRole}</p>
+	</section>
+
+	<section class="case-section">
+		<h2>AI-assisted workflow</h2>
+		<p>{workflow}</p>
+	</section>
+
+	<section class="case-section">
+		<h2>Key design decisions</h2>
+		<ul>
+			{designDecisions.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<section class="case-section">
+		<h2>Outcome</h2>
+		<p>{outcome}</p>
+	</section>
+</article>
+
+<style>
+	.case-study {
+		max-width: 780px;
+	}
+
+	.case-study-header {
+		padding-bottom: 2.25rem;
+		border-bottom: 1px solid var(--line);
+		margin-bottom: 2.25rem;
+	}
+
+	.section-kicker {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		color: var(--muted);
+		margin-bottom: 0.8rem;
+	}
+
+	.case-study-header h1 {
+		font-size: clamp(2rem, 6vw, 3.35rem);
+		max-width: 24ch;
+	}
+
+	.case-section {
+		display: grid;
+		grid-template-columns: minmax(170px, 0.5fr) 1fr;
+		gap: 1.2rem 2rem;
+		padding: 1.65rem 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.case-section h2 {
+		font-size: 0.94rem;
+		letter-spacing: 0.01em;
+	}
+
+	.case-section p {
+		color: #242424;
+	}
+
+	.case-section ul {
+		margin: 0;
+		padding-left: 1rem;
+		display: grid;
+		gap: 0.6rem;
+		color: #242424;
+	}
+
+	@media (max-width: 880px) {
+		.case-section {
+			grid-template-columns: 1fr;
+			gap: 0.65rem;
+		}
+	}
+</style>
