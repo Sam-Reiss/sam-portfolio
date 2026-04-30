@@ -30,13 +30,15 @@ const projects = [
 ---
 
 <Layout title="Sam Reiss | Portfolio">
-	<main>
+	<main class="home-main">
 		<section class="intro-grid">
 			<div class="identity-column">
-				<p class="eyebrow">Senior Product Designer @ GitLab (formerly IBM)</p>
+				<p class="eyebrow" data-scatter-text>Hi, I'm Sam Reiss</p>
 				<h1 class="hero-name">
-					<span class="hero-line" data-scatter-text>SAM</span>
-					<span class="hero-line" data-scatter-text>REISS</span>
+					<span class="hero-line"
+						>I'm a Senior Product Designer at GitLab, working on AI powered tools. Formerly
+						watsonX at IBM.</span
+					>
 				</h1>
 			</div>
 
@@ -80,19 +82,19 @@ const projects = [
 		</section>
 
 		<section class="how-grid" aria-labelledby="how-i-work-title">
-			<h2 id="how-i-work-title">How I Work</h2>
+			<h2 id="how-i-work-title">How I work</h2>
 			<div class="how-copy">
-				<p data-scatter-text>
+				<p>
 					I focus on AI product design, prototyping workflows, and developer tools. My
 					work turns early product direction into clear interaction models teams can test,
 					debate, and ship.
 				</p>
-				<p data-scatter-text>
+				<p>
 					I work at the intersection of product direction and execution. I use prototypes to
 					make decisions visible early, expose tradeoffs clearly, and help teams align faster
 					around what to build.
 				</p>
-				<p data-scatter-text>
+				<p>
 					My process stays lightweight: frame the problem, test interaction models quickly,
 					then refine the strongest path with engineering constraints in view.
 				</p>
@@ -142,47 +144,47 @@ const projects = [
 			const span = document.createElement('span');
 			span.className = char === ' ' ? 'scatter-char scatter-space' : 'scatter-char';
 			span.textContent = char === ' ' ? '\u00A0' : char;
+			span.setAttribute('aria-hidden', 'true');
 			element.append(span);
 		});
 
 		const charSpans = [...element.querySelectorAll('.scatter-char')];
-		let jitterTimer = null;
-		let isActive = false;
+		const randomizeTransforms = () => {
+			charSpans.forEach((span) => {
+				if (span.classList.contains('scatter-space')) return;
+				const moveX = (Math.random() * 2 - 1) * 4.4;
+				const moveY = (Math.random() * 2 - 1) * 3.6;
+				const rotate = (Math.random() * 2 - 1) * 3.8;
+				const delay = Math.random() * 60;
+				span.style.setProperty('--scatter-x', `${moveX.toFixed(2)}px`);
+				span.style.setProperty('--scatter-y', `${moveY.toFixed(2)}px`);
+				span.style.setProperty('--scatter-r', `${rotate.toFixed(2)}deg`);
+				span.style.setProperty('--scatter-delay', `${delay.toFixed(0)}ms`);
+			});
+		};
 
-		const randomize = () => {
-			charSpans.forEach((span, index) => {
-				const amp = span.classList.contains('scatter-space') ? 0 : 1;
-				const nx = ((Math.random() * 2 - 1) * 11 * amp).toFixed(2);
-				const ny = ((Math.random() * 2 - 1) * 9 * amp).toFixed(2);
-				const nr = ((Math.random() * 2 - 1) * 10 * amp).toFixed(2);
-				span.style.setProperty('--scatter-x', `${nx}px`);
-				span.style.setProperty('--scatter-y', `${ny}px`);
-				span.style.setProperty('--scatter-r', `${nr}deg`);
-				span.style.setProperty('--scatter-delay', `${(index % 8) * 14}ms`);
+		const resetTransforms = () => {
+			charSpans.forEach((span) => {
+				span.style.setProperty('--scatter-x', '0px');
+				span.style.setProperty('--scatter-y', '0px');
+				span.style.setProperty('--scatter-r', '0deg');
+				span.style.setProperty('--scatter-delay', '0ms');
 			});
 		};
 
 		const activate = () => {
-			if (isActive) return;
-			isActive = true;
 			element.classList.add('scatter-active');
-			randomize();
-			jitterTimer = window.setInterval(randomize, 220);
+			randomizeTransforms();
 		};
 
 		const deactivate = () => {
-			if (!isActive) return;
-			isActive = false;
 			element.classList.remove('scatter-active');
-			if (jitterTimer) {
-				window.clearInterval(jitterTimer);
-				jitterTimer = null;
-			}
+			resetTransforms();
 		};
 
 		element.addEventListener('pointerenter', activate);
-		element.addEventListener('pointerleave', deactivate);
 		element.addEventListener('mouseenter', activate);
+		element.addEventListener('pointerleave', deactivate);
 		element.addEventListener('mouseleave', deactivate);
 	};
 
@@ -190,31 +192,48 @@ const projects = [
 </script>
 
 <style>
+	.home-main {
+		width: min(1320px, calc(100% - 6rem));
+		margin: 0 auto;
+	}
+
 	.intro-grid {
 		display: grid;
-		grid-template-columns: 1.58fr 0.72fr;
-		gap: 5.4rem;
+		grid-template-columns: minmax(0, 0.95fr) minmax(420px, 0.75fr);
+		gap: 4.5rem;
 		align-items: start;
-		padding-bottom: 0.9rem;
+		padding-bottom: 0.7rem;
+	}
+
+	.identity-column {
+		min-width: 0;
+		max-width: 100%;
+		overflow: hidden;
 	}
 
 	.eyebrow {
-		color: var(--muted);
-		font-size: 0.78rem;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		margin-bottom: 1.35rem;
+		color: #111;
+		font-size: 1.38rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		line-height: 1.2;
+		margin-bottom: 1.25rem;
 	}
 
 	.hero-name {
-		font-family: "Roboto Condensed", "Arial Narrow", "Aptos Narrow", sans-serif;
-		font-size: clamp(3.5rem, 11.2vw, 9.25rem);
+		font-family: "Work Sans", Inter, "Helvetica Neue", Arial, sans-serif;
+		font-size: clamp(3.5rem, 5.2vw, 5.6rem);
 		font-weight: 300;
-		line-height: 0.81;
-		letter-spacing: -0.02em;
+		line-height: 1.05;
+		letter-spacing: -0.012em;
 		text-wrap: balance;
 		display: grid;
-		text-transform: uppercase;
+		max-width: 100%;
+		width: 100%;
+		overflow-wrap: normal;
+		word-break: normal;
+		hyphens: none;
+		white-space: normal;
 	}
 
 	.hero-line {
@@ -222,11 +241,17 @@ const projects = [
 	}
 
 	.work-heading {
-		font-size: 0.78rem;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--muted);
-		margin-bottom: 0.85rem;
+		font-family: "Work Sans", Inter, "Helvetica Neue", Arial, sans-serif;
+		font-size: 1.38rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: #111;
+		margin-bottom: 1.2rem;
+	}
+
+	.work-column {
+		width: 100%;
+		min-width: 420px;
 	}
 
 	.project-list {
@@ -240,21 +265,26 @@ const projects = [
 	.project-trigger {
 		width: 100%;
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: space-between;
 		gap: 1rem;
 		border: 0;
 		background: none;
 		font: inherit;
-		font-size: 1rem;
-		font-weight: 500;
-		line-height: 1.3;
+		font-size: 1.78rem;
+		font-weight: 400;
+		line-height: 1.35;
 		text-align: left;
-		padding: 1rem 0;
+		padding: 1.85rem 0;
 		color: var(--foreground);
 		cursor: pointer;
 		transition: transform 240ms cubic-bezier(0.2, 0.9, 0.2, 1), color 180ms ease;
 		position: relative;
+	}
+
+	.project-trigger span:first-child {
+		flex: 1;
+		min-width: 0;
 	}
 
 	.project-trigger:hover {
@@ -298,21 +328,20 @@ const projects = [
 
 	.project-description {
 		color: #222;
-		font-size: 0.96rem;
-		line-height: 1.58;
+		font-size: 1.05rem;
+		line-height: 1.65;
 		margin-bottom: 0.82rem;
 	}
 
 	.project-meta {
 		color: var(--muted-strong);
-		font-size: 0.77rem;
-		letter-spacing: 0.07em;
-		text-transform: uppercase;
+		font-size: 0.9rem;
+		letter-spacing: 0.02em;
 		margin-bottom: 0.92rem;
 	}
 
 	.project-link {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 0.15em;
 		transition: color 180ms ease, letter-spacing 180ms ease;
@@ -324,69 +353,78 @@ const projects = [
 	}
 
 	.how-grid {
-		margin-top: 8.1rem;
-		padding-top: 2.8rem;
-		border-top: 1px solid var(--line);
+		margin-top: 3rem;
+		padding-top: 2.1rem;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 3rem;
+		grid-template-columns: minmax(180px, 0.35fr) minmax(0, 1fr);
+		gap: 4rem;
 	}
 
 	.how-grid h2 {
-		font-size: 0.78rem;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--muted);
+		font-family: "Work Sans", Inter, "Helvetica Neue", Arial, sans-serif;
+		font-size: 1.38rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: #111;
 	}
 
 	.how-copy {
 		display: grid;
 		gap: 1.25rem;
-		max-width: 65ch;
+		max-width: 840px;
 	}
 
 	.how-copy p {
 		color: #232323;
-		font-size: clamp(1rem, 1.25vw, 1.1rem);
-		line-height: 1.68;
-		letter-spacing: -0.006em;
+		font-size: clamp(1.08rem, 1.3vw, 1.22rem);
+		line-height: 1.62;
+		letter-spacing: -0.004em;
+		max-width: 70ch;
 	}
 
 	.scatter-char {
 		display: inline-block;
-		transition: transform 180ms cubic-bezier(0.2, 0.9, 0.2, 1), color 180ms ease;
+		transform: translate(var(--scatter-x, 0px), var(--scatter-y, 0px))
+			rotate(var(--scatter-r, 0deg));
+		transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+		transition-delay: var(--scatter-delay, 0ms);
 		will-change: transform;
-		transform: translate(0, 0) rotate(0deg);
 	}
 
 	.scatter-space {
 		min-width: 0.22em;
 	}
 
-	.scatter-active .scatter-char {
-		color: #101010;
-		transform: translate(var(--scatter-x, 0px), var(--scatter-y, 0px))
-			rotate(var(--scatter-r, 0deg));
-		transition-delay: var(--scatter-delay, 0ms);
-	}
+	@media (max-width: 1100px) {
+		.home-main {
+			width: min(1320px, calc(100% - 3rem));
+		}
 
-
-	@media (max-width: 980px) {
 		.intro-grid {
 			grid-template-columns: 1fr;
-			gap: 3.1rem;
+			gap: 2.4rem;
 		}
 
 		.hero-name {
-			font-size: clamp(3rem, 17vw, 5.2rem);
+			font-size: clamp(2.4rem, 9vw, 4.6rem);
+			max-width: 100%;
+		}
+
+		.work-column {
+			min-width: 0;
 		}
 
 		.how-grid {
-			margin-top: 5rem;
+			margin-top: 2.4rem;
 			grid-template-columns: 1fr;
-			gap: 1.3rem;
+			gap: 1.25rem;
 		}
 
+	}
+
+	html,
+	body {
+		overflow-x: hidden;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
