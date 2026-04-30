@@ -134,28 +134,32 @@ const projects = [
 	.intro-grid {
 		display: grid;
 		grid-template-columns: 1.55fr 0.75fr;
-		gap: 4rem;
+		gap: 4.75rem;
 		align-items: start;
+		padding-bottom: 0.6rem;
 	}
 
 	.eyebrow {
 		color: var(--muted);
-		font-size: 0.84rem;
-		letter-spacing: 0.02em;
+		font-size: 0.78rem;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		margin-bottom: 1.25rem;
+		margin-bottom: 1.35rem;
 	}
 
 	.hero-name {
-		font-size: clamp(3.1rem, 10vw, 8rem);
+		font-size: clamp(3.3rem, 10.7vw, 8.6rem);
 		font-weight: 520;
-		line-height: 0.88;
-		letter-spacing: -0.04em;
+		line-height: 0.84;
+		letter-spacing: -0.05em;
 	}
 
 	.work-heading {
-		font-size: 1.05rem;
-		margin-bottom: 1.1rem;
+		font-size: 0.78rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--muted);
+		margin-bottom: 0.85rem;
 	}
 
 	.project-list {
@@ -175,18 +179,19 @@ const projects = [
 		border: 0;
 		background: none;
 		font: inherit;
-		font-size: 1.02rem;
+		font-size: 1rem;
 		font-weight: 500;
-		line-height: 1.35;
+		line-height: 1.3;
 		text-align: left;
 		padding: 1rem 0;
 		color: var(--foreground);
 		cursor: pointer;
-		transition: transform 220ms ease;
+		transition: transform 220ms ease, color 180ms ease;
 	}
 
 	.project-trigger:hover {
-		transform: translateX(4px);
+		transform: translateX(3px);
+		color: #070707;
 	}
 
 	.project-trigger:focus-visible {
@@ -224,59 +229,74 @@ const projects = [
 	}
 
 	.project-description {
-		color: #252525;
-		font-size: 0.95rem;
-		margin-bottom: 0.75rem;
+		color: #222;
+		font-size: 0.96rem;
+		line-height: 1.58;
+		margin-bottom: 0.82rem;
 	}
 
 	.project-meta {
-		color: var(--muted);
-		font-size: 0.83rem;
-		margin-bottom: 0.95rem;
+		color: var(--muted-strong);
+		font-size: 0.77rem;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		margin-bottom: 0.92rem;
 	}
 
 	.project-link {
+		font-size: 0.9rem;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 0.15em;
+		transition: color 180ms ease;
+	}
+
+	.project-link:hover {
+		color: #000;
 	}
 
 	.how-grid {
-		margin-top: 7rem;
-		padding-top: 2rem;
+		margin-top: 7.5rem;
+		padding-top: 2.4rem;
 		border-top: 1px solid var(--line);
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 2rem;
+		gap: 2.5rem;
 	}
 
 	.how-grid h2 {
-		font-size: 1.05rem;
+		font-size: 0.78rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--muted);
 	}
 
 	.how-copy {
 		display: grid;
-		gap: 1.1rem;
+		gap: 1.25rem;
 		max-width: 65ch;
 	}
 
 	.how-copy p {
-		color: #272727;
+		color: #232323;
+		font-size: clamp(1rem, 1.25vw, 1.1rem);
+		line-height: 1.68;
+		letter-spacing: -0.006em;
 	}
 
 	@media (max-width: 980px) {
 		.intro-grid {
 			grid-template-columns: 1fr;
-			gap: 2.5rem;
+			gap: 2.8rem;
 		}
 
 		.hero-name {
-			font-size: clamp(3rem, 17vw, 5rem);
+			font-size: clamp(3rem, 17vw, 5.2rem);
 		}
 
 		.how-grid {
-			margin-top: 4.5rem;
+			margin-top: 5rem;
 			grid-template-columns: 1fr;
-			gap: 1.2rem;
+			gap: 1.1rem;
 		}
 	}
 
