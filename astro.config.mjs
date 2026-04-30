@@ -1,5 +1,8 @@
 import { defineConfig } from 'astro/config';
+import githubPages from '@astrojs/github-pages';
 
 export default defineConfig({
-	integrations: [],
+  site: 'https://sam-reiss.github.io', // your GitHub username
+  base: '/sam-portfolio',              // your repo name
+  integrations: [githubPages()],
 });
