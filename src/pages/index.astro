@@ -861,24 +861,74 @@ const projects = [
 	}
 
 	@media (max-width: 760px) {
-		.decorative-accent-arc,
-		.decorative-accent-capsule {
-			display: none;
+		.decorative-accent-arc {
+			display: block;
+			width: clamp(520px, 132vw, 900px);
+			left: clamp(-7.5rem, -18vw, -1.4rem);
+			top: clamp(2.4rem, 8vw, 4.2rem);
+			opacity: 0.86;
 		}
 
 		.decorative-accent-plus {
 			width: 35px;
 			right: 0.02rem;
 			top: -0.18rem;
-			opacity: 0.82;
+			opacity: 0.9;
 		}
 
 		.decorative-accent-circle {
-			display: none;
+			display: block;
+			width: clamp(20px, 6.5vw, 30px);
+			bottom: clamp(15rem, 34vh, 20rem);
+			left: clamp(1rem, 3.5vw, 1.5rem);
+			top: auto;
+			opacity: 0.76;
 		}
 
 		.decorative-accent-oval-blue {
-			display: none;
+			display: block;
+			width: clamp(46px, 16vw, 90px);
+			height: clamp(17px, 5.8vw, 30px);
+			top: clamp(0.15rem, 1vw, 0.65rem);
+			left: clamp(6.1rem, 20vw, 10.5rem);
+			opacity: 0.78;
+		}
+
+		.decorative-accent-capsule {
+			display: block;
+			width: clamp(86px, 30vw, 140px);
+			height: clamp(48px, 16vw, 80px);
+			bottom: clamp(5.8rem, 18vh, 9.5rem);
+			right: clamp(1rem, 3.5vw, 1.4rem);
+			top: auto;
+			opacity: 0.8;
+		}
+
+		.decorative-accent-oval-secondary {
+			display: block;
+			width: clamp(56px, 18vw, 96px);
+			height: clamp(20px, 6.5vw, 34px);
+			top: clamp(11rem, 30vw, 15rem);
+			right: clamp(0.85rem, 5vw, 1.65rem);
+			left: auto;
+			opacity: 0.8;
+		}
+
+		.decorative-accent-star-secondary {
+			display: block;
+			width: clamp(30px, 10vw, 56px);
+			top: clamp(4.25rem, 18vw, 7.75rem);
+			right: clamp(0.95rem, 6vw, 2rem);
+			left: auto;
+			opacity: 0.82;
+		}
+
+		.decorative-accent-circle-secondary {
+			display: block;
+			width: clamp(8px, 2.8vw, 14px);
+			top: clamp(8.6rem, 20vw, 11rem);
+			right: clamp(1.4rem, 5vw, 2.3rem);
+			opacity: 0.78;
 		}
 	}
 
