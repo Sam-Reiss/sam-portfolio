@@ -35,7 +35,21 @@ const projects = [
 
 <Layout title="Sam Reiss | Portfolio">
 	<main class="home-main">
-		<section class="intro-grid">
+		<section class="intro-grid accent-zone accent-zone-hero">
+			<div class="decorative-accent decorative-accent-arc" aria-hidden="true">
+				<svg
+					viewBox="0 0 560 250"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					focusable="false"
+				>
+					<path
+						d="M38 183C67 104 132 48 218 34C310 19 392 59 445 129L385 177C351 130 293 103 231 114C173 124 130 164 108 219L38 183Z"
+						fill="var(--accent-green)"
+					></path>
+				</svg>
+			</div>
+			<div class="decorative-accent decorative-accent-circle" aria-hidden="true"></div>
 			<div class="identity-column">
 				<p class="eyebrow" data-scatter-text>Hi, I'm Sam Reiss</p>
 				<h1 class="hero-name">
@@ -48,6 +62,20 @@ const projects = [
 
 			<div class="work-column">
 				<h2 class="work-heading">My Work</h2>
+				<div class="decorative-accent decorative-accent-plus" aria-hidden="true">
+					<svg
+						viewBox="0 0 44 44"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						focusable="false"
+					>
+						<path
+							d="M22 3C24.9 3 27.2 5.3 27.2 8.2V15.9H34.8C37.7 15.9 40 18.2 40 21.1C40 24 37.7 26.3 34.8 26.3H27.2V34C27.2 36.9 24.9 39.2 22 39.2C19.1 39.2 16.8 36.9 16.8 34V26.3H9.2C6.3 26.3 4 24 4 21.1C4 18.2 6.3 15.9 9.2 15.9H16.8V8.2C16.8 5.3 19.1 3 22 3Z"
+							fill="var(--accent-red)"
+						></path>
+					</svg>
+				</div>
+				<div class="decorative-accent decorative-accent-circle-secondary" aria-hidden="true"></div>
 				<div class="project-list" data-project-list>
 					{
 						projects.map((project, index) => (
@@ -85,7 +113,22 @@ const projects = [
 			</div>
 		</section>
 
-		<section class="how-grid" aria-labelledby="how-i-work-title">
+		<section class="how-grid accent-zone accent-zone-how" aria-labelledby="how-i-work-title">
+			<div class="decorative-accent decorative-accent-capsule" aria-hidden="true"></div>
+			<div class="decorative-accent decorative-accent-oval-secondary" aria-hidden="true"></div>
+			<div class="decorative-accent decorative-accent-star-secondary" aria-hidden="true">
+				<svg
+					viewBox="0 0 60 60"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					focusable="false"
+				>
+					<path
+						d="M30 4L35.2 18.1L50.5 9.5L41.9 24.8L56 30L41.9 35.2L50.5 50.5L35.2 41.9L30 56L24.8 41.9L9.5 50.5L18.1 35.2L4 30L18.1 24.8L9.5 9.5L24.8 18.1L30 4Z"
+						fill="var(--accent-red)"
+					></path>
+				</svg>
+			</div>
 			<h2 id="how-i-work-title">How I work</h2>
 			<div class="how-copy">
 				<p>
@@ -135,6 +178,126 @@ const projects = [
 	});
 
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const prefersFinePointer = window.matchMedia('(pointer: fine)').matches;
+	const query = new URLSearchParams(window.location.search);
+	const enableMotionDebug =
+		(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
+		query.has('motionDebug');
+	const densityMode = query.get('density');
+	const proximityOverride = query.get('proximity');
+
+	if (enableMotionDebug) {
+		document.documentElement.classList.add('motion-debug');
+	}
+
+	const homeMain = document.querySelector('.home-main');
+	if (homeMain && (densityMode === 'full' || densityMode === 'reduced')) {
+		homeMain.setAttribute('data-accent-density', densityMode);
+	}
+
+	const proximityEnabled =
+		prefersFinePointer &&
+		(enableMotionDebug || !reduceMotion) &&
+		proximityOverride !== '0';
+
+	if (homeMain && proximityEnabled) {
+		const accents = [...homeMain.querySelectorAll('.decorative-accent')];
+		const accentState = accents.map((element) => {
+			const style = window.getComputedStyle(element);
+			const radius = Number.parseFloat(style.getPropertyValue('--proximity-radius')) || 180;
+			const strength = Number.parseFloat(style.getPropertyValue('--proximity-strength')) || 7;
+			const ease = Number.parseFloat(style.getPropertyValue('--proximity-ease')) || 0.14;
+			return {
+				element,
+				radius,
+				strength,
+				ease,
+				centerX: 0,
+				centerY: 0,
+				currentX: 0,
+				currentY: 0
+			};
+		});
+
+		const pointer = { x: 0, y: 0, active: false };
+		let rafId = 0;
+
+		const refreshCenters = () => {
+			accentState.forEach((accent) => {
+				const rect = accent.element.getBoundingClientRect();
+				accent.centerX = rect.left + rect.width * 0.5;
+				accent.centerY = rect.top + rect.height * 0.5;
+			});
+		};
+
+		const tick = () => {
+			let hasMovement = false;
+
+			accentState.forEach((accent) => {
+				let targetX = 0;
+				let targetY = 0;
+
+				if (pointer.active) {
+					const dx = accent.centerX - pointer.x;
+					const dy = accent.centerY - pointer.y;
+					const distance = Math.hypot(dx, dy);
+
+					if (distance < accent.radius && distance > 0.001) {
+						const normalized = 1 - distance / accent.radius;
+						const push = normalized * accent.strength;
+						targetX = (dx / distance) * push;
+						targetY = (dy / distance) * push;
+					}
+				}
+
+				accent.currentX += (targetX - accent.currentX) * accent.ease;
+				accent.currentY += (targetY - accent.currentY) * accent.ease;
+				accent.element.style.setProperty('--prox-x', `${accent.currentX.toFixed(2)}px`);
+				accent.element.style.setProperty('--prox-y', `${accent.currentY.toFixed(2)}px`);
+
+				if (
+					Math.abs(accent.currentX - targetX) > 0.05 ||
+					Math.abs(accent.currentY - targetY) > 0.05 ||
+					Math.abs(accent.currentX) > 0.05 ||
+					Math.abs(accent.currentY) > 0.05
+				) {
+					hasMovement = true;
+				}
+			});
+
+			if (hasMovement || pointer.active) {
+				rafId = window.requestAnimationFrame(tick);
+			} else {
+				rafId = 0;
+			}
+		};
+
+		const requestTick = () => {
+			if (!rafId) rafId = window.requestAnimationFrame(tick);
+		};
+
+		const onPointerMove = (event) => {
+			pointer.x = event.clientX;
+			pointer.y = event.clientY;
+			pointer.active = true;
+			requestTick();
+		};
+
+		const onPointerLeave = () => {
+			pointer.active = false;
+			requestTick();
+		};
+
+		refreshCenters();
+		window.addEventListener('pointermove', onPointerMove, { passive: true });
+		window.addEventListener('pointerleave', onPointerLeave);
+		window.addEventListener('resize', () => {
+			refreshCenters();
+			requestTick();
+		});
+		window.addEventListener('scroll', refreshCenters, { passive: true });
+	}
+
 	const scatterTargets = reduceMotion ? [] : [...document.querySelectorAll('[data-scatter-text]')];
 
 	const setupScatter = (element) => {
@@ -196,9 +359,28 @@ const projects = [
 </script>
 
 <style>
+	:root {
+		--accent-green: #009f5a;
+		--accent-red: #ff3b30;
+		--accent-blue: #0b1b3a;
+		--accent-blue-soft: #3f5f9a;
+	}
+
 	.home-main {
 		width: min(1320px, calc(100% - 6rem));
 		margin: 0 auto;
+	}
+
+	.home-main[data-accent-density='reduced'] .decorative-accent-circle,
+	.home-main[data-accent-density='reduced'] .decorative-accent-star-secondary,
+	.home-main[data-accent-density='reduced'] .decorative-accent-oval-secondary,
+	.home-main[data-accent-density='reduced'] .decorative-accent-circle-secondary {
+		display: none;
+	}
+
+	.accent-zone {
+		position: relative;
+		isolation: isolate;
 	}
 
 	.intro-grid {
@@ -213,6 +395,8 @@ const projects = [
 		min-width: 0;
 		max-width: 100%;
 		overflow: hidden;
+		position: relative;
+		z-index: 2;
 	}
 
 	.eyebrow {
@@ -256,6 +440,174 @@ const projects = [
 	.work-column {
 		width: 100%;
 		min-width: 420px;
+		position: relative;
+		z-index: 2;
+	}
+
+	.decorative-accent {
+		position: absolute;
+		pointer-events: none;
+		user-select: none;
+		z-index: 0;
+		opacity: 0.94;
+		--prox-x: 0px;
+		--prox-y: 0px;
+		translate: var(--prox-x) var(--prox-y);
+		transform: translate3d(0, 0, 0);
+		will-change: transform, opacity;
+		animation-fill-mode: both;
+	}
+
+	.decorative-accent svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.decorative-accent-arc {
+		width: clamp(300px, 41vw, 540px);
+		top: clamp(0.4rem, 1.6vw, 1.3rem);
+		left: clamp(8.8rem, 14.6vw, 16.2rem);
+		opacity: 0.96;
+		z-index: 1;
+		transform: translate3d(0, 0, 0) rotate(-6deg) scale(1);
+		animation: accentArcDrift 8.2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+		animation-delay: 220ms;
+		--proximity-radius: 260;
+		--proximity-strength: 9;
+		--proximity-ease: 0.12;
+	}
+
+	.decorative-accent-plus {
+		width: clamp(20px, 1.8vw, 30px);
+		top: -0.62rem;
+		right: -0.02rem;
+		opacity: 0.96;
+		transform-origin: center;
+		transform: translate3d(0, 0, 0) rotate(-9deg) scale(1);
+		animation: accentPlusPulse 6.1s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+		animation-delay: 900ms;
+		--proximity-radius: 170;
+		--proximity-strength: 11;
+		--proximity-ease: 0.17;
+	}
+
+	.decorative-accent-capsule {
+		width: clamp(96px, 9vw, 136px);
+		height: clamp(36px, 3.5vw, 52px);
+		border-radius: 999px;
+		background: var(--accent-blue-soft);
+		top: -0.7rem;
+		right: clamp(0.15rem, 1vw, 0.9rem);
+		opacity: 0.94;
+		transform-origin: center;
+		transform: translate3d(0, 0, 0) rotate(-10deg) scale(1);
+		animation: accentCapsuleDrift 7.6s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+		animation-delay: 500ms;
+		--proximity-radius: 210;
+		--proximity-strength: 8;
+		--proximity-ease: 0.13;
+	}
+
+	.decorative-accent-circle {
+		width: clamp(28px, 3vw, 46px);
+		aspect-ratio: 1;
+		border-radius: 999px;
+		background: var(--accent-blue);
+		top: clamp(2.9rem, 7vw, 5rem);
+		left: clamp(2rem, 5vw, 4.8rem);
+		opacity: 0.78;
+		transform: translate3d(0, 0, 0) scale(1);
+		animation: accentCircleFloat 9.4s cubic-bezier(0.22, 0.05, 0.28, 1) infinite;
+		animation-delay: 160ms;
+		--proximity-radius: 160;
+		--proximity-strength: 10;
+		--proximity-ease: 0.16;
+	}
+
+	.decorative-accent-star-secondary {
+		width: clamp(30px, 2.8vw, 44px);
+		top: clamp(15.6rem, 21vw, 20.4rem);
+		left: clamp(1.2rem, 6vw, 5rem);
+		opacity: 0.88;
+		transform-origin: center;
+		transform: translate3d(0, 0, 0) rotate(-6deg) scale(1);
+		animation: accentStarSecondaryFloat 7.4s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+		animation-delay: 1200ms;
+		--proximity-radius: 150;
+		--proximity-strength: 12;
+		--proximity-ease: 0.19;
+	}
+
+	.decorative-accent-circle-secondary {
+		width: clamp(12px, 1.2vw, 18px);
+		aspect-ratio: 1;
+		border-radius: 999px;
+		background: var(--accent-red);
+		top: clamp(7.8rem, 12vw, 11rem);
+		right: clamp(2.8rem, 4vw, 4rem);
+		opacity: 0.76;
+		transform: translate3d(0, 0, 0) scale(1);
+		animation: accentCircleSecondaryFloat 8.6s cubic-bezier(0.2, 0.05, 0.3, 1) infinite;
+		animation-delay: 430ms;
+		--proximity-radius: 135;
+		--proximity-strength: 8;
+		--proximity-ease: 0.16;
+	}
+
+	.decorative-accent-oval-secondary {
+		width: clamp(44px, 4.8vw, 78px);
+		height: clamp(18px, 2.1vw, 28px);
+		border-radius: 999px;
+		background: var(--accent-green);
+		top: clamp(11.6rem, 15.2vw, 14.1rem);
+		left: clamp(6.8rem, 11.8vw, 10.8rem);
+		opacity: 0.8;
+		transform-origin: center;
+		transform: translate3d(0, 0, 0) rotate(9deg) scale(1);
+		animation: accentOvalFloat 10.3s cubic-bezier(0.25, 0.05, 0.2, 1) infinite;
+		animation-delay: 760ms;
+		--proximity-radius: 190;
+		--proximity-strength: 9;
+		--proximity-ease: 0.14;
+	}
+
+	.accent-zone-hero:hover .decorative-accent-arc {
+		transform: translate3d(0.22rem, -0.12rem, 0) rotate(-4.4deg) scale(1.012);
+	}
+
+	.accent-zone-hero:hover .decorative-accent-circle {
+		transform: translate3d(0.12rem, -0.12rem, 0) scale(1.04);
+	}
+
+	.accent-zone-how:hover .decorative-accent-capsule {
+		transform: translate3d(-0.14rem, -0.08rem, 0) rotate(-6deg) scale(1.016);
+	}
+
+	.accent-zone-how:hover .decorative-accent-oval-secondary {
+		transform: translate3d(-0.14rem, -0.08rem, 0) rotate(12deg) scale(1.03);
+	}
+
+	.work-column:hover .decorative-accent-plus {
+		transform: translate3d(-0.1rem, -0.06rem, 0) rotate(-3deg) scale(1.02);
+	}
+
+	.work-column:hover .decorative-accent-circle-secondary {
+		transform: translate3d(-0.04rem, -0.12rem, 0) scale(1.04);
+	}
+
+	.work-column:hover .decorative-accent-star-secondary {
+		transform: translate3d(0.08rem, -0.12rem, 0) rotate(2deg) scale(1.05);
+	}
+
+	.accent-zone-hero:hover .decorative-accent-arc,
+	.accent-zone-hero:hover .decorative-accent-circle,
+	.accent-zone-how:hover .decorative-accent-capsule,
+	.accent-zone-how:hover .decorative-accent-oval-secondary,
+	.work-column:hover .decorative-accent-plus,
+	.work-column:hover .decorative-accent-circle-secondary,
+	.work-column:hover .decorative-accent-star-secondary {
+		transition: transform 680ms cubic-bezier(0.2, 0.7, 0.2, 1);
 	}
 
 	.project-list {
@@ -427,11 +779,167 @@ const projects = [
 			gap: 1.25rem;
 		}
 
+		.decorative-accent-arc {
+			width: clamp(290px, 74vw, 500px);
+			left: clamp(3.4rem, 12vw, 7.4rem);
+			top: 0.18rem;
+			opacity: 0.9;
+		}
+
+		.decorative-accent-capsule {
+			width: clamp(86px, 14vw, 120px);
+			height: clamp(32px, 5vw, 44px);
+			top: -0.32rem;
+			right: 0.1rem;
+			opacity: 0.87;
+		}
+
+		.decorative-accent-circle {
+			width: clamp(24px, 4vw, 36px);
+			top: clamp(2.4rem, 7vw, 4.4rem);
+			left: clamp(0.9rem, 3vw, 1.8rem);
+			opacity: 0.72;
+		}
+
+		.decorative-accent-star-secondary,
+		.decorative-accent-oval-secondary {
+			display: none;
+		}
+
+		.decorative-accent-circle-secondary {
+			top: clamp(6.2rem, 14vw, 8.5rem);
+			right: clamp(1.4rem, 3vw, 2.2rem);
+			opacity: 0.7;
+		}
+
+	}
+
+	@media (max-width: 760px) {
+		.decorative-accent-arc,
+		.decorative-accent-capsule {
+			display: none;
+		}
+
+		.decorative-accent-plus {
+			width: 20px;
+			right: 0.02rem;
+			top: -0.18rem;
+			opacity: 0.82;
+		}
+
+		.decorative-accent-circle {
+			display: none;
+		}
 	}
 
 	html,
 	body {
 		overflow-x: hidden;
+	}
+
+	@keyframes accentArcDrift {
+		0% {
+			transform: translate3d(-8px, 5px, 0) rotate(-8.4deg) scale(1);
+			opacity: 0.88;
+		}
+		50% {
+			transform: translate3d(11px, -8px, 0) rotate(-2.9deg) scale(1.05);
+			opacity: 1;
+		}
+		100% {
+			transform: translate3d(-8px, 5px, 0) rotate(-8.4deg) scale(1);
+			opacity: 0.88;
+		}
+	}
+
+	@keyframes accentPlusPulse {
+		0% {
+			transform: translate3d(0, 0, 0) rotate(-11deg) scale(1);
+			opacity: 0.85;
+		}
+		50% {
+			transform: translate3d(-7px, -5px, 0) rotate(-1deg) scale(1.075);
+			opacity: 1;
+		}
+		100% {
+			transform: translate3d(0, 0, 0) rotate(-11deg) scale(1);
+			opacity: 0.85;
+		}
+	}
+
+	@keyframes accentCapsuleDrift {
+		0% {
+			transform: translate3d(3px, 6px, 0) rotate(-12deg) scale(1);
+			opacity: 0.86;
+		}
+		50% {
+			transform: translate3d(-10px, -8px, 0) rotate(-5.2deg) scale(1.055);
+			opacity: 0.98;
+		}
+		100% {
+			transform: translate3d(3px, 6px, 0) rotate(-12deg) scale(1);
+			opacity: 0.86;
+		}
+	}
+
+	@keyframes accentCircleFloat {
+		0% {
+			transform: translate3d(2px, 1px, 0) scale(0.98);
+			opacity: 0.72;
+		}
+		50% {
+			transform: translate3d(-4px, -4px, 0) scale(1.06);
+			opacity: 0.88;
+		}
+		100% {
+			transform: translate3d(2px, 1px, 0) scale(0.98);
+			opacity: 0.72;
+		}
+	}
+
+	@keyframes accentStarSecondaryFloat {
+		0% {
+			transform: translate3d(1px, 2px, 0) rotate(-6deg) scale(0.96);
+			opacity: 0.78;
+		}
+		50% {
+			transform: translate3d(-3px, -5px, 0) rotate(3deg) scale(1.07);
+			opacity: 0.98;
+		}
+		100% {
+			transform: translate3d(1px, 2px, 0) rotate(-6deg) scale(0.96);
+			opacity: 0.78;
+		}
+	}
+
+	@keyframes accentCircleSecondaryFloat {
+		0% {
+			transform: translate3d(1px, 1px, 0) scale(0.98);
+			opacity: 0.7;
+		}
+		50% {
+			transform: translate3d(-2px, -4px, 0) scale(1.08);
+			opacity: 0.9;
+		}
+		100% {
+			transform: translate3d(1px, 1px, 0) scale(0.98);
+			opacity: 0.7;
+		}
+	}
+
+	@keyframes accentOvalFloat {
+		0% {
+			transform: translate3d(3px, 1px, 0) rotate(9deg) scale(0.98);
+			opacity: 0.74;
+		}
+		50% {
+			transform: translate3d(-5px, -4px, 0) rotate(14deg) scale(1.05);
+			opacity: 0.9;
+		}
+		100% {
+			transform: translate3d(3px, 1px, 0) rotate(9deg) scale(0.98);
+			opacity: 0.74;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -446,5 +954,60 @@ const projects = [
 			transition: none;
 		}
 
+		.decorative-accent {
+			animation: none;
+			transform: none;
+			transition: none;
+		}
+
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(html.motion-debug) .decorative-accent {
+			animation-fill-mode: both;
+			will-change: transform, opacity;
+		}
+
+		:global(html.motion-debug) .decorative-accent-arc {
+			animation: accentArcDrift 8.2s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
+			animation-delay: 220ms !important;
+			transform: translate3d(0, 0, 0) rotate(-6deg) scale(1) !important;
+		}
+
+		:global(html.motion-debug) .decorative-accent-capsule {
+			animation: accentCapsuleDrift 7.6s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
+			animation-delay: 500ms !important;
+			transform: translate3d(0, 0, 0) rotate(-10deg) scale(1) !important;
+		}
+
+		:global(html.motion-debug) .decorative-accent-plus {
+			animation: accentPlusPulse 6.1s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
+			animation-delay: 900ms !important;
+			transform: translate3d(0, 0, 0) rotate(-9deg) scale(1) !important;
+		}
+
+		:global(html.motion-debug) .decorative-accent-circle {
+			animation: accentCircleFloat 9.4s cubic-bezier(0.22, 0.05, 0.28, 1) infinite !important;
+			animation-delay: 160ms !important;
+			transform: translate3d(0, 0, 0) scale(1) !important;
+		}
+
+		:global(html.motion-debug) .decorative-accent-star-secondary {
+			animation: accentStarSecondaryFloat 7.4s cubic-bezier(0.3, 0, 0.2, 1) infinite !important;
+			animation-delay: 1200ms !important;
+			transform: translate3d(0, 0, 0) rotate(-6deg) scale(1) !important;
+		}
+
+		:global(html.motion-debug) .decorative-accent-oval-secondary {
+			animation: accentOvalFloat 10.3s cubic-bezier(0.25, 0.05, 0.2, 1) infinite !important;
+			animation-delay: 760ms !important;
+			transform: translate3d(0, 0, 0) rotate(9deg) scale(1) !important;
+		}
+
+		:global(html.motion-debug) .decorative-accent-circle-secondary {
+			animation: accentCircleSecondaryFloat 8.6s cubic-bezier(0.2, 0.05, 0.3, 1) infinite !important;
+			animation-delay: 430ms !important;
+			transform: translate3d(0, 0, 0) scale(1) !important;
+		}
 	}
 </style>
