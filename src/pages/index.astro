@@ -34,6 +34,10 @@ const projects = [
 		<section class="intro-grid">
 			<div class="identity-column">
 				<p class="eyebrow">Senior Product Designer @ GitLab (formerly IBM)</p>
+				<div class="hero-stickers" aria-hidden="true">
+					<span class="sticker sticker-red">AI</span>
+					<span class="sticker sticker-blue"></span>
+				</div>
 				<h1 class="hero-name">
 					Sam
 					<br />
@@ -83,6 +87,7 @@ const projects = [
 		<section class="how-grid" aria-labelledby="how-i-work-title">
 			<h2 id="how-i-work-title">How I Work</h2>
 			<div class="how-copy">
+				<span class="how-marker" aria-hidden="true"></span>
 				<p>
 					I focus on AI product design, prototyping workflows, and developer tools. My
 					work turns early product direction into clear interaction models teams can test,
@@ -147,6 +152,38 @@ const projects = [
 		margin-bottom: 1.35rem;
 	}
 
+	.hero-stickers {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.52rem;
+		margin-bottom: 1.15rem;
+	}
+
+	.sticker {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.sticker-red {
+		background: var(--accent-red);
+		color: #fff;
+		font-size: 0.67rem;
+		font-weight: 600;
+		padding: 0.32rem 0.55rem;
+		border-radius: 999px;
+	}
+
+	.sticker-blue {
+		background: var(--accent-blue);
+		width: 1rem;
+		height: 1rem;
+		border-radius: 0.28rem;
+		transform: rotate(11deg);
+	}
+
 	.hero-name {
 		font-size: clamp(3.3rem, 10.7vw, 8.6rem);
 		font-weight: 520;
@@ -187,11 +224,32 @@ const projects = [
 		color: var(--foreground);
 		cursor: pointer;
 		transition: transform 220ms ease, color 180ms ease;
+		position: relative;
 	}
 
 	.project-trigger:hover {
 		transform: translateX(3px);
 		color: #070707;
+	}
+
+	.project-trigger::before {
+		content: '';
+		position: absolute;
+		left: -0.65rem;
+		top: 50%;
+		width: 0.3rem;
+		height: 0.3rem;
+		background: var(--accent-green);
+		border-radius: 999px;
+		transform: translateY(-50%) scale(0.65);
+		opacity: 0;
+		transition: transform 180ms ease, opacity 180ms ease;
+	}
+
+	.project-trigger:hover::before,
+	.project-trigger:focus-visible::before {
+		opacity: 0.9;
+		transform: translateY(-50%) scale(1);
 	}
 
 	.project-trigger:focus-visible {
@@ -274,6 +332,16 @@ const projects = [
 		display: grid;
 		gap: 1.25rem;
 		max-width: 65ch;
+		position: relative;
+		padding-top: 0.65rem;
+	}
+
+	.how-marker {
+		display: inline-block;
+		width: 2.25rem;
+		height: 0.28rem;
+		border-radius: 999px;
+		background: var(--accent-green);
 	}
 
 	.how-copy p {
@@ -298,6 +366,10 @@ const projects = [
 			grid-template-columns: 1fr;
 			gap: 1.1rem;
 		}
+
+		.project-trigger::before {
+			left: -0.5rem;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -308,6 +380,10 @@ const projects = [
 		.caret,
 		.project-panel,
 		.project-trigger {
+			transition: none;
+		}
+
+		.project-trigger::before {
 			transition: none;
 		}
 	}
