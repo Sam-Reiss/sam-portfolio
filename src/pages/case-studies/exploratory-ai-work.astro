@@ -5,7 +5,7 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout title="Exploratory AI Work | Sam Reiss">
 	<main>
-		<p class="back-link"><a href="/">Back to homepage</a></p>
+		<p class="back-link"><a href={import.meta.env.BASE_URL}>Back to homepage</a></p>
 		<CaseStudyTemplate
 			title="Exploratory AI Work"
 			overview="I led exploratory work focused on extending AI capabilities beyond chat, including productivity dashboards, code maps, and agent-driven workflows."
