@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+	? import.meta.env.BASE_URL
+	: `${import.meta.env.BASE_URL}/`;
+
 const projects = [
 	{
 		id: 'project-ai-catalog',
@@ -8,7 +12,7 @@ const projects = [
 		description:
 			'Reframed AI from a chat interface into a discoverable, composable system of capabilities.',
 		meta: 'AI platform UX / Concept prototype / 2025',
-		link: `${import.meta.env.BASE_URL}case-studies/ai-catalog-prototype/`
+		link: `${baseUrl}case-studies/ai-catalog-prototype/`
 	},
 	{
 		id: 'project-ai-chat',
@@ -16,7 +20,7 @@ const projects = [
 		description:
 			'Designed and shipped AI chat experiences across IDE and web surfaces, spanning Watsonx Code Assistant and GitLab’s Duo Agent Platform.',
 		meta: 'Shipped product / Developer tools / 2024',
-		link: `${import.meta.env.BASE_URL}case-studies/ai-chat-systems/`
+		link: `${baseUrl}case-studies/ai-chat-systems/`
 	},
 	{
 		id: 'project-exploratory',
@@ -24,7 +28,7 @@ const projects = [
 		description:
 			'Developed forward-looking concepts for agent workflows, productivity systems, and AI-driven developer tooling.',
 		meta: 'Product strategy / 0–1 concepts / 2025',
-		link: `${import.meta.env.BASE_URL}case-studies/exploratory-ai-work/`
+		link: `${baseUrl}case-studies/exploratory-ai-work/`
 	}
 ];
 ---
