@@ -206,6 +206,13 @@ const projects = [
 			}
 		};
 
+		const setPointerFromEvent = (event) => {
+			pointer = {
+				x: event.clientX - element.getBoundingClientRect().left,
+				y: event.clientY - element.getBoundingClientRect().top
+			};
+		};
+
 		const burst = () => {
 			charSpans.forEach((charData, index) => {
 				const direction = index % 2 === 0 ? 1 : -1;
@@ -218,19 +225,13 @@ const projects = [
 		element.addEventListener('pointerenter', (event) => {
 			hoverActive = true;
 			element.classList.add('scatter-active');
-			pointer = {
-				x: event.clientX - element.getBoundingClientRect().left,
-				y: event.clientY - element.getBoundingClientRect().top
-			};
+			setPointerFromEvent(event);
 			burst();
 			ensureLoop();
 		});
 
 		element.addEventListener('pointermove', (event) => {
-			pointer = {
-				x: event.clientX - element.getBoundingClientRect().left,
-				y: event.clientY - element.getBoundingClientRect().top
-			};
+			setPointerFromEvent(event);
 			ensureLoop();
 		});
 
@@ -244,9 +245,23 @@ const projects = [
 		// Fallback for environments with weak pointer event support.
 		element.addEventListener('mouseenter', () => {
 			if (!hoverActive) {
+				hoverActive = true;
+				element.classList.add('scatter-active');
 				burst();
 				ensureLoop();
 			}
+		});
+
+		element.addEventListener('mousemove', (event) => {
+			setPointerFromEvent(event);
+			ensureLoop();
+		});
+
+		element.addEventListener('mouseleave', () => {
+			hoverActive = false;
+			element.classList.remove('scatter-active');
+			pointer = null;
+			ensureLoop();
 		});
 	};
 
