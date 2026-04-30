@@ -145,30 +145,86 @@ const projects = [
 			element.append(span);
 		});
 
-		const charSpans = [...element.querySelectorAll('.scatter-char')];
+		const charSpans = [...element.querySelectorAll('.scatter-char')].map((span, index) => ({
+			span,
+			index,
+			x: 0,
+			y: 0,
+			r: 0
+		}));
 
-		element.addEventListener('mousemove', (event) => {
+		let pointer = null;
+		let rafId = null;
+
+		const tick = () => {
 			const rect = element.getBoundingClientRect();
-			const pointerX = event.clientX - rect.left;
-			const pointerY = event.clientY - rect.top;
+			let hasMotion = false;
 
-			charSpans.forEach((span, index) => {
-				const centerX = span.offsetLeft + span.offsetWidth / 2;
-				const centerY = span.offsetTop + span.offsetHeight / 2;
-				const distance = Math.hypot(pointerX - centerX, pointerY - centerY);
-				const influence = Math.max(0, 1 - distance / 180);
-				const seed = index * 0.73;
-				const moveX = Math.sin((pointerX + seed) / 17) * 8 * influence;
-				const moveY = Math.cos((pointerY + seed) / 20) * 6 * influence;
-				const rotate = Math.sin((pointerX + pointerY + seed) / 24) * 9 * influence;
-				span.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${rotate}deg)`;
+			charSpans.forEach((charData) => {
+				const { span, index } = charData;
+				let targetX = 0;
+				let targetY = 0;
+				let targetR = 0;
+
+				if (pointer) {
+					const centerX = span.offsetLeft + span.offsetWidth / 2;
+					const centerY = span.offsetTop + span.offsetHeight / 2;
+					const distance = Math.hypot(pointer.x - centerX, pointer.y - centerY);
+					const influence = Math.max(0, 1 - distance / 210);
+					const seed = index * 0.71;
+					targetX = Math.sin((pointer.x + seed) / 15) * 12 * influence;
+					targetY = Math.cos((pointer.y + seed) / 17) * 9 * influence;
+					targetR = Math.sin((pointer.x + pointer.y + seed) / 22) * 13 * influence;
+				}
+
+				charData.x += (targetX - charData.x) * 0.22;
+				charData.y += (targetY - charData.y) * 0.22;
+				charData.r += (targetR - charData.r) * 0.2;
+
+				if (
+					Math.abs(charData.x) > 0.02 ||
+					Math.abs(charData.y) > 0.02 ||
+					Math.abs(charData.r) > 0.02 ||
+					pointer
+				) {
+					hasMotion = true;
+				}
+
+				span.style.transform = `translate(${charData.x}px, ${charData.y}px) rotate(${charData.r}deg)`;
 			});
+
+			if (hasMotion) {
+				rafId = requestAnimationFrame(tick);
+			} else {
+				rafId = null;
+			}
+		};
+
+		const ensureLoop = () => {
+			if (!rafId) {
+				rafId = requestAnimationFrame(tick);
+			}
+		};
+
+		element.addEventListener('pointerenter', (event) => {
+			pointer = {
+				x: event.clientX - element.getBoundingClientRect().left,
+				y: event.clientY - element.getBoundingClientRect().top
+			};
+			ensureLoop();
 		});
 
-		element.addEventListener('mouseleave', () => {
-			charSpans.forEach((span) => {
-				span.style.transform = '';
-			});
+		element.addEventListener('pointermove', (event) => {
+			pointer = {
+				x: event.clientX - element.getBoundingClientRect().left,
+				y: event.clientY - element.getBoundingClientRect().top
+			};
+			ensureLoop();
+		});
+
+		element.addEventListener('pointerleave', () => {
+			pointer = null;
+			ensureLoop();
 		});
 	};
 
