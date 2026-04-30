@@ -255,6 +255,7 @@ const projects = [
 	}
 
 	.project-list {
+		--accordion-scale: 0.87;
 		border-top: 1px solid var(--line);
 	}
 
@@ -271,11 +272,11 @@ const projects = [
 		border: 0;
 		background: none;
 		font: inherit;
-		font-size: 1.78rem;
+		font-size: calc(1.78rem * var(--accordion-scale));
 		font-weight: 400;
 		line-height: 1.35;
 		text-align: left;
-		padding: 1.85rem 0;
+		padding: calc(1.85rem * var(--accordion-scale)) 0;
 		color: var(--foreground);
 		cursor: pointer;
 		transition: transform 240ms cubic-bezier(0.2, 0.9, 0.2, 1), color 180ms ease;
@@ -298,7 +299,9 @@ const projects = [
 	}
 
 	.caret {
-		font-size: 0.8rem;
+		font-size: 1.05rem;
+		align-self: center;
+		line-height: 1;
 		transform: rotate(180deg);
 		transition: transform 220ms ease;
 	}
@@ -323,25 +326,25 @@ const projects = [
 
 	.project-panel-inner {
 		overflow: hidden;
-		padding-bottom: 1.15rem;
+		padding-bottom: calc(1.15rem * var(--accordion-scale));
 	}
 
 	.project-description {
 		color: #222;
-		font-size: 1.05rem;
+		font-size: calc(1.05rem * var(--accordion-scale));
 		line-height: 1.65;
-		margin-bottom: 0.82rem;
+		margin-bottom: calc(0.82rem * var(--accordion-scale));
 	}
 
 	.project-meta {
 		color: var(--muted-strong);
-		font-size: 0.9rem;
+		font-size: calc(0.9rem * var(--accordion-scale));
 		letter-spacing: 0.02em;
-		margin-bottom: 0.92rem;
+		margin-bottom: calc(0.92rem * var(--accordion-scale));
 	}
 
 	.project-link {
-		font-size: 1rem;
+		font-size: calc(1rem * var(--accordion-scale));
 		text-decoration-thickness: 1px;
 		text-underline-offset: 0.15em;
 		transition: color 180ms ease, letter-spacing 180ms ease;
