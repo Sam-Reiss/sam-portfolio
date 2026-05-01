@@ -195,6 +195,7 @@ const projects = [
 
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const prefersFinePointer = window.matchMedia('(pointer: fine)').matches;
+	const prefersHover = window.matchMedia('(hover: hover)').matches;
 	const query = new URLSearchParams(window.location.search);
 	const enableMotionDebug =
 		(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
@@ -213,6 +214,7 @@ const projects = [
 
 	const proximityEnabled =
 		prefersFinePointer &&
+		prefersHover &&
 		(enableMotionDebug || !reduceMotion) &&
 		proximityOverride !== '0';
 
@@ -241,7 +243,13 @@ const projects = [
 
 		const pointer = { x: 0, y: 0, active: false };
 		let rafId = 0;
-		let scrollRefreshRaf = 0;
+		let scrollLayoutFlushTimer = 0;
+		let scrollMomentumActive = false;
+		let resizeFlushRaf = 0;
+
+		let pointerMoveRaf = 0;
+		let pendingPointerX = 0;
+		let pendingPointerY = 0;
 
 		const refreshCenters = () => {
 			accentState.forEach((accent) => {
@@ -251,16 +259,35 @@ const projects = [
 			});
 		};
 
-		const scheduleRefreshCentersOnScroll = () => {
-			if (scrollRefreshRaf) return;
-			scrollRefreshRaf = window.requestAnimationFrame(() => {
-				scrollRefreshRaf = 0;
-				refreshCenters();
-				if (pointer.active) requestTick();
-			});
+		const scrollEndSupported =
+			typeof HTMLElement !== 'undefined' && 'onscrollend' in HTMLElement.prototype;
+		const scrollLayoutDebounceMs = 180;
+
+		/** Runs after scrolling stops — never repeat getBoundingClientRect during momentum. */
+		const flushScrollLayout = () => {
+			if (scrollLayoutFlushTimer !== 0) {
+				window.clearTimeout(scrollLayoutFlushTimer);
+				scrollLayoutFlushTimer = 0;
+			}
+			scrollMomentumActive = false;
+			refreshCenters();
+			requestTick();
+		};
+
+		const armScrollLayoutFlush = () => {
+			if (scrollLayoutFlushTimer !== 0) window.clearTimeout(scrollLayoutFlushTimer);
+			scrollLayoutFlushTimer = window.setTimeout(() => {
+				scrollLayoutFlushTimer = 0;
+				flushScrollLayout();
+			}, scrollLayoutDebounceMs);
 		};
 
 		const tick = () => {
+			if (scrollMomentumActive) {
+				rafId = 0;
+				return;
+			}
+
 			let hasMovement = false;
 
 			accentState.forEach((accent) => {
@@ -305,10 +332,16 @@ const projects = [
 		};
 
 		const onPointerMove = (event) => {
-			pointer.x = event.clientX;
-			pointer.y = event.clientY;
 			pointer.active = true;
-			requestTick();
+			pendingPointerX = event.clientX;
+			pendingPointerY = event.clientY;
+			if (pointerMoveRaf !== 0) return;
+			pointerMoveRaf = window.requestAnimationFrame(() => {
+				pointerMoveRaf = 0;
+				pointer.x = pendingPointerX;
+				pointer.y = pendingPointerY;
+				requestTick();
+			});
 		};
 
 		const onPointerLeave = () => {
@@ -316,14 +349,27 @@ const projects = [
 			requestTick();
 		};
 
+		const onScrollPassive = () => {
+			scrollMomentumActive = true;
+			if (!scrollEndSupported) armScrollLayoutFlush();
+		};
+
 		refreshCenters();
 		window.addEventListener('pointermove', onPointerMove, { passive: true });
-		window.addEventListener('pointerleave', onPointerLeave);
+		window.addEventListener('pointerleave', onPointerLeave, { passive: true });
 		window.addEventListener('resize', () => {
-			refreshCenters();
-			requestTick();
-		});
-		window.addEventListener('scroll', scheduleRefreshCentersOnScroll, { passive: true });
+			if (resizeFlushRaf !== 0) return;
+			resizeFlushRaf = window.requestAnimationFrame(() => {
+				resizeFlushRaf = 0;
+				refreshCenters();
+				requestTick();
+			});
+		}, { passive: true });
+
+		window.addEventListener('scroll', onScrollPassive, { passive: true });
+		if (scrollEndSupported) {
+			window.addEventListener('scrollend', flushScrollLayout, { passive: true });
+		}
 	}
 
 	const scatterTargets = reduceMotion ? [] : [...document.querySelectorAll('[data-scatter-text]')];
@@ -497,7 +543,6 @@ const projects = [
 		--prox-y: 0px;
 		translate: var(--prox-x) var(--prox-y);
 		transform: translate3d(0, 0, 0);
-		will-change: transform, opacity;
 		animation-fill-mode: both;
 	}
 
