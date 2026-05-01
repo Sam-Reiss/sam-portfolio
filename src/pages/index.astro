@@ -243,8 +243,6 @@ const projects = [
 
 		const pointer = { x: 0, y: 0, active: false };
 		let rafId = 0;
-		let scrollLayoutFlushTimer = 0;
-		let scrollMomentumActive = false;
 		let resizeFlushRaf = 0;
 
 		let pointerMoveRaf = 0;
@@ -259,35 +257,7 @@ const projects = [
 			});
 		};
 
-		const scrollEndSupported =
-			typeof HTMLElement !== 'undefined' && 'onscrollend' in HTMLElement.prototype;
-		const scrollLayoutDebounceMs = 180;
-
-		/** Runs after scrolling stops — never repeat getBoundingClientRect during momentum. */
-		const flushScrollLayout = () => {
-			if (scrollLayoutFlushTimer !== 0) {
-				window.clearTimeout(scrollLayoutFlushTimer);
-				scrollLayoutFlushTimer = 0;
-			}
-			scrollMomentumActive = false;
-			refreshCenters();
-			requestTick();
-		};
-
-		const armScrollLayoutFlush = () => {
-			if (scrollLayoutFlushTimer !== 0) window.clearTimeout(scrollLayoutFlushTimer);
-			scrollLayoutFlushTimer = window.setTimeout(() => {
-				scrollLayoutFlushTimer = 0;
-				flushScrollLayout();
-			}, scrollLayoutDebounceMs);
-		};
-
 		const tick = () => {
-			if (scrollMomentumActive) {
-				rafId = 0;
-				return;
-			}
-
 			let hasMovement = false;
 
 			accentState.forEach((accent) => {
@@ -349,11 +319,6 @@ const projects = [
 			requestTick();
 		};
 
-		const onScrollPassive = () => {
-			scrollMomentumActive = true;
-			if (!scrollEndSupported) armScrollLayoutFlush();
-		};
-
 		refreshCenters();
 		window.addEventListener('pointermove', onPointerMove, { passive: true });
 		window.addEventListener('pointerleave', onPointerLeave, { passive: true });
@@ -365,11 +330,6 @@ const projects = [
 				requestTick();
 			});
 		}, { passive: true });
-
-		window.addEventListener('scroll', onScrollPassive, { passive: true });
-		if (scrollEndSupported) {
-			window.addEventListener('scrollend', flushScrollLayout, { passive: true });
-		}
 	}
 
 	const scatterTargets = reduceMotion ? [] : [...document.querySelectorAll('[data-scatter-text]')];
