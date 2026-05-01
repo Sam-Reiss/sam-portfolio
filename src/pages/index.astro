@@ -35,8 +35,21 @@ const projects = [
 
 <Layout title="Sam Reiss | Portfolio">
 	<main class="home-main">
+		<div class="decorative-accent decorative-accent-arc-green" aria-hidden="true">
+			<svg
+				viewBox="0 0 560 250"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				focusable="false"
+			>
+				<path
+					d="M38 183C67 104 132 48 218 34C310 19 392 59 445 129L385 177C351 130 293 103 231 114C173 124 130 164 108 219L38 183Z"
+					fill="var(--accent-green)"
+				></path>
+			</svg>
+		</div>
 		<section class="intro-grid accent-zone accent-zone-hero">
-			<div class="decorative-accent decorative-accent-arc" aria-hidden="true">
+			<div class="decorative-accent decorative-accent-arc-yellow" aria-hidden="true">
 				<svg
 					viewBox="0 0 760 300"
 					fill="none"
@@ -78,7 +91,6 @@ const projects = [
 						></path>
 					</svg>
 				</div>
-				<div class="decorative-accent decorative-accent-circle-secondary" aria-hidden="true"></div>
 				<div class="project-list" data-project-list>
 					{
 						projects.map((project, index) => (
@@ -205,7 +217,11 @@ const projects = [
 		proximityOverride !== '0';
 
 	if (homeMain && proximityEnabled) {
-		const accents = [...homeMain.querySelectorAll('.decorative-accent')];
+		const accents = [...homeMain.querySelectorAll('.decorative-accent')].filter(
+			(el) =>
+				!el.classList.contains('decorative-accent-plus') &&
+				!el.classList.contains('decorative-accent-star-secondary')
+		);
 		const accentState = accents.map((element) => {
 			const style = window.getComputedStyle(element);
 			const radius = Number.parseFloat(style.getPropertyValue('--proximity-radius')) || 180;
@@ -378,12 +394,13 @@ const projects = [
 	.home-main {
 		width: min(1320px, calc(100% - 6rem));
 		margin: 0 auto;
+		position: relative;
+		z-index: 0;
 	}
 
 	.home-main[data-accent-density='reduced'] .decorative-accent-circle,
 	.home-main[data-accent-density='reduced'] .decorative-accent-star-secondary,
-	.home-main[data-accent-density='reduced'] .decorative-accent-oval-secondary,
-	.home-main[data-accent-density='reduced'] .decorative-accent-circle-secondary {
+	.home-main[data-accent-density='reduced'] .decorative-accent-oval-secondary {
 		display: none;
 	}
 
@@ -405,6 +422,8 @@ const projects = [
 		gap: 4.5rem;
 		align-items: start;
 		padding-bottom: 0.7rem;
+		position: relative;
+		z-index: 2;
 	}
 
 	.identity-column {
@@ -480,18 +499,38 @@ const projects = [
 		height: auto;
 	}
 
-	.decorative-accent-arc {
+	.decorative-accent-arc-green {
+		left: auto;
+		top: auto;
+		right: clamp(-64px, -5vw, -6px);
+		bottom: calc(120px + clamp(-110px, -18vh, -28px));
+		width: clamp(187px, 27.2vw, 323px);
+		margin-left: 0;
+		margin-top: 0;
+		opacity: 0.74;
+		z-index: 0;
+		transform-origin: center;
+		transform: translate3d(-10px, 4px, 0) rotate(3deg) scale(0.99);
+		animation: accentGreenArchDrift 13.8s cubic-bezier(0.32, 0.02, 0.18, 1) infinite;
+		animation-delay: -2.8s;
+		--proximity-radius: 284;
+		--proximity-strength: 11;
+		--proximity-ease: 0.11;
+	}
+
+	.decorative-accent-arc-yellow {
 		width: clamp(366px, 49.3vw, 714px);
 		top: clamp(0.2rem, 1.1vw, 1rem);
 		left: clamp(7.2rem, 11.8vw, 12.8rem);
 		opacity: 0.93;
 		z-index: 1;
-		transform: translate3d(0, 0, 0) rotate(-30deg) scale(1);
-		animation: accentArcDrift 8.2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
-		animation-delay: 0ms;
-		--proximity-radius: 260;
-		--proximity-strength: 9;
-		--proximity-ease: 0.12;
+		transform-origin: center;
+		transform: translate3d(-9px, 6px, 0) rotate(-32.8deg) scale(1);
+		animation: accentYellowSquiggleDrift 17.7s cubic-bezier(0.2, 0.65, 0.35, 0.35) infinite;
+		animation-delay: -1.1s;
+		--proximity-radius: 302;
+		--proximity-strength: 12;
+		--proximity-ease: 0.09;
 	}
 
 	.decorative-accent-plus {
@@ -518,11 +557,11 @@ const projects = [
 		opacity: 0.88;
 		transform-origin: center;
 		transform: translate3d(0, 0, 0) rotate(-10deg) scale(1);
-		animation: accentCapsuleDrift 7.6s cubic-bezier(0.37, 0, 0.63, 1) infinite;
-		animation-delay: 500ms;
-		--proximity-radius: 210;
-		--proximity-strength: 8;
-		--proximity-ease: 0.13;
+		animation: accentCapsuleDrift 11.9s cubic-bezier(0.22, 0.78, 0.52, 0.18) infinite;
+		animation-delay: -3.6s;
+		--proximity-radius: 226;
+		--proximity-strength: 10;
+		--proximity-ease: 0.12;
 	}
 
 	.decorative-accent-circle {
@@ -534,11 +573,11 @@ const projects = [
 		left: clamp(3.5rem, 7.4vw, 6.8rem);
 		opacity: 0.78;
 		transform: translate3d(0, 0, 0) scale(1);
-		animation: accentCircleFloat 9.4s cubic-bezier(0.22, 0.05, 0.28, 1) infinite;
-		animation-delay: 160ms;
-		--proximity-radius: 160;
-		--proximity-strength: 10;
-		--proximity-ease: 0.16;
+		animation: accentCircleFloat 15.6s cubic-bezier(0.28, 0.12, 0.62, 0.88) infinite;
+		animation-delay: -4.2s;
+		--proximity-radius: 178;
+		--proximity-strength: 9;
+		--proximity-ease: 0.13;
 	}
 
 	.decorative-accent-oval-blue {
@@ -551,11 +590,11 @@ const projects = [
 		opacity: 0.78;
 		transform-origin: center;
 		transform: translate3d(0, 0, 0) rotate(-10deg) scale(1);
-		animation: accentOvalBlueFloat 9.1s cubic-bezier(0.24, 0.06, 0.28, 1) infinite;
-		animation-delay: 610ms;
-		--proximity-radius: 185;
-		--proximity-strength: 9;
-		--proximity-ease: 0.15;
+		animation: accentOvalBlueFloat 12.4s cubic-bezier(0.52, 0.02, 0.42, 0.94) infinite;
+		animation-delay: -0.7s;
+		--proximity-radius: 206;
+		--proximity-strength: 8;
+		--proximity-ease: 0.18;
 	}
 
 	.decorative-accent-star-secondary {
@@ -572,22 +611,6 @@ const projects = [
 		--proximity-ease: 0.19;
 	}
 
-	.decorative-accent-circle-secondary {
-		width: clamp(8px, 0.8vw, 13px);
-		aspect-ratio: 1;
-		border-radius: 999px;
-		background: var(--accent-blue);
-		top: clamp(7.8rem, 12vw, 11rem);
-		right: clamp(2.8rem, 4vw, 4rem);
-		opacity: 0.82;
-		transform: translate3d(0, 0, 0) scale(1);
-		animation: accentCircleSecondaryFloat 8.6s cubic-bezier(0.2, 0.05, 0.3, 1) infinite;
-		animation-delay: 430ms;
-		--proximity-radius: 135;
-		--proximity-strength: 8;
-		--proximity-ease: 0.16;
-	}
-
 	.decorative-accent-oval-secondary {
 		width: clamp(66px, 7.8vw, 142px);
 		height: clamp(22px, 2.8vw, 40px);
@@ -598,15 +621,11 @@ const projects = [
 		opacity: 0.86;
 		transform-origin: center;
 		transform: translate3d(0, 0, 0) rotate(9deg) scale(1);
-		animation: accentOvalFloat 10.3s cubic-bezier(0.25, 0.05, 0.2, 1) infinite;
-		animation-delay: 760ms;
-		--proximity-radius: 190;
-		--proximity-strength: 9;
-		--proximity-ease: 0.14;
-	}
-
-	.accent-zone-hero:hover .decorative-accent-arc {
-		transform: translate3d(0.22rem, -0.12rem, 0) rotate(-4.4deg) scale(1.012);
+		animation: accentOvalFloat 16.2s cubic-bezier(0.15, 0.55, 0.25, 0.95) infinite;
+		animation-delay: -5.4s;
+		--proximity-radius: 238;
+		--proximity-strength: 7;
+		--proximity-ease: 0.15;
 	}
 
 	.accent-zone-hero:hover .decorative-accent-oval-blue {
@@ -629,21 +648,26 @@ const projects = [
 		transform: translate3d(-0.1rem, -0.06rem, 0) rotate(-3deg) scale(1.02);
 	}
 
-	.work-column:hover .decorative-accent-circle-secondary {
-		transform: translate3d(-0.04rem, -0.12rem, 0) scale(1.04);
-	}
-
 	.work-column:hover .decorative-accent-star-secondary {
 		transform: translate3d(0.08rem, -0.12rem, 0) rotate(2deg) scale(1.05);
 	}
 
-	.accent-zone-hero:hover .decorative-accent-arc,
+	.home-main:hover .decorative-accent-arc-green {
+		transform: translate3d(calc(0.35rem - 10px), calc(-0.35rem + 4px), 0) rotate(8deg) scale(1.02);
+	}
+
+	.accent-zone-hero:hover .decorative-accent-arc-yellow {
+		transform: translate3d(calc(0.22rem - 9px), calc(-0.12rem + 6px), 0) rotate(-31.6deg)
+			scale(1.012);
+	}
+
+	.home-main:hover .decorative-accent-arc-green,
+	.accent-zone-hero:hover .decorative-accent-arc-yellow,
 	.accent-zone-hero:hover .decorative-accent-oval-blue,
 	.accent-zone-how:hover .decorative-accent-circle,
 	.accent-zone-how:hover .decorative-accent-capsule,
 	.accent-zone-how:hover .decorative-accent-oval-secondary,
 	.work-column:hover .decorative-accent-plus,
-	.work-column:hover .decorative-accent-circle-secondary,
 	.work-column:hover .decorative-accent-star-secondary {
 		transition: transform 680ms cubic-bezier(0.2, 0.7, 0.2, 1);
 	}
@@ -755,6 +779,8 @@ const projects = [
 		display: grid;
 		grid-template-columns: minmax(180px, 0.35fr) minmax(0, 1fr);
 		gap: 4rem;
+		position: relative;
+		z-index: 2;
 	}
 
 	.how-grid h2 {
@@ -817,13 +843,6 @@ const projects = [
 			gap: 1.25rem;
 		}
 
-		.decorative-accent-arc {
-			width: clamp(390px, 90vw, 700px);
-			left: clamp(2.8rem, 8vw, 5.6rem);
-			top: 0.08rem;
-			opacity: 0.88;
-		}
-
 		.decorative-accent-capsule {
 			width: clamp(98px, 20vw, 160px);
 			height: clamp(54px, 10.8vw, 88px);
@@ -852,20 +871,28 @@ const projects = [
 			display: none;
 		}
 
-		.decorative-accent-circle-secondary {
-			top: clamp(6.2rem, 14vw, 8.5rem);
-			right: clamp(1.4rem, 3vw, 2.2rem);
-			opacity: 0.7;
-		}
-
 	}
 
 	@media (max-width: 760px) {
-		.decorative-accent-arc {
+		.decorative-accent-arc-green {
+			display: block;
+			left: auto;
+			top: auto;
+			right: clamp(-52px, -12vw, -4px);
+			bottom: calc(120px + clamp(-96px, -16vh, -32px));
+			width: clamp(170px, 57.8vw, 255px);
+			margin-left: 0;
+			margin-top: 0;
+			opacity: 0.7;
+		}
+
+		.decorative-accent-arc-yellow {
 			display: block;
 			width: clamp(520px, 132vw, 900px);
 			left: clamp(-7.5rem, -18vw, -1.4rem);
 			top: clamp(2.4rem, 8vw, 4.2rem);
+			margin-left: 0;
+			margin-top: 0;
 			opacity: 0.86;
 		}
 
@@ -923,13 +950,6 @@ const projects = [
 			opacity: 0.82;
 		}
 
-		.decorative-accent-circle-secondary {
-			display: block;
-			width: clamp(8px, 2.8vw, 14px);
-			top: clamp(8.6rem, 20vw, 11rem);
-			right: clamp(1.4rem, 5vw, 2.3rem);
-			opacity: 0.78;
-		}
 	}
 
 	html,
@@ -937,18 +957,49 @@ const projects = [
 		overflow-x: hidden;
 	}
 
-	@keyframes accentArcDrift {
+	@keyframes accentGreenArchDrift {
 		0% {
-			transform: translate3d(-8px, 5px, 0) rotate(-31.8deg) scale(1);
-			opacity: 0.88;
+			transform: translate3d(-10px, 4px, 0) rotate(3deg) scale(0.99);
+			opacity: 0.7;
 		}
-		50% {
-			transform: translate3d(11px, -8px, 0) rotate(-26.4deg) scale(1.05);
-			opacity: 1;
+		32% {
+			transform: translate3d(7px, -9px, 0) rotate(9deg) scale(1.035);
+			opacity: 0.84;
+		}
+		58% {
+			transform: translate3d(13px, 2px, 0) rotate(13deg) scale(1.02);
+			opacity: 0.8;
+		}
+		82% {
+			transform: translate3d(-5px, 8px, 0) rotate(6deg) scale(1.01);
+			opacity: 0.76;
 		}
 		100% {
-			transform: translate3d(-8px, 5px, 0) rotate(-31.8deg) scale(1);
-			opacity: 0.88;
+			transform: translate3d(-10px, 4px, 0) rotate(3deg) scale(0.99);
+			opacity: 0.7;
+		}
+	}
+
+	@keyframes accentYellowSquiggleDrift {
+		0% {
+			transform: translate3d(-9px, 6px, 0) rotate(-32.8deg) scale(1);
+			opacity: 0.86;
+		}
+		26% {
+			transform: translate3d(14px, -6px, 0) rotate(-26.9deg) scale(1.045);
+			opacity: 1;
+		}
+		48% {
+			transform: translate3d(-3px, -12px, 0) rotate(-29.8deg) scale(1.02);
+			opacity: 0.93;
+		}
+		71% {
+			transform: translate3d(-14px, 3px, 0) rotate(-34.8deg) scale(1.03);
+			opacity: 0.9;
+		}
+		100% {
+			transform: translate3d(-9px, 6px, 0) rotate(-32.8deg) scale(1);
+			opacity: 0.86;
 		}
 	}
 
@@ -965,45 +1016,69 @@ const projects = [
 
 	@keyframes accentCapsuleDrift {
 		0% {
-			transform: translate3d(3px, 6px, 0) rotate(-12deg) scale(1);
-			opacity: 0.86;
+			transform: translate3d(-2px, 8px, 0) rotate(-14deg) scale(0.99);
+			opacity: 0.84;
 		}
-		50% {
-			transform: translate3d(-10px, -8px, 0) rotate(-5.2deg) scale(1.055);
-			opacity: 0.98;
+		38% {
+			transform: translate3d(-13px, -4px, 0) rotate(-8deg) scale(1.04);
+			opacity: 0.96;
+		}
+		64% {
+			transform: translate3d(9px, -10px, 0) rotate(-11deg) scale(1.06);
+			opacity: 0.92;
+		}
+		88% {
+			transform: translate3d(5px, 5px, 0) rotate(-6deg) scale(1.02);
+			opacity: 0.88;
 		}
 		100% {
-			transform: translate3d(3px, 6px, 0) rotate(-12deg) scale(1);
-			opacity: 0.86;
+			transform: translate3d(-2px, 8px, 0) rotate(-14deg) scale(0.99);
+			opacity: 0.84;
 		}
 	}
 
 	@keyframes accentCircleFloat {
 		0% {
-			transform: translate3d(2px, 1px, 0) scale(0.98);
-			opacity: 0.72;
+			transform: translate3d(-3px, -3px, 0) rotate(4deg) scale(0.97);
+			opacity: 0.68;
 		}
-		50% {
-			transform: translate3d(-4px, -4px, 0) scale(1.06);
-			opacity: 0.88;
+		29% {
+			transform: translate3d(8px, 5px, 0) rotate(-6deg) scale(1.04);
+			opacity: 0.86;
+		}
+		53% {
+			transform: translate3d(2px, -9px, 0) rotate(10deg) scale(1.08);
+			opacity: 0.9;
+		}
+		79% {
+			transform: translate3d(-9px, 2px, 0) rotate(-4deg) scale(1);
+			opacity: 0.74;
 		}
 		100% {
-			transform: translate3d(2px, 1px, 0) scale(0.98);
-			opacity: 0.72;
+			transform: translate3d(-3px, -3px, 0) rotate(4deg) scale(0.97);
+			opacity: 0.68;
 		}
 	}
 
 	@keyframes accentOvalBlueFloat {
 		0% {
-			transform: translate3d(2px, 1px, 0) rotate(-10deg) scale(0.98);
+			transform: translate3d(5px, -4px, 0) rotate(-13deg) scale(1);
 			opacity: 0.72;
 		}
-		50% {
-			transform: translate3d(-4px, -4px, 0) rotate(-5deg) scale(1.06);
-			opacity: 0.9;
+		35% {
+			transform: translate3d(-8px, 6px, 0) rotate(-18deg) scale(1.04);
+			opacity: 0.86;
+		}
+		61% {
+			transform: translate3d(-2px, -8px, 0) rotate(-9deg) scale(1.07);
+			opacity: 0.92;
+		}
+		86% {
+			transform: translate3d(7px, 4px, 0) rotate(-14deg) scale(1.01);
+			opacity: 0.78;
 		}
 		100% {
-			transform: translate3d(2px, 1px, 0) rotate(-10deg) scale(0.98);
+			transform: translate3d(5px, -4px, 0) rotate(-13deg) scale(1);
 			opacity: 0.72;
 		}
 	}
@@ -1019,33 +1094,26 @@ const projects = [
 		}
 	}
 
-	@keyframes accentCircleSecondaryFloat {
-		0% {
-			transform: translate3d(1px, 1px, 0) scale(0.98);
-			opacity: 0.7;
-		}
-		50% {
-			transform: translate3d(-2px, -4px, 0) scale(1.08);
-			opacity: 0.9;
-		}
-		100% {
-			transform: translate3d(1px, 1px, 0) scale(0.98);
-			opacity: 0.7;
-		}
-	}
-
 	@keyframes accentOvalFloat {
 		0% {
-			transform: translate3d(3px, 1px, 0) rotate(9deg) scale(0.98);
-			opacity: 0.74;
+			transform: translate3d(6px, 5px, 0) rotate(11deg) scale(1);
+			opacity: 0.73;
 		}
-		50% {
-			transform: translate3d(-5px, -4px, 0) rotate(14deg) scale(1.05);
+		31% {
+			transform: translate3d(-11px, -3px, 0) rotate(17deg) scale(1.05);
 			opacity: 0.9;
 		}
+		57% {
+			transform: translate3d(-4px, -11px, 0) rotate(22deg) scale(1.02);
+			opacity: 0.88;
+		}
+		84% {
+			transform: translate3d(10px, -6px, 0) rotate(13deg) scale(1.04);
+			opacity: 0.82;
+		}
 		100% {
-			transform: translate3d(3px, 1px, 0) rotate(9deg) scale(0.98);
-			opacity: 0.74;
+			transform: translate3d(6px, 5px, 0) rotate(11deg) scale(1);
+			opacity: 0.73;
 		}
 	}
 
@@ -1075,15 +1143,21 @@ const projects = [
 			will-change: transform, opacity;
 		}
 
-		:global(html.motion-debug) .decorative-accent-arc {
-			animation: accentArcDrift 8.2s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
-			animation-delay: 0ms !important;
-			transform: translate3d(0, 0, 0) rotate(-30deg) scale(1) !important;
+		:global(html.motion-debug) .decorative-accent-arc-green {
+			animation: accentGreenArchDrift 13.8s cubic-bezier(0.32, 0.02, 0.18, 1) infinite !important;
+			animation-delay: -2.8s !important;
+			transform: translate3d(-10px, 4px, 0) rotate(3deg) scale(0.99) !important;
+		}
+
+		:global(html.motion-debug) .decorative-accent-arc-yellow {
+			animation: accentYellowSquiggleDrift 17.7s cubic-bezier(0.2, 0.65, 0.35, 0.35) infinite !important;
+			animation-delay: -1.1s !important;
+			transform: translate3d(-9px, 6px, 0) rotate(-32.8deg) scale(1) !important;
 		}
 
 		:global(html.motion-debug) .decorative-accent-capsule {
-			animation: accentCapsuleDrift 7.6s cubic-bezier(0.37, 0, 0.63, 1) infinite !important;
-			animation-delay: 500ms !important;
+			animation: accentCapsuleDrift 11.9s cubic-bezier(0.22, 0.78, 0.52, 0.18) infinite !important;
+			animation-delay: -3.6s !important;
 			transform: translate3d(0, 0, 0) rotate(-10deg) scale(1) !important;
 		}
 
@@ -1094,14 +1168,14 @@ const projects = [
 		}
 
 		:global(html.motion-debug) .decorative-accent-circle {
-			animation: accentCircleFloat 9.4s cubic-bezier(0.22, 0.05, 0.28, 1) infinite !important;
-			animation-delay: 160ms !important;
+			animation: accentCircleFloat 15.6s cubic-bezier(0.28, 0.12, 0.62, 0.88) infinite !important;
+			animation-delay: -4.2s !important;
 			transform: translate3d(0, 0, 0) scale(1) !important;
 		}
 
 		:global(html.motion-debug) .decorative-accent-oval-blue {
-			animation: accentOvalBlueFloat 9.1s cubic-bezier(0.24, 0.06, 0.28, 1) infinite !important;
-			animation-delay: 610ms !important;
+			animation: accentOvalBlueFloat 12.4s cubic-bezier(0.52, 0.02, 0.42, 0.94) infinite !important;
+			animation-delay: -0.7s !important;
 			transform: translate3d(0, 0, 0) rotate(-10deg) scale(1) !important;
 		}
 
@@ -1112,15 +1186,10 @@ const projects = [
 		}
 
 		:global(html.motion-debug) .decorative-accent-oval-secondary {
-			animation: accentOvalFloat 10.3s cubic-bezier(0.25, 0.05, 0.2, 1) infinite !important;
-			animation-delay: 760ms !important;
+			animation: accentOvalFloat 16.2s cubic-bezier(0.15, 0.55, 0.25, 0.95) infinite !important;
+			animation-delay: -5.4s !important;
 			transform: translate3d(0, 0, 0) rotate(9deg) scale(1) !important;
 		}
 
-		:global(html.motion-debug) .decorative-accent-circle-secondary {
-			animation: accentCircleSecondaryFloat 8.6s cubic-bezier(0.2, 0.05, 0.3, 1) infinite !important;
-			animation-delay: 430ms !important;
-			transform: translate3d(0, 0, 0) scale(1) !important;
-		}
 	}
 </style>
