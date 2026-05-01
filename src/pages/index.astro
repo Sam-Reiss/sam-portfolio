@@ -241,12 +241,22 @@ const projects = [
 
 		const pointer = { x: 0, y: 0, active: false };
 		let rafId = 0;
+		let scrollRefreshRaf = 0;
 
 		const refreshCenters = () => {
 			accentState.forEach((accent) => {
 				const rect = accent.element.getBoundingClientRect();
 				accent.centerX = rect.left + rect.width * 0.5;
 				accent.centerY = rect.top + rect.height * 0.5;
+			});
+		};
+
+		const scheduleRefreshCentersOnScroll = () => {
+			if (scrollRefreshRaf) return;
+			scrollRefreshRaf = window.requestAnimationFrame(() => {
+				scrollRefreshRaf = 0;
+				refreshCenters();
+				if (pointer.active) requestTick();
 			});
 		};
 
@@ -277,15 +287,13 @@ const projects = [
 
 				if (
 					Math.abs(accent.currentX - targetX) > 0.05 ||
-					Math.abs(accent.currentY - targetY) > 0.05 ||
-					Math.abs(accent.currentX) > 0.05 ||
-					Math.abs(accent.currentY) > 0.05
+					Math.abs(accent.currentY - targetY) > 0.05
 				) {
 					hasMovement = true;
 				}
 			});
 
-			if (hasMovement || pointer.active) {
+			if (hasMovement) {
 				rafId = window.requestAnimationFrame(tick);
 			} else {
 				rafId = 0;
@@ -315,7 +323,7 @@ const projects = [
 			refreshCenters();
 			requestTick();
 		});
-		window.addEventListener('scroll', refreshCenters, { passive: true });
+		window.addEventListener('scroll', scheduleRefreshCentersOnScroll, { passive: true });
 	}
 
 	const scatterTargets = reduceMotion ? [] : [...document.querySelectorAll('[data-scatter-text]')];
