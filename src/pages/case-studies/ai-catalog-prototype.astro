@@ -1,6 +1,9 @@
 ---
 import CaseStudyTemplate from '../../components/CaseStudyTemplate.astro';
 import Layout from '../../layouts/Layout.astro';
+import PrototypeEmbed from '../../components/PrototypeEmbed.astro';
+
+const prototypeSrc = 'https://sam-reiss.github.io/ai-catalog/';
 ---
 
 <Layout title="Vision Prototype: GitLab AI Catalog | Sam Reiss">
@@ -19,6 +22,12 @@ import Layout from '../../layouts/Layout.astro';
 				'Prioritized clarity and system understanding over novelty'
 			]}
 			outcome="The prototype served as a vision artifact for future product direction and demonstrated how AI-native workflows can accelerate both design and alignment across teams."
-		/>
+		>
+			<PrototypeEmbed
+				slot="prototype"
+				src={prototypeSrc}
+				title="Interactive AI Catalog prototype hosted on GitHub Pages"
+			/>
+		</CaseStudyTemplate>
 	</main>
 </Layout>

@@ -1,0 +1,148 @@
+---
+/**
+ * Embedded interactive prototype (iframe). Tune on `.prototype-embed`:
+ * --prototype-iframe-height: iframe block height (vh clamp).
+ * --prototype-radius: shell corner radius.
+ * --prototype-meta-gap: space between label row and frame.
+ * --prototype-meta-inline: horizontal inset (match main gutters ~3.5rem at large widths).
+ * On wide viewports the block is 125% of the article column, centered via negative margins.
+ */
+interface Props {
+	src: string;
+	title: string;
+	openInNewTabHref?: string;
+	label?: string;
+}
+
+const {
+	src,
+	title,
+	openInNewTabHref = src,
+	label = 'Interactive prototype'
+} = Astro.props;
+---
+
+<section class="prototype-embed" aria-label={label}>
+	<div class="prototype-embed__meta">
+		<p class="prototype-embed__label">{label}</p>
+		<a
+			class="prototype-embed__external"
+			href={openInNewTabHref}
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			Open in new tab
+		</a>
+	</div>
+	<div class="prototype-embed__shell">
+		<iframe
+			class="prototype-embed__frame"
+			src={src}
+			title={title}
+			loading="lazy"
+			referrerpolicy="strict-origin-when-cross-origin"
+			allow="fullscreen"
+		></iframe>
+	</div>
+</section>
+
+<style>
+	.prototype-embed {
+		--prototype-iframe-height: clamp(58vh, 76vh, 84vh);
+		--prototype-radius: 14px;
+		--prototype-meta-gap: 0.65rem;
+		--prototype-meta-inline: clamp(1.25rem, 4vw, 3.5rem);
+		font-family: "Work Sans", Inter, "Helvetica Neue", Arial, sans-serif;
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 100%;
+		margin-inline: 0;
+		padding-block: 2.15rem;
+		padding-inline: var(--prototype-meta-inline);
+		border-bottom: 1px solid var(--line);
+	}
+
+	.prototype-embed__meta {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: var(--prototype-meta-gap);
+		flex-wrap: wrap;
+	}
+
+	.prototype-embed__label {
+		margin: 0;
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--muted);
+	}
+
+	.prototype-embed__external {
+		font-size: 0.78rem;
+		letter-spacing: 0.04em;
+		color: var(--muted);
+		text-decoration: underline;
+		text-decoration-color: rgba(94, 94, 94, 0.35);
+		text-underline-offset: 0.18em;
+		white-space: nowrap;
+	}
+
+	.prototype-embed__external:hover {
+		color: var(--foreground);
+		text-decoration-color: rgba(24, 24, 24, 0.35);
+	}
+
+	.prototype-embed__external:focus-visible {
+		outline: 2px solid var(--foreground);
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+
+	.prototype-embed__shell {
+		width: 100%;
+		border-radius: var(--prototype-radius);
+		border: 1px solid var(--line);
+		background: #f1f0eb;
+		background: color-mix(in srgb, var(--background) 94%, var(--foreground));
+		overflow: hidden;
+		line-height: 0;
+	}
+
+	.prototype-embed__frame {
+		display: block;
+		width: 100%;
+		height: var(--prototype-iframe-height);
+		border: 0;
+		background: #fff;
+	}
+
+	@media (min-width: 881px) {
+		.prototype-embed {
+			width: 125%;
+			max-width: none;
+			margin-inline: -12.5%;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.prototype-embed {
+			--prototype-iframe-height: clamp(46vh, 58vh, 68vh);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.prototype-embed {
+			--prototype-iframe-height: clamp(44vh, 56vh, 64vh);
+		}
+	}
+
+	@media (max-width: 880px) {
+		.prototype-embed {
+			padding-block: 1.4rem;
+			padding-inline: var(--prototype-meta-inline);
+		}
+	}
+</style>
