@@ -31,6 +31,8 @@ const {
 		<p>{overview}</p>
 	</section>
 
+	<slot name="prototype" />
+
 	<section class="case-section">
 		<h2>Problem</h2>
 		<p>{problem}</p>
@@ -62,6 +64,7 @@ const {
 <style>
 	.case-study {
 		max-width: 980px;
+		margin-inline: auto;
 		font-family: "Work Sans", Inter, "Helvetica Neue", Arial, sans-serif;
 	}
 
