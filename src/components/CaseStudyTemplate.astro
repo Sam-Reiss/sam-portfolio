@@ -26,12 +26,12 @@ const {
 		<h1>{title}</h1>
 	</header>
 
+	<slot name="prototype" />
+
 	<section class="case-section">
 		<h2>Overview</h2>
 		<p>{overview}</p>
 	</section>
-
-	<slot name="prototype" />
 
 	<section class="case-section">
 		<h2>Problem</h2>
@@ -75,6 +75,12 @@ const {
 		padding-bottom: 2.9rem;
 		border-bottom: 1px solid var(--line);
 		margin-bottom: 0.4rem;
+	}
+
+	/* One full-width rule on the prototype block; avoid a shorter header rule above it. */
+	.case-study-header:has(+ .prototype-embed) {
+		border-bottom: none;
+		margin-bottom: 0;
 	}
 
 	.section-kicker {
