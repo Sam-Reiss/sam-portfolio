@@ -67,7 +67,7 @@ const projects = [
 			</div>
 			<div class="decorative-accent decorative-accent-oval-blue" aria-hidden="true"></div>
 			<div class="identity-column">
-				<p class="eyebrow" data-scatter-text>Hi, I'm Sam Reiss</p>
+				<p class="eyebrow">Hi, I'm Sam Reiss</p>
 				<h1 class="hero-name">
 					<span class="hero-line"
 						>I'm a Senior Product Designer at GitLab, working on AI powered tools. Formerly
@@ -331,65 +331,6 @@ const projects = [
 			});
 		}, { passive: true });
 	}
-
-	const scatterTargets = reduceMotion ? [] : [...document.querySelectorAll('[data-scatter-text]')];
-
-	const setupScatter = (element) => {
-		const text = element.textContent ?? '';
-		if (!text.trim()) return;
-
-		element.setAttribute('aria-label', text.trim());
-		element.textContent = '';
-
-		Array.from(text).forEach((char) => {
-			const span = document.createElement('span');
-			span.className = char === ' ' ? 'scatter-char scatter-space' : 'scatter-char';
-			span.textContent = char === ' ' ? '\u00A0' : char;
-			span.setAttribute('aria-hidden', 'true');
-			element.append(span);
-		});
-
-		const charSpans = [...element.querySelectorAll('.scatter-char')];
-		const randomizeTransforms = () => {
-			charSpans.forEach((span) => {
-				if (span.classList.contains('scatter-space')) return;
-				const moveX = (Math.random() * 2 - 1) * 4.4;
-				const moveY = (Math.random() * 2 - 1) * 3.6;
-				const rotate = (Math.random() * 2 - 1) * 3.8;
-				const delay = Math.random() * 60;
-				span.style.setProperty('--scatter-x', `${moveX.toFixed(2)}px`);
-				span.style.setProperty('--scatter-y', `${moveY.toFixed(2)}px`);
-				span.style.setProperty('--scatter-r', `${rotate.toFixed(2)}deg`);
-				span.style.setProperty('--scatter-delay', `${delay.toFixed(0)}ms`);
-			});
-		};
-
-		const resetTransforms = () => {
-			charSpans.forEach((span) => {
-				span.style.setProperty('--scatter-x', '0px');
-				span.style.setProperty('--scatter-y', '0px');
-				span.style.setProperty('--scatter-r', '0deg');
-				span.style.setProperty('--scatter-delay', '0ms');
-			});
-		};
-
-		const activate = () => {
-			element.classList.add('scatter-active');
-			randomizeTransforms();
-		};
-
-		const deactivate = () => {
-			element.classList.remove('scatter-active');
-			resetTransforms();
-		};
-
-		element.addEventListener('pointerenter', activate);
-		element.addEventListener('mouseenter', activate);
-		element.addEventListener('pointerleave', deactivate);
-		element.addEventListener('mouseleave', deactivate);
-	};
-
-	scatterTargets.forEach(setupScatter);
 </script>
 
 <style>
@@ -421,6 +362,12 @@ const projects = [
 	.accent-zone {
 		position: relative;
 		isolation: isolate;
+	}
+
+	@media (pointer: coarse) {
+		.accent-zone {
+			isolation: auto;
+		}
 	}
 
 	.intro-grid > :not(.decorative-accent),
@@ -506,6 +453,15 @@ const projects = [
 		translate: var(--prox-x) var(--prox-y);
 		transform: translate3d(0, 0, 0);
 		animation-fill-mode: both;
+	}
+
+	/* Heavy transform/opacity animations + separate `translate` while scrolling is a common WebKit jank source on touch. */
+	@media (pointer: coarse) {
+		.decorative-accent {
+			translate: 0 0;
+			animation: none !important;
+			transition: none;
+		}
 	}
 
 	.decorative-accent svg {
@@ -643,48 +599,51 @@ const projects = [
 		--proximity-ease: 0.15;
 	}
 
-	.accent-zone-hero:hover .decorative-accent-oval-blue {
-		transform: translate3d(0.14rem, -0.09rem, 0) rotate(-6deg) scale(1.04);
-	}
+	/* Hover nudges fight keyframe transforms on touch (sticky :hover); keep for fine pointers only. */
+	@media (hover: hover) and (pointer: fine) {
+		.accent-zone-hero:hover .decorative-accent-oval-blue {
+			transform: translate3d(0.14rem, -0.09rem, 0) rotate(-6deg) scale(1.04);
+		}
 
-	.accent-zone-how:hover .decorative-accent-circle {
-		transform: translate3d(0.1rem, -0.12rem, 0) scale(1.04);
-	}
+		.accent-zone-how:hover .decorative-accent-circle {
+			transform: translate3d(0.1rem, -0.12rem, 0) scale(1.04);
+		}
 
-	.accent-zone-how:hover .decorative-accent-capsule {
-		transform: translate3d(-0.14rem, -0.08rem, 0) rotate(-6deg) scale(1.016);
-	}
+		.accent-zone-how:hover .decorative-accent-capsule {
+			transform: translate3d(-0.14rem, -0.08rem, 0) rotate(-6deg) scale(1.016);
+		}
 
-	.accent-zone-how:hover .decorative-accent-oval-secondary {
-		transform: translate3d(-0.14rem, -0.08rem, 0) rotate(12deg) scale(1.03);
-	}
+		.accent-zone-how:hover .decorative-accent-oval-secondary {
+			transform: translate3d(-0.14rem, -0.08rem, 0) rotate(12deg) scale(1.03);
+		}
 
-	.work-column:hover .decorative-accent-plus {
-		transform: translate3d(-0.1rem, -0.06rem, 0) rotate(-3deg) scale(1.02);
-	}
+		.work-column:hover .decorative-accent-plus {
+			transform: translate3d(-0.1rem, -0.06rem, 0) rotate(-3deg) scale(1.02);
+		}
 
-	.work-column:hover .decorative-accent-star-secondary {
-		transform: translate3d(0.08rem, -0.12rem, 0) rotate(2deg) scale(1.05);
-	}
+		.work-column:hover .decorative-accent-star-secondary {
+			transform: translate3d(0.08rem, -0.12rem, 0) rotate(2deg) scale(1.05);
+		}
 
-	.home-main:hover .decorative-accent-arc-green {
-		transform: translate3d(calc(0.35rem - 10px), calc(-0.35rem + 4px), 0) rotate(8deg) scale(1.02);
-	}
+		.home-main:hover .decorative-accent-arc-green {
+			transform: translate3d(calc(0.35rem - 10px), calc(-0.35rem + 4px), 0) rotate(8deg) scale(1.02);
+		}
 
-	.accent-zone-hero:hover .decorative-accent-arc-yellow {
-		transform: translate3d(calc(0.22rem - 9px), calc(-0.12rem + 6px), 0) rotate(-31.6deg)
-			scale(1.012);
-	}
+		.accent-zone-hero:hover .decorative-accent-arc-yellow {
+			transform: translate3d(calc(0.22rem - 9px), calc(-0.12rem + 6px), 0) rotate(-31.6deg)
+				scale(1.012);
+		}
 
-	.home-main:hover .decorative-accent-arc-green,
-	.accent-zone-hero:hover .decorative-accent-arc-yellow,
-	.accent-zone-hero:hover .decorative-accent-oval-blue,
-	.accent-zone-how:hover .decorative-accent-circle,
-	.accent-zone-how:hover .decorative-accent-capsule,
-	.accent-zone-how:hover .decorative-accent-oval-secondary,
-	.work-column:hover .decorative-accent-plus,
-	.work-column:hover .decorative-accent-star-secondary {
-		transition: transform 680ms cubic-bezier(0.2, 0.7, 0.2, 1);
+		.home-main:hover .decorative-accent-arc-green,
+		.accent-zone-hero:hover .decorative-accent-arc-yellow,
+		.accent-zone-hero:hover .decorative-accent-oval-blue,
+		.accent-zone-how:hover .decorative-accent-circle,
+		.accent-zone-how:hover .decorative-accent-capsule,
+		.accent-zone-how:hover .decorative-accent-oval-secondary,
+		.work-column:hover .decorative-accent-plus,
+		.work-column:hover .decorative-accent-star-secondary {
+			transition: transform 680ms cubic-bezier(0.2, 0.7, 0.2, 1);
+		}
 	}
 
 	.project-list {
@@ -721,9 +680,11 @@ const projects = [
 		min-width: 0;
 	}
 
-	.project-trigger:hover {
-		transform: translateX(2px);
-		color: #070707;
+	@media (hover: hover) and (pointer: fine) {
+		.project-trigger:hover {
+			transform: translateX(2px);
+			color: #070707;
+		}
 	}
 
 	.project-trigger:focus-visible {
@@ -820,26 +781,10 @@ const projects = [
 		max-width: 70ch;
 	}
 
-	.scatter-char {
-		display: inline-block;
-		transform: translate(var(--scatter-x, 0px), var(--scatter-y, 0px))
-			rotate(var(--scatter-r, 0deg));
-		transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-		transition-delay: var(--scatter-delay, 0ms);
-		will-change: transform;
-	}
-
-	.scatter-space {
-		min-width: 0.22em;
-	}
-
 	@media (min-width: 1101px) {
 		.home-main {
 			padding-block: clamp(2.3rem, 4.8dvh, 4.4rem);
 			min-height: 100dvh;
-			overflow-x: visible;
-			overflow-y: hidden;
-			overflow-y: clip;
 		}
 
 		.intro-grid {
@@ -866,6 +811,10 @@ const projects = [
 		.intro-grid {
 			grid-template-columns: 1fr;
 			gap: 2.4rem;
+		}
+
+		.identity-column {
+			overflow: visible;
 		}
 
 		.hero-name {
@@ -996,9 +945,14 @@ const projects = [
 
 	}
 
-	html,
-	body {
-		overflow-x: hidden;
+	/*
+	 * Root `overflow-x: hidden` is a known iOS momentum-scroll footgun (implicit scroll axes).
+	 * Clip horizontal bleed without promoting odd overflow pairs; must be :global so it hits <html>/<body>.
+	 */
+	:global(html),
+	:global(body) {
+		overflow-x: clip;
+		overflow-y: visible;
 	}
 
 	@keyframes accentGreenArchDrift {
@@ -1168,8 +1122,7 @@ const projects = [
 
 		.caret,
 		.project-panel,
-		.project-trigger,
-		.scatter-char {
+		.project-trigger {
 			transition: none;
 		}
 
