@@ -570,8 +570,8 @@ const projects = [
 
 	.decorative-accent-star-secondary {
 		width: clamp(42px, 5.2vw, 86px);
-		top: clamp(15.6rem, 21vw, 20.4rem);
-		left: clamp(1.2rem, 6vw, 5rem);
+		top: clamp(12.1rem, 16.5vw, 15.2rem);
+		left: clamp(2.4rem, 7.2vw, 5.8rem);
 		opacity: 0.9;
 		transform-origin: center;
 		transform: translate3d(0, 0, 0) rotate(-6deg) scale(1);
@@ -783,8 +783,16 @@ const projects = [
 
 	@media (min-width: 1101px) {
 		.home-main {
+			width: 100%;
+			max-width: none;
+			margin-inline: 0;
+			padding-inline: clamp(2.25rem, 5vw, 4rem);
 			padding-block: clamp(2.3rem, 4.8dvh, 4.4rem);
+			box-sizing: border-box;
 			min-height: 100dvh;
+			max-height: 100dvh;
+			height: 100dvh;
+			overflow: hidden;
 		}
 
 		.intro-grid {
@@ -936,10 +944,10 @@ const projects = [
 		.decorative-accent-star-secondary {
 			display: block;
 			width: clamp(30px, 10vw, 56px);
-			bottom: clamp(0.15rem, 0.8vh, 0.8rem);
-			left: clamp(2.1rem, 9vw, 4.2rem);
-			top: auto;
-			right: auto;
+			top: clamp(12.6rem, 40vw, 17.8rem);
+			bottom: auto;
+			left: auto;
+			right: clamp(5.2rem, 22vw, 10.5rem);
 			opacity: 0.82;
 		}
 
@@ -953,6 +961,18 @@ const projects = [
 	:global(body) {
 		overflow-x: clip;
 		overflow-y: visible;
+	}
+
+	/* Home only: one viewport tall, edge-to-edge width, no document scroll (desktop). */
+	@media (min-width: 1101px) {
+		:global(html:has(.home-main)),
+		:global(body:has(.home-main)) {
+			height: 100dvh;
+			max-height: 100dvh;
+			overflow-x: clip;
+			overflow-y: hidden;
+			overscroll-behavior-y: none;
+		}
 	}
 
 	@keyframes accentGreenArchDrift {
