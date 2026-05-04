@@ -1,46 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const baseUrl = import.meta.env.BASE_URL.endsWith('/')
-	? import.meta.env.BASE_URL
-	: `${import.meta.env.BASE_URL}/`;
-
-const imgBase = `${baseUrl}images/case-studies/ai-chat/`;
-
-const watsonxFigures = [
-	{
-		file: 'watsonx-overview-ide-integration.png',
-		caption: 'Overview of the assistant embedded in the IDE workspace.'
-	},
-	{
-		file: 'watsonx-carbon-adaptation.png',
-		caption: 'Adapting Carbon AI chat patterns to plugin constraints and density.'
-	},
-	{
-		file: 'watsonx-core-functions-workshop.png',
-		caption: 'Workshopping core functions with engineering and design partners.'
-	},
-	{
-		file: 'watsonx-ux-concepting.png',
-		caption: 'Early UX concepting for structure, hierarchy, and flow inside the panel.'
-	},
-	{
-		file: 'watsonx-final-integrated-chat-ui.png',
-		caption: 'Final integrated chat UI aligned with IBM brand and developer habits.'
-	},
-	{
-		file: 'watsonx-sessions-additional-screens.png',
-		caption: 'Sessions and supporting screens as part of the working system.'
-	},
-	{
-		file: 'watsonx-file-handling-model-transparency.png',
-		caption: 'File handling, loading behavior, and model transparency as first-class UI.'
-	},
-	{
-		file: 'watsonx-code-generation-in-context.png',
-		caption: 'Generated code surfaced in context so review and next steps stay close.'
-	}
-] as const;
+const base = import.meta.env.BASE_URL;
+const baseNormalized = base.endsWith('/') ? base : `${base}/`;
+const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 ---
 
 <Layout
@@ -147,7 +110,7 @@ const watsonxFigures = [
 			</section>
 
 			<section
-				class="case-section case-section-rich case-section-product"
+				class="case-section case-section-rich case-section-product case-section-ibm"
 				aria-labelledby="ibm-watsonx-code-assistant"
 			>
 				<h2 id="ibm-watsonx-code-assistant">
@@ -170,7 +133,7 @@ const watsonxFigures = [
 						</span>
 					</a>
 				</h2>
-				<div class="case-section-body">
+				<div class="case-section-body case-section-body-ibm-lead">
 					<div class="attribution-card attribution-card-lead" role="note">
 						<p>
 							<strong>Lead designer.</strong> I led the integrated chat experience, partnered
@@ -178,7 +141,24 @@ const watsonxFigures = [
 							end-to-end design direction for this workstream.
 						</p>
 					</div>
+				</div>
 
+				<figure class="case-figure case-figure-editorial case-figure-ibm-lede">
+					<div class="case-editorial-media">
+						<img
+							src={`${imgBase}watsonx-ide-integration.png`}
+							alt="watsonx Code Assistant chat panel docked in the IDE beside editor and file tree."
+							loading="lazy"
+							width="1995"
+							height="1228"
+						/>
+					</div>
+					<figcaption>
+						IDE-native placement kept chat adjacent to the code users were already editing.
+					</figcaption>
+				</figure>
+
+				<div class="case-section-body case-section-body-ibm-rest case-section-body-ibm-before-carousel">
 					<h3 class="case-inline-heading">Problem</h3>
 					<p>
 						IBM had existing AI chat explorations, but they were designed for browser-based IBM
@@ -197,6 +177,178 @@ const watsonxFigures = [
 						brand consistency and continuity with how developers already work.
 					</p>
 
+					<figure class="case-figure case-figure-editorial">
+						<div class="case-editorial-media">
+							<img
+								src={`${imgBase}watsonx-carbon-browser-chat.png`}
+								alt="Carbon-based AI chat UI in a wide browser layout before IDE adaptation."
+								loading="lazy"
+								width="1200"
+								height="675"
+							/>
+						</div>
+						<figcaption>
+							Browser-oriented Carbon patterns were the starting point before tightening layout for
+							the IDE.
+						</figcaption>
+					</figure>
+
+					<h3 class="case-inline-heading">Exploration and concepting</h3>
+
+					<figure class="case-figure case-figure-editorial">
+						<div class="case-editorial-media">
+							<img
+								src={`${imgBase}watsonx-ux-exploration.png`}
+								alt="Mid-fidelity UX exploration screens for the IDE chat assistant."
+								loading="lazy"
+								width="1721"
+								height="758"
+							/>
+						</div>
+						<figcaption>
+							Concept frames translated constraints from engineering into a clearer panel
+							structure.
+						</figcaption>
+					</figure>
+				</div>
+
+				<div
+					class="case-carousel case-figure case-figure-editorial case-figure-ibm-carousel"
+					data-case-carousel
+					role="region"
+					aria-roledescription="carousel"
+					aria-label="watsonx Code Assistant shipped UI and system views"
+					tabindex="0"
+				>
+						<div class="case-carousel-viewport">
+							<div class="case-carousel-track" data-carousel-track>
+								<figure class="case-carousel-slide is-active" data-carousel-slide aria-hidden="false">
+									<div class="case-editorial-media">
+										<img
+											src={`${imgBase}watsonx-final-chat-ui.png`}
+											alt="Shipped watsonx Code Assistant chat interface in the IDE with responses and controls."
+											loading="lazy"
+											width="1200"
+											height="675"
+										/>
+									</div>
+									<figcaption class="case-carousel-figcaption">
+										The shipped chat UI balanced Carbon alignment with IDE density and developer
+										expectations.
+									</figcaption>
+								</figure>
+								<figure class="case-carousel-slide" data-carousel-slide aria-hidden="true">
+									<div class="case-editorial-media">
+										<img
+											src={`${imgBase}watsonx-files-and-model-transparency.png`}
+											alt="UI showing file references, model selection, and response metadata in chat."
+											loading="lazy"
+											width="1200"
+											height="675"
+										/>
+									</div>
+									<figcaption class="case-carousel-figcaption">
+										File touches and model visibility made outputs easier to audit and trust.
+									</figcaption>
+								</figure>
+								<figure class="case-carousel-slide" data-carousel-slide aria-hidden="true">
+									<div class="case-editorial-media">
+										<img
+											src={`${imgBase}watsonx-session-management.png`}
+											alt="Session list and detail views for chat threads in the assistant."
+											loading="lazy"
+											width="1200"
+											height="675"
+										/>
+									</div>
+									<figcaption class="case-carousel-figcaption">
+										Sessions behaved like trackable units of work, not a flat transcript.
+									</figcaption>
+								</figure>
+								<figure class="case-carousel-slide" data-carousel-slide aria-hidden="true">
+									<div class="case-editorial-media">
+										<img
+											src={`${imgBase}watsonx-code-generation-context.png`}
+											alt="Generated code snippet offered inline next to the conversation in the IDE."
+											loading="lazy"
+											width="1200"
+											height="675"
+										/>
+									</div>
+									<figcaption class="case-carousel-figcaption">
+										Generated code stayed in context so review, apply, and iterate stayed one gesture
+										apart.
+									</figcaption>
+								</figure>
+							</div>
+						</div>
+						<div class="case-carousel-toolbar">
+							<button
+								type="button"
+								class="case-carousel-btn"
+								data-carousel-prev
+								aria-label="Previous image"
+							>
+								<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+									<path
+										fill="none"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M10 3 5 8l5 5"></path>
+								</svg>
+							</button>
+							<div class="case-carousel-dots" role="group" aria-label="Choose slide">
+								<button
+									type="button"
+									class="case-carousel-dot is-active"
+									data-carousel-dot
+									aria-pressed="true"
+									aria-label="Slide 1 of 4, shipped chat UI"
+								></button>
+								<button
+									type="button"
+									class="case-carousel-dot"
+									data-carousel-dot
+									aria-pressed="false"
+									aria-label="Slide 2 of 4, files and model transparency"
+								></button>
+								<button
+									type="button"
+									class="case-carousel-dot"
+									data-carousel-dot
+									aria-pressed="false"
+									aria-label="Slide 3 of 4, session management"
+								></button>
+								<button
+									type="button"
+									class="case-carousel-dot"
+									data-carousel-dot
+									aria-pressed="false"
+									aria-label="Slide 4 of 4, code in context"
+								></button>
+							</div>
+							<button
+								type="button"
+								class="case-carousel-btn"
+								data-carousel-next
+								aria-label="Next image"
+							>
+								<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+									<path
+										fill="none"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M6 3l5 5-5 5"></path>
+								</svg>
+							</button>
+						</div>
+				</div>
+
+				<div class="case-section-body case-section-body-ibm-rest case-section-body-ibm-after-carousel">
 					<h3 class="case-inline-heading">Key design decisions</h3>
 					<ol class="case-numbered">
 						<li>Embedded, non-disruptive chat panel inside the IDE.</li>
@@ -214,21 +366,6 @@ const watsonxFigures = [
 						inline feedback collection for the LLM team. Some of the work also informed Carbon
 						AI Chat components.
 					</p>
-
-					{
-						watsonxFigures.map(({ file, caption }) => (
-							<figure class="case-figure">
-								<div class="case-media-slot">
-									<img src={`${imgBase}${file}`} alt="" loading="lazy" width="1200" height="675" />
-									<p class="case-media-fallback">
-										<code>{file}</code>
-										<span class="case-media-hint">Add to <code>public/images/case-studies/ai-chat/</code></span>
-									</p>
-								</div>
-								<figcaption>{caption}</figcaption>
-							</figure>
-						))
-					}
 				</div>
 			</section>
 
@@ -677,11 +814,68 @@ const watsonxFigures = [
 		align-self: start;
 		z-index: 3;
 		padding-block: 0.35rem 0.55rem;
-		background: var(--background);
 	}
 
 	.case-section-body {
 		min-width: 0;
+	}
+
+	.case-section-body-ibm-lead,
+	.case-section-body-ibm-rest {
+		min-width: 0;
+	}
+
+	/* IBM: match AI Catalog prototype embed width (125% / −12.5% breakout on wide viewports). */
+	@media (min-width: 881px) {
+		.case-section-ibm.case-section-rich {
+			grid-template-rows: auto auto auto auto auto;
+		}
+
+		.case-section-ibm.case-section-rich > h2 {
+			grid-column: 1;
+			grid-row: 1 / -1;
+		}
+
+		.case-section-ibm.case-section-rich > .case-section-body-ibm-lead {
+			grid-column: 2;
+			grid-row: 1;
+		}
+
+		.case-section-ibm.case-section-rich > .case-figure-ibm-lede {
+			grid-column: 1 / -1;
+			grid-row: 2;
+			margin-top: 1.15rem;
+			width: 125%;
+			max-width: none;
+			margin-inline: -12.5%;
+			padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+			box-sizing: border-box;
+		}
+
+		.case-section-ibm.case-section-rich > .case-section-body-ibm-before-carousel {
+			grid-column: 2;
+			grid-row: 3;
+		}
+
+		.case-section-ibm.case-section-rich > .case-figure-ibm-carousel {
+			grid-column: 1 / -1;
+			grid-row: 4;
+			margin-top: 1.65rem;
+			width: 125%;
+			max-width: none;
+			margin-inline: -12.5%;
+			padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+			box-sizing: border-box;
+		}
+
+		.case-section-ibm.case-section-rich > .case-section-body-ibm-after-carousel {
+			grid-column: 2;
+			grid-row: 5;
+		}
+	}
+
+	.case-figure-ibm-lede .case-editorial-media {
+		border-radius: 14px;
 	}
 
 	.case-section-body > p,
@@ -790,6 +984,184 @@ const watsonxFigures = [
 
 	.case-figure-grid .case-figure {
 		margin-top: 0.75rem;
+	}
+
+	.case-figure.case-figure-editorial {
+		margin: 1.65rem 0 0;
+	}
+
+	.case-editorial-media {
+		border-radius: 12px;
+		border: 1px solid var(--line);
+		overflow: hidden;
+		background: #eeede8;
+	}
+
+	.case-editorial-media img {
+		display: block;
+		width: 100%;
+		height: auto;
+		vertical-align: middle;
+	}
+
+	.case-carousel {
+		margin: 1.65rem 0 0;
+	}
+
+	.case-carousel-viewport {
+		overflow: hidden;
+		border-radius: 12px;
+		border: 1px solid #2a2a2a;
+		background: #000;
+	}
+
+	.case-figure-ibm-carousel .case-carousel-viewport {
+		border-radius: 12px;
+	}
+
+	.case-carousel-track {
+		display: flex;
+		transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+		will-change: transform;
+	}
+
+	.case-carousel-slide {
+		display: flex;
+		flex-direction: column;
+		flex: 0 0 100%;
+		width: 100%;
+		min-width: 0;
+		margin: 0;
+	}
+
+	.case-carousel-slide .case-editorial-media {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		border: none;
+		border-radius: 0;
+		background: #000;
+	}
+
+	.case-figure-ibm-carousel .case-carousel-slide .case-editorial-media {
+		width: 100%;
+		aspect-ratio: 1995 / 1228;
+		height: auto;
+		min-height: 0;
+	}
+
+	.case-carousel-slide .case-editorial-media img {
+		display: block;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		object-position: center;
+		vertical-align: middle;
+	}
+
+	.case-carousel-slide .case-carousel-figcaption {
+		margin: 0;
+		padding: 0.75rem 1rem 1rem;
+		font-size: 0.92rem;
+		line-height: 1.5;
+		color: var(--muted-strong);
+		border-top: 1px solid var(--line);
+		background: color-mix(in srgb, var(--background) 92%, transparent);
+	}
+
+	.case-figure-ibm-carousel .case-carousel-figcaption {
+		display: block;
+		width: 100%;
+		max-width: none;
+		box-sizing: border-box;
+		background: #000;
+		color: var(--background);
+		border-top: 1px solid #333;
+	}
+
+	.case-carousel-toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 0.85rem;
+		flex-wrap: wrap;
+	}
+
+	.case-figure-ibm-carousel .case-carousel-toolbar {
+		margin-top: 0.75rem;
+		padding: 0;
+		background: transparent;
+		border: none;
+	}
+
+	.case-carousel-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.4rem;
+		height: 2.4rem;
+		padding: 0;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.55);
+		color: #111;
+		cursor: pointer;
+		transition:
+			border-color 160ms ease,
+			background 160ms ease,
+			color 160ms ease;
+	}
+
+	.case-carousel-btn:hover {
+		border-color: color-mix(in srgb, var(--foreground) 28%, var(--line));
+		background: #fff;
+	}
+
+	.case-carousel-btn:focus-visible {
+		outline: 2px solid var(--foreground);
+		outline-offset: 2px;
+	}
+
+	.case-carousel-dots {
+		display: flex;
+		align-items: center;
+		gap: 0.42rem;
+	}
+
+	.case-carousel-dot {
+		width: 8px;
+		height: 8px;
+		padding: 0;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		background: transparent;
+		cursor: pointer;
+		transition:
+			transform 160ms ease,
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	.case-carousel-dot.is-active {
+		background: #111;
+		border-color: #111;
+		transform: scale(1.12);
+	}
+
+	.case-carousel-dot:focus-visible {
+		outline: 2px solid var(--foreground);
+		outline-offset: 2px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.case-carousel-track {
+			transition: none;
+		}
 	}
 
 	.case-media-slot {
@@ -939,6 +1311,24 @@ const watsonxFigures = [
 			background: none;
 		}
 
+		.case-section-ibm.case-section-rich > h2,
+		.case-section-ibm.case-section-rich > .case-section-body-ibm-lead,
+		.case-section-ibm.case-section-rich > .case-figure-ibm-lede,
+		.case-section-ibm.case-section-rich > .case-section-body-ibm-before-carousel,
+		.case-section-ibm.case-section-rich > .case-figure-ibm-carousel,
+		.case-section-ibm.case-section-rich > .case-section-body-ibm-after-carousel {
+			grid-column: 1;
+			grid-row: auto;
+		}
+
+		.case-section-ibm.case-section-rich > .case-figure-ibm-lede,
+		.case-section-ibm.case-section-rich > .case-figure-ibm-carousel {
+			width: 100%;
+			max-width: 100%;
+			margin-inline: 0;
+			padding-inline: 0;
+		}
+
 		.focus-grid {
 			grid-template-columns: 1fr;
 		}
@@ -997,5 +1387,59 @@ const watsonxFigures = [
 			};
 			target.addEventListener('blur', onBlur);
 		});
+	});
+
+	/** watsonx shipped UI carousel: prev / next, dots, keyboard when focused. */
+	document.querySelectorAll('[data-case-carousel]').forEach((root) => {
+		const track = root.querySelector('[data-carousel-track]');
+		const slideList = root.querySelectorAll('[data-carousel-slide]');
+		const dotList = root.querySelectorAll('[data-carousel-dot]');
+		const prevBtn = root.querySelector('[data-carousel-prev]');
+		const nextBtn = root.querySelector('[data-carousel-next]');
+		if (!track || slideList.length === 0) return;
+
+		const slides = Array.from(slideList);
+		const dots = Array.from(dotList);
+		const n = slides.length;
+		let idx = 0;
+
+		function apply() {
+			track.style.transform = `translateX(-${idx * 100}%)`;
+			slides.forEach((el, i) => {
+				const active = i === idx;
+				el.classList.toggle('is-active', active);
+				el.setAttribute('aria-hidden', active ? 'false' : 'true');
+			});
+			dots.forEach((d, i) => {
+				d.classList.toggle('is-active', i === idx);
+				d.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+			});
+		}
+
+		function go(delta) {
+			idx = (idx + delta + n) % n;
+			apply();
+		}
+
+		function goTo(i) {
+			idx = ((i % n) + n) % n;
+			apply();
+		}
+
+		prevBtn?.addEventListener('click', () => go(-1));
+		nextBtn?.addEventListener('click', () => go(1));
+		dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+		root.addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowLeft') {
+				e.preventDefault();
+				go(-1);
+			} else if (e.key === 'ArrowRight') {
+				e.preventDefault();
+				go(1);
+			}
+		});
+
+		apply();
 	});
 </script>
