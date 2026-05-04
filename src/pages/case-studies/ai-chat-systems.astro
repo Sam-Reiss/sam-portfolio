@@ -1,24 +1,929 @@
 ---
-import CaseStudyTemplate from '../../components/CaseStudyTemplate.astro';
 import Layout from '../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+	? import.meta.env.BASE_URL
+	: `${import.meta.env.BASE_URL}/`;
+
+const imgBase = `${baseUrl}images/case-studies/ai-chat/`;
+
+const watsonxFigures = [
+	{
+		file: 'watsonx-overview-ide-integration.png',
+		caption: 'Overview of the assistant embedded in the IDE workspace.'
+	},
+	{
+		file: 'watsonx-carbon-adaptation.png',
+		caption: 'Adapting Carbon AI chat patterns to plugin constraints and density.'
+	},
+	{
+		file: 'watsonx-core-functions-workshop.png',
+		caption: 'Workshopping core functions with engineering and design partners.'
+	},
+	{
+		file: 'watsonx-ux-concepting.png',
+		caption: 'Early UX concepting for structure, hierarchy, and flow inside the panel.'
+	},
+	{
+		file: 'watsonx-final-integrated-chat-ui.png',
+		caption: 'Final integrated chat UI aligned with IBM brand and developer habits.'
+	},
+	{
+		file: 'watsonx-sessions-additional-screens.png',
+		caption: 'Sessions and supporting screens as part of the working system.'
+	},
+	{
+		file: 'watsonx-file-handling-model-transparency.png',
+		caption: 'File handling, loading behavior, and model transparency as first-class UI.'
+	},
+	{
+		file: 'watsonx-code-generation-in-context.png',
+		caption: 'Generated code surfaced in context so review and next steps stay close.'
+	}
+] as const;
 ---
 
-<Layout title="AI Chat: GitLab Duo & watsonx Code Assistant">
+<Layout
+	title="AI Chat: GitLab Duo & watsonx Code Assistant | Sam Reiss"
+	description="Case study: designing AI chat systems for technical users across IBM watsonx Code Assistant and GitLab Duo Chat."
+>
 	<main>
 		<p class="back-link"><a href={import.meta.env.BASE_URL}>Back to homepage</a></p>
-		<CaseStudyTemplate
-			title="AI Chat: GitLab Duo & watsonx Code Assistant"
-			overview="I designed AI chat experiences across IDE and web surfaces, spanning IBM Watsonx Code Assistant and GitLab’s Duo Agent Platform. This work focused on making AI assistance feel contextual, useful, and integrated into developer workflows."
-			problem="AI chat experiences often feel disconnected from the user’s working context. At IBM, existing chat patterns were built for browser-based environments and needed to be adapted for IDE constraints. At GitLab, chat and agent platform experiences needed to support more complex workflows across product surfaces."
-			myRole="At IBM, I led a team of two UX designers and worked closely with engineering and the Carbon Design System team. At GitLab, I owned the Duo Agent Platform extension experience and supported chat UI work across GitLab surfaces."
-			workflow="I used AI-assisted prototyping to explore interaction patterns, generate interface variations, and accelerate alignment with engineering partners."
-			designDecisions={[
-				'Adapted AI chat patterns to constrained IDE environments',
-				'Prioritized low-friction interactions that did not interrupt developer flow',
-				'Designed feedback mechanisms to improve model iteration loops',
-				'Considered how chat evolves into agentic, multi-step workflows'
-			]}
-			outcome="At IBM, the updated chat UI contributed to an 87% increase in Watsonx Code Assistant downloads and enabled inline prompt-level feedback collection. Design patterns from the work were also adopted into Carbon’s AI chat components."
-		/>
+
+		<article class="case-study case-study-rich" lang="en">
+			<header class="case-study-header case-study-header-rich">
+				<p class="section-kicker">Case Study</p>
+				<div class="case-study-header-main">
+					<h1>Designing AI Chat Systems for Technical Users</h1>
+					<p class="case-subtitle">
+						From leading the design of IBM watsonx Code Assistant, an IDE-native assistant, to
+						supporting GitLab Duo Chat as agent-driven workflows mature, this work explores how
+						chat evolves from a conversational UI into a system for action.
+					</p>
+					<dl class="case-meta-row">
+						<div class="case-meta-item">
+							<dt>
+								<a
+									class="case-anchor-link case-anchor-link-meta"
+									href="#ibm-watsonx-code-assistant"
+									aria-label="Jump to IBM watsonx Code Assistant section"
+								>
+									IBM watsonx Code Assistant
+									<span class="case-anchor-icon-wrap" aria-hidden="true">
+										<svg class="case-anchor-icon" width="14" height="14" viewBox="0 0 16 16" focusable="false">
+											<path
+												fill="none"
+												stroke="currentColor"
+												stroke-width="1.5"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M3.5 6.5 8 11l4.5-4.5M8 11V2.5"></path>
+										</svg>
+									</span>
+								</a>
+							</dt>
+							<dd>Lead Designer</dd>
+						</div>
+						<div class="case-meta-item">
+							<dt>
+								<a
+									class="case-anchor-link case-anchor-link-meta"
+									href="#gitlab-duo-chat"
+									aria-label="Jump to GitLab Duo Chat section"
+								>
+									GitLab Duo Chat
+									<span class="case-anchor-icon-wrap" aria-hidden="true">
+										<svg class="case-anchor-icon" width="14" height="14" viewBox="0 0 16 16" focusable="false">
+											<path
+												fill="none"
+												stroke="currentColor"
+												stroke-width="1.5"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M3.5 6.5 8 11l4.5-4.5M8 11V2.5"></path>
+										</svg>
+									</span>
+								</a>
+							</dt>
+							<dd>Supporting Designer, team of 3 senior designers</dd>
+						</div>
+						<div class="case-meta-item case-meta-item-wide">
+							<dt>Focus</dt>
+							<dd>AI chat, developer tools, IDE UX, agent workflows, feedback loops</dd>
+						</div>
+					</dl>
+				</div>
+			</header>
+
+			<section class="case-section case-section-rich" aria-labelledby="overview-heading">
+				<h2 id="overview-heading">Overview</h2>
+				<div class="case-section-body">
+					<p class="case-lede">
+						I design interaction systems that help technical users understand, control, and
+						trust AI-powered workflows.
+					</p>
+					<p>
+						This case study compares two related efforts: IBM watsonx Code Assistant, an
+						IDE-integrated coding assistant, and GitLab Duo Chat, a platform chat experience
+						evolving toward agents, flows, sessions, and model choice. Together they sit under
+						one throughline: designing AI chat systems for technical users across IDE-native and
+						platform-native environments.
+					</p>
+					<div class="focus-grid" role="list">
+						<div class="focus-card" role="listitem">
+							<h3>Context awareness</h3>
+							<p>Chat that understands where the user is working.</p>
+						</div>
+						<div class="focus-card" role="listitem">
+							<h3>Actionability</h3>
+							<p>Chat that can move from answering to initiating work.</p>
+						</div>
+						<div class="focus-card" role="listitem">
+							<h3>System coherence</h3>
+							<p>Chat that fits into a larger developer workflow.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section
+				class="case-section case-section-rich case-section-product"
+				aria-labelledby="ibm-watsonx-code-assistant"
+			>
+				<h2 id="ibm-watsonx-code-assistant">IBM watsonx Code Assistant</h2>
+				<div class="case-section-body">
+					<div class="attribution-card attribution-card-lead" role="note">
+						<p>
+							<strong>Lead designer.</strong> I led the integrated chat experience, partnered
+							with engineering and Carbon, delivered the high-fidelity UI, and owned the
+							end-to-end design direction for this workstream.
+						</p>
+					</div>
+
+					<h3 class="case-inline-heading">Problem</h3>
+					<p>
+						IBM had existing AI chat explorations, but they were designed for browser-based IBM
+						software, not the constraints of an IDE plugin.
+					</p>
+
+					<h3 class="case-inline-heading">My role</h3>
+					<p>
+						I led a team of two UX designers, delivered the high-fidelity design work, partnered
+						with engineering, and consulted with the Carbon Design System team.
+					</p>
+
+					<h3 class="case-inline-heading">Design challenge</h3>
+					<p>
+						Adapt Carbon AI chat patterns into a constrained IDE environment while preserving
+						brand consistency and continuity with how developers already work.
+					</p>
+
+					<h3 class="case-inline-heading">Key design decisions</h3>
+					<ol class="case-numbered">
+						<li>Embedded, non-disruptive chat panel inside the IDE.</li>
+						<li>Session management as part of the workflow, not only chat history.</li>
+						<li>Feedback controls integrated directly into AI responses.</li>
+						<li>
+							File handling, generated code, loading states, and model transparency as core
+							system behaviors.
+						</li>
+					</ol>
+
+					<h3 class="case-inline-heading">Outcome</h3>
+					<p>
+						After launch, the updated chat UI saw an 87% increase in WCA downloads and enabled
+						inline feedback collection for the LLM team. Some of the work also informed Carbon
+						AI Chat components.
+					</p>
+
+					{
+						watsonxFigures.map(({ file, caption }) => (
+							<figure class="case-figure">
+								<div class="case-media-slot">
+									<img src={`${imgBase}${file}`} alt="" loading="lazy" width="1200" height="675" />
+									<p class="case-media-fallback">
+										<code>{file}</code>
+										<span class="case-media-hint">Add to <code>public/images/case-studies/ai-chat/</code></span>
+									</p>
+								</div>
+								<figcaption>{caption}</figcaption>
+							</figure>
+						))
+					}
+				</div>
+			</section>
+
+			<section
+				class="case-section case-section-rich case-section-product"
+				aria-labelledby="gitlab-duo-chat"
+			>
+				<h2 id="gitlab-duo-chat">GitLab Duo Chat</h2>
+				<div class="case-section-body">
+					<div class="attribution-card attribution-card-support" role="note">
+						<p>
+							<strong>Systems contribution.</strong> I was not the sole lead. I contributed as
+							one of three senior designers supporting Duo Chat, helping shape interaction
+							patterns, workflow concepts, and system coherence. This section reflects
+							collaborative design support, not single-owner leadership.
+						</p>
+					</div>
+
+					<p>
+						At GitLab, chat was evolving from a conversational assistant into an orchestration
+						layer for agents, sessions, flows, and model choice. I partnered on how those pieces
+						showed up in the product surface so users could follow work from prompt to outcome.
+					</p>
+
+					<section class="gitlab-module" aria-labelledby="gitlab-a">
+						<h3 id="gitlab-a">A. Sessions as units of work</h3>
+						<figure class="case-figure">
+							<div class="case-media-slot">
+								<img
+									src={`${imgBase}gitlab-duo-session-details.png`}
+									alt=""
+									loading="lazy"
+									width="1200"
+									height="675"
+								/>
+								<p class="case-media-fallback">
+									<code>gitlab-duo-session-details.png</code>
+									<span class="case-media-hint">
+										Add to <code>public/images/case-studies/ai-chat/</code>
+									</span>
+								</p>
+							</div>
+							<figcaption>
+								Sessions read less like passive chat history and more like trackable units of
+								agentic work, with status, recency, and clear entry points into details.
+							</figcaption>
+						</figure>
+					</section>
+
+					<section class="gitlab-module" aria-labelledby="gitlab-b">
+						<h3 id="gitlab-b">B. Starting from suggested prompts</h3>
+						<div class="case-figure-grid">
+							<figure class="case-figure">
+								<div class="case-media-slot">
+									<img
+										src={`${imgBase}gitlab-duo-suggestions-panel.png`}
+										alt=""
+										loading="lazy"
+										width="1200"
+										height="675"
+									/>
+									<p class="case-media-fallback">
+										<code>gitlab-duo-suggestions-panel.png</code>
+										<span class="case-media-hint">
+											Add to <code>public/images/case-studies/ai-chat/</code>
+										</span>
+									</p>
+								</div>
+								<figcaption>Suggestions panel: contextually relevant starting points.</figcaption>
+							</figure>
+							<figure class="case-figure">
+								<div class="case-media-slot">
+									<img
+										src={`${imgBase}gitlab-duo-empty-state.png`}
+										alt=""
+										loading="lazy"
+										width="1200"
+										height="675"
+									/>
+									<p class="case-media-fallback">
+										<code>gitlab-duo-empty-state.png</code>
+										<span class="case-media-hint">
+											Add to <code>public/images/case-studies/ai-chat/</code>
+										</span>
+									</p>
+								</div>
+								<figcaption>Empty state: reducing blank-page friction at chat entry.</figcaption>
+							</figure>
+						</div>
+					</section>
+
+					<section class="gitlab-module" aria-labelledby="gitlab-c">
+						<h3 id="gitlab-c">C. From chat to action</h3>
+						<figure class="case-figure">
+							<div class="case-media-slot">
+								<img
+									src={`${imgBase}gitlab-duo-slash-command-invoke.png`}
+									alt=""
+									loading="lazy"
+									width="1200"
+									height="675"
+								/>
+								<p class="case-media-fallback">
+									<code>gitlab-duo-slash-command-invoke.png</code>
+									<span class="case-media-hint">
+										Add to <code>public/images/case-studies/ai-chat/</code>
+									</span>
+								</p>
+							</div>
+							<figcaption>
+								Slash commands helped trigger structured flows, confirm intent, and spin up a
+								running session from a single deliberate action.
+							</figcaption>
+						</figure>
+					</section>
+
+					<section class="gitlab-module" aria-labelledby="gitlab-d">
+						<h3 id="gitlab-d">D. Model and mode clarity</h3>
+						<div class="case-figure-grid">
+							<figure class="case-figure">
+								<div class="case-media-slot">
+									<img
+										src={`${imgBase}gitlab-duo-model-switcher.png`}
+										alt=""
+										loading="lazy"
+										width="1200"
+										height="675"
+									/>
+									<p class="case-media-fallback">
+										<code>gitlab-duo-model-switcher.png</code>
+										<span class="case-media-hint">
+											Add to <code>public/images/case-studies/ai-chat/</code>
+										</span>
+									</p>
+								</div>
+								<figcaption>Model switcher: which model is active without crowding the composer.</figcaption>
+							</figure>
+							<figure class="case-figure">
+								<div class="case-media-slot">
+									<img
+										src={`${imgBase}gitlab-duo-classic-chat-switcher.png`}
+										alt=""
+										loading="lazy"
+										width="1200"
+										height="675"
+									/>
+									<p class="case-media-fallback">
+										<code>gitlab-duo-classic-chat-switcher.png</code>
+										<span class="case-media-hint">
+											Add to <code>public/images/case-studies/ai-chat/</code>
+										</span>
+									</p>
+								</div>
+								<figcaption>Classic chat switcher: clarity when modes diverge.</figcaption>
+							</figure>
+						</div>
+					</section>
+
+					<section class="gitlab-module" aria-labelledby="gitlab-e">
+						<h3 id="gitlab-e">E. Agent selection and specialization</h3>
+						<figure class="case-figure">
+							<div class="case-media-slot">
+								<img
+									src={`${imgBase}gitlab-duo-agent-switching.png`}
+									alt=""
+									loading="lazy"
+									width="1200"
+									height="675"
+								/>
+								<p class="case-media-fallback">
+									<code>gitlab-duo-agent-switching.png</code>
+									<span class="case-media-hint">
+										Add to <code>public/images/case-studies/ai-chat/</code>
+									</span>
+								</p>
+							</div>
+							<figcaption>
+								Specialized agents needed to be discoverable and understandable from inside the
+								chat surface, not buried in settings.
+							</figcaption>
+						</figure>
+					</section>
+
+					<section class="gitlab-module" aria-labelledby="gitlab-f">
+						<h3 id="gitlab-f">F. Feedback loop</h3>
+						<figure class="case-figure">
+							<div class="case-media-slot">
+								<img
+									src={`${imgBase}gitlab-duo-feedback-mechanism.png`}
+									alt=""
+									loading="lazy"
+									width="1200"
+									height="675"
+								/>
+								<p class="case-media-fallback">
+									<code>gitlab-duo-feedback-mechanism.png</code>
+									<span class="case-media-hint">
+										Add to <code>public/images/case-studies/ai-chat/</code>
+									</span>
+								</p>
+							</div>
+							<figcaption>
+								Lightweight feedback gave users a response to imperfect outputs and helped teams
+								improve model quality over time.
+							</figcaption>
+						</figure>
+					</section>
+				</div>
+			</section>
+
+			<section class="case-section case-section-rich case-section-close" aria-labelledby="learned-heading">
+				<h2 id="learned-heading">What this work taught me</h2>
+				<div class="case-section-body">
+					<p class="case-pullquote">
+						Across both products, the most important design problem was not simply where to place
+						a chat box. It was how to make AI feel situated, controllable, and useful inside real
+						technical user workflows.
+					</p>
+					<ul class="case-takeaways">
+						<li>AI chat needs context: anchoring to files, tasks, and session state.</li>
+						<li>
+							Users need clear control over models, agents, sessions, and actions before they will
+							rely on automation.
+						</li>
+						<li>
+							Trust comes from visibility, feedback, confirmation, and reversibility, not from
+							polish alone.
+						</li>
+					</ul>
+				</div>
+			</section>
+		</article>
 	</main>
 </Layout>
+
+<style>
+	.case-study-rich {
+		max-width: 980px;
+		margin-inline: auto;
+		font-family: "Work Sans", Inter, "Helvetica Neue", Arial, sans-serif;
+	}
+
+	.case-study-header-rich {
+		display: grid;
+		grid-template-columns: minmax(170px, 0.46fr) 1fr;
+		gap: 2.5rem;
+		padding-bottom: 2.9rem;
+		border-bottom: 1px solid var(--line);
+		margin-bottom: 0;
+	}
+
+	.case-study-header-rich .section-kicker {
+		grid-column: 1;
+		font-size: 1.38rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: #111;
+		margin: 0;
+		padding-top: 0.58rem;
+	}
+
+	.case-study-header-main {
+		grid-column: 2;
+		min-width: 0;
+	}
+
+	.case-study-header-rich h1 {
+		font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+		font-size: clamp(2.7rem, 4.7vw, 4.4rem);
+		font-weight: 400;
+		line-height: 1.02;
+		letter-spacing: -0.014em;
+		max-width: 22ch;
+		margin: 0 0 1.1rem;
+	}
+
+	.case-subtitle {
+		color: #242424;
+		font-size: clamp(1.05rem, 1.35vw, 1.18rem);
+		line-height: 1.62;
+		letter-spacing: -0.008em;
+		max-width: 62ch;
+		margin: 0 0 1.5rem;
+	}
+
+	.case-anchor-link {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.22em;
+		max-width: 100%;
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: color-mix(in srgb, currentColor 38%, transparent);
+		text-underline-offset: 0.14em;
+		text-decoration-thickness: 1px;
+		transition:
+			text-decoration-color 160ms ease,
+			color 160ms ease;
+	}
+
+	.case-anchor-link:hover {
+		text-decoration-color: color-mix(in srgb, currentColor 72%, transparent);
+		color: #0a0a0a;
+	}
+
+	.case-anchor-link:focus-visible {
+		outline: 2px solid var(--foreground);
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+
+	.case-anchor-icon-wrap {
+		display: inline-flex;
+		flex-shrink: 0;
+		translate: 0 0.12em;
+		opacity: 0.55;
+		transition: opacity 160ms ease;
+	}
+
+	.case-anchor-link:hover .case-anchor-icon-wrap {
+		opacity: 0.95;
+	}
+
+	.case-anchor-icon {
+		display: block;
+	}
+
+	.case-anchor-link-meta {
+		text-decoration: none;
+		font-size: inherit;
+		font-weight: inherit;
+		letter-spacing: inherit;
+		color: #111;
+	}
+
+	.case-anchor-link-meta:hover {
+		text-decoration: underline;
+		text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+		text-underline-offset: 0.18em;
+	}
+
+	#ibm-watsonx-code-assistant,
+	#gitlab-duo-chat {
+		scroll-margin-top: 1.25rem;
+	}
+
+	.case-meta-row {
+		display: grid;
+		gap: 1rem 2rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin: 0;
+		padding: 1.1rem 0 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.case-meta-item {
+		margin: 0;
+	}
+
+	.case-meta-item-wide {
+		grid-column: 1 / -1;
+	}
+
+	.case-meta-row dt {
+		font-size: 0.72rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--muted);
+		font-weight: 600;
+		margin-bottom: 0.35rem;
+	}
+
+	.case-meta-row dt:has(.case-anchor-link-meta) {
+		text-transform: none;
+		letter-spacing: -0.012em;
+		font-size: clamp(0.82rem, 1.05vw, 0.95rem);
+		color: #111;
+	}
+
+	.case-meta-row dd {
+		margin: 0;
+		font-size: 0.98rem;
+		line-height: 1.45;
+		color: #1a1a1a;
+	}
+
+	.case-section-rich {
+		display: grid;
+		grid-template-columns: minmax(170px, 0.46fr) 1fr;
+		gap: 0.82rem 2.5rem;
+		padding: 2.15rem 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.case-section-rich h2 {
+		font-size: 1.38rem;
+		line-height: 1.2;
+		letter-spacing: -0.01em;
+		color: #111;
+		font-weight: 600;
+		padding-top: 0.35rem;
+		margin: 0;
+	}
+
+	.case-section-body {
+		min-width: 0;
+	}
+
+	.case-section-body > p,
+	.case-section-body > ol {
+		color: #242424;
+		font-size: clamp(1.03rem, 1.46vw, 1.2rem);
+		line-height: 1.66;
+		letter-spacing: -0.008em;
+		margin: 0 0 1rem;
+	}
+
+	.case-section-body > p:last-child {
+		margin-bottom: 0;
+	}
+
+	.case-lede {
+		font-weight: 500;
+		color: #181818;
+		margin-bottom: 1.15rem;
+	}
+
+	.focus-grid {
+		display: grid;
+		gap: 0.85rem;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin-top: 1.35rem;
+	}
+
+	.focus-card {
+		border: 1px solid var(--line);
+		padding: 1rem 1.05rem 1.1rem;
+		background: rgba(255, 255, 255, 0.35);
+	}
+
+	.focus-card h3 {
+		font-family: inherit;
+		font-size: 1rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: #111;
+		margin: 0 0 0.45rem;
+	}
+
+	.focus-card p {
+		margin: 0;
+		font-size: 0.95rem;
+		line-height: 1.55;
+		color: #333;
+	}
+
+	.attribution-card {
+		border: 1px solid var(--line);
+		padding: 1rem 1.15rem;
+		margin-bottom: 1.25rem;
+		background: rgba(255, 255, 255, 0.5);
+	}
+
+	.attribution-card p {
+		margin: 0;
+		font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+		line-height: 1.6;
+		color: #242424;
+	}
+
+	.attribution-card-lead {
+		border-left: 3px solid var(--accent-blue);
+	}
+
+	.attribution-card-support {
+		border-left: 3px solid var(--muted);
+	}
+
+	.case-inline-heading {
+		font-family: inherit;
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #111;
+		margin: 1.35rem 0 0.5rem;
+		letter-spacing: -0.01em;
+	}
+
+	.case-inline-heading:first-of-type {
+		margin-top: 0;
+	}
+
+	.case-numbered {
+		margin: 0 0 1rem;
+		padding-left: 1.25rem;
+		display: grid;
+		gap: 0.65rem;
+		color: #242424;
+		font-size: clamp(1.03rem, 1.46vw, 1.2rem);
+		line-height: 1.62;
+	}
+
+	.case-figure {
+		margin: 1.75rem 0 0;
+	}
+
+	.case-figure-grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin-top: 0.75rem;
+	}
+
+	.case-figure-grid .case-figure {
+		margin-top: 0.75rem;
+	}
+
+	.case-media-slot {
+		position: relative;
+		border: 1px solid var(--line);
+		background: #eeede8;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+	}
+
+	.case-media-slot img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		position: relative;
+		z-index: 1;
+		background: #e8e6e1;
+	}
+
+	.case-media-slot.is-missing img {
+		display: none;
+	}
+
+	.case-media-fallback {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		display: grid;
+		place-content: center;
+		gap: 0.5rem;
+		text-align: center;
+		padding: 1rem;
+		margin: 0;
+		pointer-events: none;
+		background: linear-gradient(180deg, rgba(248, 247, 244, 0.92), rgba(238, 236, 232, 0.96));
+		transition: opacity 160ms ease;
+	}
+
+	.case-media-slot.is-loaded .case-media-fallback {
+		opacity: 0;
+	}
+
+	.case-media-fallback code {
+		font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+		word-break: break-all;
+		color: #1a1a1a;
+	}
+
+	.case-media-hint {
+		display: block;
+		font-size: 0.72rem;
+		color: var(--muted);
+	}
+
+	.case-figure figcaption {
+		margin-top: 0.55rem;
+		font-size: 0.92rem;
+		line-height: 1.5;
+		color: var(--muted-strong);
+		max-width: 70ch;
+	}
+
+	.gitlab-module {
+		margin-top: 2rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.case-section-body > .gitlab-module:first-of-type {
+		margin-top: 1.25rem;
+		padding-top: 0;
+		border-top: none;
+	}
+
+	.gitlab-module h3 {
+		font-family: inherit;
+		font-size: 1.12rem;
+		font-weight: 600;
+		color: #111;
+		margin: 0 0 0.65rem;
+		letter-spacing: -0.01em;
+	}
+
+	.case-section-close .case-pullquote {
+		font-size: clamp(1.08rem, 1.45vw, 1.22rem);
+		line-height: 1.62;
+		font-weight: 500;
+		color: #181818;
+		margin: 0 0 1.1rem;
+		max-width: 58ch;
+	}
+
+	.case-takeaways {
+		margin: 0;
+		padding-left: 1.15rem;
+		display: grid;
+		gap: 0.65rem;
+		color: #242424;
+		font-size: clamp(1.03rem, 1.46vw, 1.2rem);
+		line-height: 1.62;
+	}
+
+	@media (max-width: 1024px) {
+		.case-study-header-rich,
+		.case-section-rich {
+			grid-template-columns: minmax(145px, 0.4fr) 1fr;
+			gap: 0.78rem 1.9rem;
+		}
+	}
+
+	@media (max-width: 880px) {
+		.case-study-header-rich {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+		}
+
+		.case-study-header-rich .section-kicker {
+			padding-top: 0;
+		}
+
+		.case-study-header-main {
+			grid-column: auto;
+		}
+
+		.case-study-header-rich h1 {
+			max-width: none;
+		}
+
+		.case-meta-row {
+			grid-template-columns: 1fr;
+		}
+
+		.case-section-rich {
+			grid-template-columns: 1fr;
+			gap: 0.65rem;
+			padding: 1.4rem 0;
+		}
+
+		.case-section-rich h2 {
+			padding-top: 0;
+		}
+
+		.focus-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.case-figure-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script is:inline>
+	/** Show filename overlay until assets exist; hide when images load. */
+	document.querySelectorAll('.case-media-slot').forEach((slot) => {
+		const img = slot.querySelector('img');
+		if (!img) return;
+		const onLoad = () => {
+			if (img.naturalWidth > 0) slot.classList.add('is-loaded');
+		};
+		const onError = () => {
+			slot.classList.add('is-missing');
+		};
+		if (img.complete && img.naturalWidth > 0) onLoad();
+		else {
+			img.addEventListener('load', onLoad, { once: true });
+			img.addEventListener('error', onError, { once: true });
+		}
+	});
+
+	/** Smooth in-page scroll for metadata jump links only (respects reduced motion). */
+	document.querySelectorAll('a.case-anchor-link-meta[href^="#"]').forEach((link) => {
+		link.addEventListener('click', (event) => {
+			const href = link.getAttribute('href');
+			if (!href || href.length < 2) return;
+			const id = href.slice(1);
+			const target = document.getElementById(id);
+			if (!target) return;
+			event.preventDefault();
+			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+			try {
+				window.history.replaceState(null, '', href);
+			} catch {
+				/* ignore */
+			}
+			if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+			requestAnimationFrame(() => {
+				try {
+					target.focus({ preventScroll: true });
+				} catch {
+					/* ignore */
+				}
+			});
+			const onBlur = () => {
+				target.removeAttribute('tabindex');
+				target.removeEventListener('blur', onBlur);
+			};
+			target.addEventListener('blur', onBlur);
+		});
+	});
+</script>
