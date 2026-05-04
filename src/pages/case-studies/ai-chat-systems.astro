@@ -51,7 +51,7 @@ const watsonxFigures = [
 		<p class="back-link"><a href={import.meta.env.BASE_URL}>Back to homepage</a></p>
 
 		<article class="case-study case-study-rich" lang="en">
-			<header class="case-study-header case-study-header-rich">
+			<header class="case-study-header case-study-header-rich" id="case-study-top">
 				<p class="section-kicker">Case Study</p>
 				<div class="case-study-header-main">
 					<h1>Designing AI Chat Systems for Technical Users</h1>
@@ -150,7 +150,26 @@ const watsonxFigures = [
 				class="case-section case-section-rich case-section-product"
 				aria-labelledby="ibm-watsonx-code-assistant"
 			>
-				<h2 id="ibm-watsonx-code-assistant">IBM watsonx Code Assistant</h2>
+				<h2 id="ibm-watsonx-code-assistant">
+					<a
+						class="case-anchor-link case-anchor-link-back"
+						href="#case-study-top"
+						aria-label="Back to top of case study"
+					>
+						IBM watsonx Code Assistant
+						<span class="case-anchor-icon-wrap" aria-hidden="true">
+							<svg class="case-anchor-icon" width="14" height="14" viewBox="0 0 16 16" focusable="false">
+								<path
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M3.5 9.5 8 5l4.5 4.5M8 5v8.5"></path>
+							</svg>
+						</span>
+					</a>
+				</h2>
 				<div class="case-section-body">
 					<div class="attribution-card attribution-card-lead" role="note">
 						<p>
@@ -217,7 +236,26 @@ const watsonxFigures = [
 				class="case-section case-section-rich case-section-product"
 				aria-labelledby="gitlab-duo-chat"
 			>
-				<h2 id="gitlab-duo-chat">GitLab Duo Chat</h2>
+				<h2 id="gitlab-duo-chat">
+					<a
+						class="case-anchor-link case-anchor-link-back"
+						href="#case-study-top"
+						aria-label="Back to top of case study"
+					>
+						GitLab Duo Chat
+						<span class="case-anchor-icon-wrap" aria-hidden="true">
+							<svg class="case-anchor-icon" width="14" height="14" viewBox="0 0 16 16" focusable="false">
+								<path
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M3.5 9.5 8 5l4.5 4.5M8 5v8.5"></path>
+							</svg>
+						</span>
+					</a>
+				</h2>
 				<div class="case-section-body">
 					<div class="attribution-card attribution-card-support" role="note">
 						<p>
@@ -501,17 +539,11 @@ const watsonxFigures = [
 		gap: 0.22em;
 		max-width: 100%;
 		color: inherit;
-		text-decoration: underline;
-		text-decoration-color: color-mix(in srgb, currentColor 38%, transparent);
-		text-underline-offset: 0.14em;
-		text-decoration-thickness: 1px;
-		transition:
-			text-decoration-color 160ms ease,
-			color 160ms ease;
+		text-decoration: none;
+		transition: color 160ms ease;
 	}
 
 	.case-anchor-link:hover {
-		text-decoration-color: color-mix(in srgb, currentColor 72%, transparent);
 		color: #0a0a0a;
 	}
 
@@ -546,9 +578,33 @@ const watsonxFigures = [
 	}
 
 	.case-anchor-link-meta:hover {
-		text-decoration: underline;
-		text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
-		text-underline-offset: 0.18em;
+		text-decoration: none;
+	}
+
+	.case-anchor-link-back {
+		text-decoration: none;
+		font-size: inherit;
+		font-weight: inherit;
+		letter-spacing: inherit;
+		color: inherit;
+		gap: 0;
+	}
+
+	.case-anchor-link-back:hover {
+		text-decoration: none;
+	}
+
+	.case-anchor-link-back .case-anchor-icon-wrap {
+		order: -1;
+		margin-right: 12px;
+		margin-left: 0;
+		translate: 0 0.08em;
+		scale: 1.25;
+		opacity: 0.68;
+	}
+
+	#case-study-top {
+		scroll-margin-top: 1.25rem;
 	}
 
 	#ibm-watsonx-code-assistant,
@@ -612,6 +668,16 @@ const watsonxFigures = [
 		font-weight: 600;
 		padding-top: 0.35rem;
 		margin: 0;
+	}
+
+	/* Keep product section title visible while scrolling that section. */
+	.case-section-product > h2 {
+		position: sticky;
+		top: 1rem;
+		align-self: start;
+		z-index: 3;
+		padding-block: 0.35rem 0.55rem;
+		background: var(--background);
 	}
 
 	.case-section-body {
@@ -867,6 +933,12 @@ const watsonxFigures = [
 			padding-top: 0;
 		}
 
+		.case-section-product > h2 {
+			position: static;
+			padding-block: 0;
+			background: none;
+		}
+
 		.focus-grid {
 			grid-template-columns: 1fr;
 		}
@@ -895,8 +967,8 @@ const watsonxFigures = [
 		}
 	});
 
-	/** Smooth in-page scroll for metadata jump links only (respects reduced motion). */
-	document.querySelectorAll('a.case-anchor-link-meta[href^="#"]').forEach((link) => {
+	/** Smooth in-page scroll for case study anchor links (respects reduced motion). */
+	document.querySelectorAll('a.case-anchor-link-meta[href^="#"], a.case-anchor-link-back[href^="#"]').forEach((link) => {
 		link.addEventListener('click', (event) => {
 			const href = link.getAttribute('href');
 			if (!href || href.length < 2) return;
