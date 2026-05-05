@@ -957,8 +957,10 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		grid-auto-flow: row;
 		align-items: start;
 		gap: 0.85rem 1.5rem;
-		margin-top: 0.35rem;
-		padding-left: 1.35rem;
+		margin-top: 0.7rem;
+		padding-left: 0;
+		list-style: none;
+		counter-reset: case-decision;
 	}
 
 	.case-ibm-outcome-section > p {
@@ -1056,6 +1058,14 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		margin: 0 0 0.85rem;
 	}
 
+	/* Outcome: slightly larger + more editorial than decisions/mini-cols. */
+	.case-ibm-compact-blocks .case-ibm-outcome-section > p,
+	.case-ibm-compact-blocks .case-gitlab-outcome > p {
+		font-size: clamp(1.08rem, 1.52vw, 1.28rem);
+		line-height: 1.7;
+		letter-spacing: -0.006em;
+	}
+
 	.case-ibm-compact-blocks .case-ibm-mini-col > p:last-child,
 	.case-ibm-compact-blocks .case-ibm-outcome-section > p:last-child,
 	.case-ibm-compact-blocks .case-gitlab-outcome > p:last-child {
@@ -1067,6 +1077,20 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		line-height: 1.58;
 		letter-spacing: -0.006em;
 		margin-bottom: 0;
+	}
+
+	.case-ibm-compact-blocks .case-ibm-decisions-cols.case-numbered > li {
+		counter-increment: case-decision;
+	}
+
+	.case-ibm-compact-blocks .case-ibm-decisions-cols.case-numbered > li::before {
+		content: counter(case-decision, decimal-leading-zero);
+		display: block;
+		margin-bottom: 0.3rem;
+		font-size: 1.15em;
+		font-weight: 700;
+		line-height: 1.1;
+		color: #111;
 	}
 
 	.case-ibm-compact-blocks .case-numbered:not(.case-ibm-decisions-cols) {
