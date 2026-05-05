@@ -92,20 +92,13 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 						one throughline: designing AI chat systems for technical users across IDE-native and
 						platform-native environments.
 					</p>
-					<div class="focus-grid" role="list">
-						<div class="focus-card" role="listitem">
-							<h3>Context awareness</h3>
-							<p>Chat that understands where the user is working.</p>
-						</div>
-						<div class="focus-card" role="listitem">
-							<h3>Actionability</h3>
-							<p>Chat that can move from answering to initiating work.</p>
-						</div>
-						<div class="focus-card" role="listitem">
-							<h3>System coherence</h3>
-							<p>Chat that fits into a larger developer workflow.</p>
-						</div>
-					</div>
+					<p class="case-overview-themes">
+						Across both, the work keeps returning to the same pressures: read the user's situation
+						(files, surface, and session) before responding; shorten the distance between a clear
+						answer and a useful next step; and keep interaction patterns legible inside the wider
+						product so chat feels contiguous with everyday developer habits—not a parallel
+						experience.
+					</p>
 				</div>
 			</section>
 
@@ -134,13 +127,10 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 					</a>
 				</h2>
 				<div class="case-section-body case-section-body-ibm-lead">
-					<div class="attribution-card attribution-card-lead" role="note">
-						<p>
-							<strong>Lead designer.</strong> I led the integrated chat experience, partnered
-							with engineering and Carbon, delivered the high-fidelity UI, and owned the
-							end-to-end design direction for this workstream.
-						</p>
-					</div>
+					<p class="case-role-lede" role="note">
+						I led the integrated chat experience, partnered with engineering and Carbon, delivered the
+						high-fidelity UI, and owned the end-to-end design direction for this workstream.
+					</p>
 				</div>
 
 				<div
@@ -256,95 +246,70 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 							</div>
 						</div>
 						<div class="case-carousel-toolbar">
-							<button
-								type="button"
-								class="case-carousel-btn"
-								data-carousel-prev
-								aria-label="Previous image"
-							>
-								<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-									<path
-										fill="none"
-										stroke="currentColor"
-										stroke-width="1.5"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M10 3 5 8l5 5"></path>
-								</svg>
-							</button>
-							<div class="case-carousel-dots" role="group" aria-label="Choose slide">
+							<p class="case-carousel-index" aria-live="polite" aria-atomic="true">
+								<span class="case-carousel-index-current" data-carousel-index-current>01</span>
+								<span class="case-carousel-index-sep" aria-hidden="true"> — </span>
+								<span class="case-carousel-index-total" data-carousel-index-total>05</span>
+							</p>
+							<div class="case-carousel-arrows">
 								<button
 									type="button"
-									class="case-carousel-dot is-active"
-									data-carousel-dot
-									aria-pressed="true"
-									aria-label="Slide 1 of 5, shipped chat UI"
-								></button>
+									class="case-carousel-btn case-carousel-btn-minimal"
+									data-carousel-prev
+									aria-label="Previous image"
+								>
+									<svg width="22" height="22" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+										<path
+											fill="none"
+											stroke="currentColor"
+											stroke-width="1"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M10 3 5 8l5 5"></path>
+									</svg>
+								</button>
 								<button
 									type="button"
-									class="case-carousel-dot"
-									data-carousel-dot
-									aria-pressed="false"
-									aria-label="Slide 2 of 5, files and model transparency"
-								></button>
-								<button
-									type="button"
-									class="case-carousel-dot"
-									data-carousel-dot
-									aria-pressed="false"
-									aria-label="Slide 3 of 5, session management"
-								></button>
-								<button
-									type="button"
-									class="case-carousel-dot"
-									data-carousel-dot
-									aria-pressed="false"
-									aria-label="Slide 4 of 5, code in context"
-								></button>
-								<button
-									type="button"
-									class="case-carousel-dot"
-									data-carousel-dot
-									aria-pressed="false"
-									aria-label="Slide 5 of 5, IDE integration"
-								></button>
+									class="case-carousel-btn case-carousel-btn-minimal"
+									data-carousel-next
+									aria-label="Next image"
+								>
+									<svg width="22" height="22" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+										<path
+											fill="none"
+											stroke="currentColor"
+											stroke-width="1"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M6 3l5 5-5 5"></path>
+									</svg>
+								</button>
 							</div>
-							<button
-								type="button"
-								class="case-carousel-btn"
-								data-carousel-next
-								aria-label="Next image"
-							>
-								<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-									<path
-										fill="none"
-										stroke="currentColor"
-										stroke-width="1.5"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M6 3l5 5-5 5"></path>
-								</svg>
-							</button>
 						</div>
 				</div>
 
 				<div
 					class="case-section-body case-section-body-ibm-rest case-section-body-ibm-after-carousel case-ibm-compact-blocks"
 				>
-					<div class="case-ibm-outcome-row">
-						<div class="case-ibm-outcome-col">
+					<div class="case-ibm-post-carousel">
+						<div class="case-ibm-decisions-section">
 							<h3 class="case-inline-heading">Key design decisions</h3>
-							<ol class="case-numbered">
-								<li>Embedded, non-disruptive chat panel inside the IDE.</li>
-								<li>Session management as part of the workflow, not only chat history.</li>
-								<li>Feedback controls integrated directly into AI responses.</li>
+							<ol class="case-numbered case-ibm-decisions-cols">
 								<li>
-									File handling, generated code, loading states, and model transparency as core
-									system behaviors.
+									Adapt browser-based AI chat patterns to fit the constraints and ergonomics of an
+									IDE plugin.
+								</li>
+								<li>
+									Design for in-context work, ensuring outputs like code and explanations integrate
+									directly into the developer's flow.
+								</li>
+								<li>
+									Treat chat as a persistent workspace, with session management and feedback
+									supporting iteration over time.
 								</li>
 							</ol>
 						</div>
-						<div class="case-ibm-outcome-col">
+						<div class="case-ibm-outcome-section">
 							<h3 class="case-inline-heading">Outcome</h3>
 							<p>
 								After launch, the updated chat UI saw an 87% increase in WCA downloads and enabled
@@ -381,14 +346,11 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 					</a>
 				</h2>
 				<div class="case-section-body">
-					<div class="attribution-card attribution-card-support" role="note">
-						<p>
-							<strong>Systems contribution.</strong> I was not the sole lead. I contributed as
-							one of three senior designers supporting Duo Chat, helping shape interaction
-							patterns, workflow concepts, and system coherence. This section reflects
-							collaborative design support, not single-owner leadership.
-						</p>
-					</div>
+					<p class="case-role-lede" role="note">
+						I was not the sole lead. I contributed as one of three senior designers supporting Duo
+						Chat, helping shape interaction patterns, workflow concepts, and system coherence. This
+						section reflects collaborative design support, not single-owner leadership.
+					</p>
 
 					<p>
 						At GitLab, chat was evolving from a conversational assistant into an orchestration
@@ -815,26 +777,41 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 	.case-ibm-lede-meta-row {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1rem 1.75rem;
+		gap: 1.2rem 2.25rem;
 		align-items: start;
+		margin-top: 0.25rem;
 	}
 
 	.case-ibm-mini-col {
 		min-width: 0;
 	}
 
-	.case-ibm-outcome-row {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.25rem 2.25rem;
-		align-items: start;
-	}
-
-	.case-ibm-outcome-col {
+	.case-ibm-post-carousel {
+		display: flex;
+		flex-direction: column;
+		gap: 1.85rem;
 		min-width: 0;
 	}
 
-	/* Smaller type for IBM columnar mini-sections (one step below main case body). */
+	.case-ibm-decisions-section,
+	.case-ibm-outcome-section {
+		min-width: 0;
+	}
+
+	.case-ibm-compact-blocks .case-ibm-decisions-cols.case-numbered {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-auto-flow: row;
+		align-items: start;
+		gap: 0.85rem 1.5rem;
+		margin-top: 0.35rem;
+		padding-left: 1.35rem;
+	}
+
+	.case-ibm-outcome-section > p {
+		max-width: none;
+	}
+
+	/* Smaller type for IBM compact blocks (decisions / outcome); triad uses editorial match below. */
 	.case-ibm-compact-blocks .case-inline-heading {
 		font-size: clamp(0.92rem, 1.08vw, 1rem);
 		font-weight: 600;
@@ -846,8 +823,33 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		margin-top: 0;
 	}
 
+	/* watsonx intro + Problem / My role / Design challenge: one type size, bold labels (see ref layout). */
+	.case-section-body-ibm-lead .case-role-lede {
+		max-width: none;
+		margin-bottom: 1.85rem;
+		font-size: clamp(0.98rem, 1.22vw, 1.1rem);
+		line-height: 1.68;
+		letter-spacing: -0.01em;
+		color: #242424;
+	}
+
+	.case-section-body-ibm-before-carousel.case-ibm-compact-blocks .case-ibm-mini-col .case-inline-heading {
+		font-size: clamp(0.98rem, 1.22vw, 1.1rem);
+		font-weight: 600;
+		line-height: 1.35;
+		margin: 0 0 0.55rem;
+		letter-spacing: -0.01em;
+		color: #111;
+	}
+
+	.case-section-body-ibm-before-carousel.case-ibm-compact-blocks .case-ibm-mini-col > p {
+		font-size: clamp(0.98rem, 1.22vw, 1.1rem);
+		line-height: 1.68;
+		letter-spacing: -0.01em;
+	}
+
 	.case-ibm-compact-blocks .case-ibm-mini-col > p,
-	.case-ibm-compact-blocks .case-ibm-outcome-col > p {
+	.case-ibm-compact-blocks .case-ibm-outcome-section > p {
 		color: #242424;
 		font-size: clamp(0.94rem, 1.22vw, 1.06rem);
 		line-height: 1.58;
@@ -856,7 +858,7 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 	}
 
 	.case-ibm-compact-blocks .case-ibm-mini-col > p:last-child,
-	.case-ibm-compact-blocks .case-ibm-outcome-col > p:last-child {
+	.case-ibm-compact-blocks .case-ibm-outcome-section > p:last-child {
 		margin-bottom: 0;
 	}
 
@@ -864,8 +866,11 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		font-size: clamp(0.94rem, 1.22vw, 1.06rem);
 		line-height: 1.58;
 		letter-spacing: -0.006em;
-		gap: 0.52rem;
 		margin-bottom: 0;
+	}
+
+	.case-ibm-compact-blocks .case-numbered:not(.case-ibm-decisions-cols) {
+		gap: 0.52rem;
 	}
 
 	/* IBM: match AI Catalog prototype embed width (125% / −12.5% breakout on wide viewports). */
@@ -926,55 +931,19 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		margin-bottom: 1.15rem;
 	}
 
-	.focus-grid {
-		display: grid;
-		gap: 0.85rem;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		margin-top: 1.35rem;
+	.case-overview-themes {
+		margin-top: 1.45rem;
+		max-width: 62ch;
 	}
 
-	.focus-card {
-		border: 1px solid var(--line);
-		padding: 1rem 1.05rem 1.1rem;
-		background: rgba(255, 255, 255, 0.35);
-	}
-
-	.focus-card h3 {
-		font-family: inherit;
-		font-size: 1rem;
-		font-weight: 600;
-		letter-spacing: -0.01em;
-		color: #111;
-		margin: 0 0 0.45rem;
-	}
-
-	.focus-card p {
-		margin: 0;
-		font-size: 0.95rem;
-		line-height: 1.55;
-		color: #333;
-	}
-
-	.attribution-card {
-		border: 1px solid var(--line);
-		padding: 1rem 1.15rem;
-		margin-bottom: 1.25rem;
-		background: rgba(255, 255, 255, 0.5);
-	}
-
-	.attribution-card p {
-		margin: 0;
-		font-size: clamp(0.98rem, 1.2vw, 1.08rem);
-		line-height: 1.6;
-		color: #242424;
-	}
-
-	.attribution-card-lead {
-		border-left: 3px solid var(--accent-blue);
-	}
-
-	.attribution-card-support {
-		border-left: 3px solid var(--muted);
+	/* Role lines (IBM + GitLab): quiet annotation, no card chrome. */
+	.case-role-lede {
+		margin: 0 0 1.35rem;
+		max-width: 62ch;
+		font-size: clamp(0.98rem, 1.22vw, 1.1rem);
+		line-height: 1.78;
+		letter-spacing: -0.012em;
+		color: #2c2c2c;
 	}
 
 	.case-inline-heading {
@@ -1035,6 +1004,11 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 
 	.case-carousel {
 		margin: 1.65rem 0 0;
+	}
+
+	/* Extra air below IBM carousel so controls + Key decisions never feel stacked. */
+	.case-figure-ibm-carousel.case-carousel {
+		margin-bottom: 1.65rem;
 	}
 
 	.case-carousel-viewport {
@@ -1122,10 +1096,85 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 	}
 
 	.case-figure-ibm-carousel .case-carousel-toolbar {
-		margin-top: 0.75rem;
-		padding: 0;
+		margin-top: 1.05rem;
+		padding: 0.35rem 0 0;
+		width: 100%;
+		max-width: none;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+		row-gap: 0.5rem;
 		background: transparent;
 		border: none;
+		border-radius: 0;
+		box-shadow: none;
+	}
+
+	.case-figure-ibm-carousel .case-carousel-arrows {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.06rem;
+		flex-shrink: 0;
+	}
+
+	.case-carousel-index {
+		margin: 0;
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 0;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+	}
+
+	.case-figure-ibm-carousel .case-carousel-index {
+		justify-content: flex-start;
+		flex: 1;
+		min-width: min(12rem, 42%);
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.16em;
+		font-variant: all-small-caps;
+		text-transform: lowercase;
+		color: color-mix(in srgb, var(--muted-strong) 88%, #111);
+	}
+
+	.case-figure-ibm-carousel .case-carousel-btn-minimal {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: auto;
+		height: auto;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		padding: 0.12rem;
+		border: none;
+		border-radius: 0;
+		background: transparent;
+		color: #111;
+		opacity: 0.9;
+		cursor: pointer;
+		transition: opacity 160ms ease, color 160ms ease;
+	}
+
+	.case-figure-ibm-carousel .case-carousel-btn-minimal:hover {
+		opacity: 0.42;
+		background: transparent;
+		border-color: transparent;
+	}
+
+	.case-figure-ibm-carousel .case-carousel-btn-minimal:focus-visible {
+		opacity: 1;
+		outline: 2px solid var(--foreground);
+		outline-offset: 4px;
+	}
+
+	.case-carousel-index-sep {
+		letter-spacing: 0.12em;
+		opacity: 0.65;
+		padding-inline: 0.12em;
 	}
 
 	.case-carousel-btn {
@@ -1152,37 +1201,6 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 	}
 
 	.case-carousel-btn:focus-visible {
-		outline: 2px solid var(--foreground);
-		outline-offset: 2px;
-	}
-
-	.case-carousel-dots {
-		display: flex;
-		align-items: center;
-		gap: 0.42rem;
-	}
-
-	.case-carousel-dot {
-		width: 8px;
-		height: 8px;
-		padding: 0;
-		border: 1px solid var(--line);
-		border-radius: 999px;
-		background: transparent;
-		cursor: pointer;
-		transition:
-			transform 160ms ease,
-			background 160ms ease,
-			border-color 160ms ease;
-	}
-
-	.case-carousel-dot.is-active {
-		background: #111;
-		border-color: #111;
-		transform: scale(1.12);
-	}
-
-	.case-carousel-dot:focus-visible {
 		outline: 2px solid var(--foreground);
 		outline-offset: 2px;
 	}
@@ -1360,18 +1378,33 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 			padding-inline: 0;
 		}
 
-		.focus-grid {
-			grid-template-columns: 1fr;
-		}
-
 		.case-figure-grid {
 			grid-template-columns: 1fr;
 		}
 
 		.case-ibm-lede-meta-row,
-		.case-ibm-outcome-row {
+		.case-ibm-decisions-cols.case-numbered {
 			grid-template-columns: 1fr;
-			gap: 1.1rem;
+			column-gap: 0;
+		}
+
+		.case-ibm-post-carousel {
+			gap: 1.35rem;
+		}
+
+		.case-figure-ibm-carousel .case-carousel-toolbar {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.7rem;
+		}
+
+		.case-figure-ibm-carousel .case-carousel-index {
+			min-width: 0;
+			flex: none;
+		}
+
+		.case-figure-ibm-carousel .case-carousel-arrows {
+			align-self: flex-end;
 		}
 	}
 </style>
@@ -1426,19 +1459,22 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		});
 	});
 
-	/** watsonx case study carousel: prev / next, dots, keyboard when focused. */
+	/** watsonx case study carousel: prev / next, editorial index, keyboard when focused. */
 	document.querySelectorAll('[data-case-carousel]').forEach((root) => {
 		const track = root.querySelector('[data-carousel-track]');
 		const slideList = root.querySelectorAll('[data-carousel-slide]');
-		const dotList = root.querySelectorAll('[data-carousel-dot]');
 		const prevBtn = root.querySelector('[data-carousel-prev]');
 		const nextBtn = root.querySelector('[data-carousel-next]');
+		const indexCurrent = root.querySelector('[data-carousel-index-current]');
+		const indexTotal = root.querySelector('[data-carousel-index-total]');
 		if (!track || slideList.length === 0) return;
 
+		const pad2 = (k) => String(k).padStart(2, '0');
 		const slides = Array.from(slideList);
-		const dots = Array.from(dotList);
 		const n = slides.length;
 		let idx = 0;
+
+		if (indexTotal) indexTotal.textContent = pad2(n);
 
 		function apply() {
 			track.style.transform = `translateX(-${idx * 100}%)`;
@@ -1447,10 +1483,10 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 				el.classList.toggle('is-active', active);
 				el.setAttribute('aria-hidden', active ? 'false' : 'true');
 			});
-			dots.forEach((d, i) => {
-				d.classList.toggle('is-active', i === idx);
-				d.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
-			});
+			if (indexCurrent) indexCurrent.textContent = pad2(idx + 1);
+			const pos = `slide ${idx + 1} of ${n}`;
+			prevBtn?.setAttribute('aria-label', `Previous image, ${pos}`);
+			nextBtn?.setAttribute('aria-label', `Next image, ${pos}`);
 		}
 
 		function go(delta) {
@@ -1458,14 +1494,8 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 			apply();
 		}
 
-		function goTo(i) {
-			idx = ((i % n) + n) % n;
-			apply();
-		}
-
 		prevBtn?.addEventListener('click', () => go(-1));
 		nextBtn?.addEventListener('click', () => go(1));
-		dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 
 		root.addEventListener('keydown', (e) => {
 			if (e.key === 'ArrowLeft') {
