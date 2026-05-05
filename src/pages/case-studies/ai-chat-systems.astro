@@ -93,11 +93,11 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 						platform-native environments.
 					</p>
 					<p class="case-overview-themes">
-						Across both, the work keeps returning to the same pressures: read the user's situation
-						(files, surface, and session) before responding; shorten the distance between a clear
-						answer and a useful next step; and keep interaction patterns legible inside the wider
-						product so chat feels contiguous with everyday developer habits—not a parallel
-						experience.
+						Across both chat experiences, the designs continue to return to a similar theme:
+						proactively consume the user's context (files, surface, and session) before responding;
+						shorten the distance between a clear answer and a useful next step; and keep interaction
+						patterns legible inside the wider product so chat feels contiguous with everyday
+						developer habits.
 					</p>
 				</div>
 			</section>
@@ -387,21 +387,45 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 				<figure class="case-figure case-figure-editorial case-gitlab-hero case-gitlab-span-full">
 					<div class="case-editorial-media">
 						<img
-							src={`${imgBase}gitlab-duo-session-details.png`}
+							src={`${imgBase}gitlab-duo-chat-hero.png`}
 							alt="GitLab Duo Chat session list and detail view showing AI work as trackable sessions."
 							loading="eager"
 							width="1200"
 							height="675"
 						/>
 					</div>
-					<figcaption>Sessions and detail views framed Duo as a place to follow AI-driven work, not only a transcript.</figcaption>
 				</figure>
 
 				<div class="case-section-body case-gitlab-kd-copy case-ibm-compact-blocks case-gitlab-span-c2">
-					<h3 class="case-inline-heading">Structuring chat as ongoing work</h3>
+					<h3 class="case-inline-heading">An introduction to Duo Agent Platform</h3>
 					<p>
-						Chat evolved from linear conversation into structured, persistent work. Sessions became
-						trackable units with clear state, recency, and re-entry points.
+						The initial screen a user sees functions as an empty state and
+						provides both contextual suggested actions and nudges the user to use a specific agent to
+						complete a task, or dive write in with a prompt to Duo. Providing the user a brief
+						overview of the multiple avenues they can take with Duo Agent Platform.
+					</p>
+				</div>
+
+				<figure class="case-figure case-figure-editorial case-gitlab-span-full">
+					<div class="case-editorial-media">
+						<img
+							src={`${imgBase}gitlab-duo-sessions-suggestions.png`}
+							alt="Session list and session detail in Duo Chat."
+							loading="lazy"
+							width="1200"
+							height="675"
+						/>
+					</div>
+				</figure>
+
+				<div class="case-section-body case-gitlab-kd-copy case-ibm-compact-blocks case-gitlab-span-c2">
+					<h3 class="case-inline-heading">Bridging prompts to execution</h3>
+					<p>
+						We introduced structure through sessions, allowing work to persist, be revisited, and carry
+						context forward. At the same time, suggested prompts reduced the friction of getting
+						started, helping users move from a blank state into meaningful actions. Together, these
+						patterns reframed chat as a place where work begins and continues, rather than a one-off
+						interaction.
 					</p>
 				</div>
 
@@ -410,7 +434,7 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 					data-case-carousel
 					role="region"
 					aria-roledescription="carousel"
-					aria-label="GitLab Duo Chat sessions and agent selection"
+					aria-label="GitLab Duo Chat agent selection, slash commands, model selection, and mode clarity"
 					tabindex="0"
 				>
 					<div class="case-carousel-viewport">
@@ -418,98 +442,21 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 							<figure class="case-carousel-slide is-active" data-carousel-slide aria-hidden="false">
 								<div class="case-editorial-media">
 									<img
-										src={`${imgBase}gitlab-duo-session-details.png`}
-										alt="Session list and session detail in Duo Chat."
+										src={`${imgBase}gitlab-duo-agent-switching.png`}
+										alt="Agent selection and switching UI in Duo Chat."
 										loading="lazy"
 										width="1200"
 										height="675"
 									/>
 								</div>
 								<figcaption class="case-carousel-figcaption">
-									Sessions read as trackable units of work with status, recency, and clear paths back in.
+									Agent selection kept specialized workflows discoverable directly in chat.
 								</figcaption>
 							</figure>
 							<figure class="case-carousel-slide" data-carousel-slide aria-hidden="true">
 								<div class="case-editorial-media">
 									<img
-										src={`${imgBase}gitlab-duo-agent-switching.png`}
-										alt="Agent switching UI in Duo Chat."
-										loading="lazy"
-										width="1200"
-										height="675"
-									/>
-								</div>
-								<figcaption class="case-carousel-figcaption">
-									Agents stayed discoverable from the chat surface rather than buried in settings.
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-					<div class="case-carousel-toolbar">
-						<p class="case-carousel-index" aria-live="polite" aria-atomic="true">
-							<span class="case-carousel-index-current" data-carousel-index-current>01</span>
-							<span class="case-carousel-index-sep" aria-hidden="true"> — </span>
-							<span class="case-carousel-index-total" data-carousel-index-total>02</span>
-						</p>
-						<div class="case-carousel-arrows">
-							<button
-								type="button"
-								class="case-carousel-btn case-carousel-btn-minimal"
-								data-carousel-prev
-								aria-label="Previous image"
-							>
-								<svg width="22" height="22" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-									<path
-										fill="none"
-										stroke="currentColor"
-										stroke-width="1"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M10 3 5 8l5 5"></path>
-								</svg>
-							</button>
-							<button
-								type="button"
-								class="case-carousel-btn case-carousel-btn-minimal"
-								data-carousel-next
-								aria-label="Next image"
-							>
-								<svg width="22" height="22" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-									<path
-										fill="none"
-										stroke="currentColor"
-										stroke-width="1"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M6 3l5 5-5 5"></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="case-section-body case-gitlab-kd-copy case-ibm-compact-blocks case-gitlab-span-c2">
-					<h3 class="case-inline-heading">Bridging prompts to execution</h3>
-					<p>
-						We introduced clearer pathways from intent to action, allowing users to move from natural
-						language into structured workflows without breaking flow.
-					</p>
-				</div>
-
-				<div
-					class="case-carousel case-figure case-figure-editorial case-figure-gitlab-carousel case-gitlab-span-full"
-					data-case-carousel
-					role="region"
-					aria-roledescription="carousel"
-					aria-label="GitLab Duo Chat slash commands and suggestions"
-					tabindex="0"
-				>
-					<div class="case-carousel-viewport">
-						<div class="case-carousel-track" data-carousel-track>
-							<figure class="case-carousel-slide is-active" data-carousel-slide aria-hidden="false">
-								<div class="case-editorial-media">
-									<img
-										src={`${imgBase}gitlab-duo-slash-command-invoke.png`}
+										src={`${imgBase}gitlab-duo-slash-command.png`}
 										alt="Slash command invoked in Duo Chat composer."
 										loading="lazy"
 										width="1200"
@@ -521,83 +468,6 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 								</figcaption>
 							</figure>
 							<figure class="case-carousel-slide" data-carousel-slide aria-hidden="true">
-								<div class="case-editorial-media">
-									<img
-										src={`${imgBase}gitlab-duo-suggestions-panel.png`}
-										alt="Contextual suggestions panel in Duo Chat."
-										loading="lazy"
-										width="1200"
-										height="675"
-									/>
-								</div>
-								<figcaption class="case-carousel-figcaption">
-									Suggestions offered relevant starting points without derailing the composer.
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-					<div class="case-carousel-toolbar">
-						<p class="case-carousel-index" aria-live="polite" aria-atomic="true">
-							<span class="case-carousel-index-current" data-carousel-index-current>01</span>
-							<span class="case-carousel-index-sep" aria-hidden="true"> — </span>
-							<span class="case-carousel-index-total" data-carousel-index-total>02</span>
-						</p>
-						<div class="case-carousel-arrows">
-							<button
-								type="button"
-								class="case-carousel-btn case-carousel-btn-minimal"
-								data-carousel-prev
-								aria-label="Previous image"
-							>
-								<svg width="22" height="22" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-									<path
-										fill="none"
-										stroke="currentColor"
-										stroke-width="1"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M10 3 5 8l5 5"></path>
-								</svg>
-							</button>
-							<button
-								type="button"
-								class="case-carousel-btn case-carousel-btn-minimal"
-								data-carousel-next
-								aria-label="Next image"
-							>
-								<svg width="22" height="22" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-									<path
-										fill="none"
-										stroke="currentColor"
-										stroke-width="1"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M6 3l5 5-5 5"></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="case-section-body case-gitlab-kd-copy case-ibm-compact-blocks case-gitlab-span-c2">
-					<h3 class="case-inline-heading">Making system behavior legible</h3>
-					<p>
-						As capabilities expanded, visibility became critical. Model choice, modes, and feedback were
-						surfaced directly in the interface to build trust and support iteration.
-					</p>
-				</div>
-
-				<div
-					class="case-carousel case-figure case-figure-editorial case-figure-gitlab-carousel case-gitlab-span-full"
-					data-case-carousel
-					role="region"
-					aria-roledescription="carousel"
-					aria-label="GitLab Duo Chat models, modes, and feedback"
-					tabindex="0"
-				>
-					<div class="case-carousel-viewport">
-						<div class="case-carousel-track" data-carousel-track>
-							<figure class="case-carousel-slide is-active" data-carousel-slide aria-hidden="false">
 								<div class="case-editorial-media">
 									<img
 										src={`${imgBase}gitlab-duo-model-switcher.png`}
@@ -614,7 +484,7 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 							<figure class="case-carousel-slide" data-carousel-slide aria-hidden="true">
 								<div class="case-editorial-media">
 									<img
-										src={`${imgBase}gitlab-duo-classic-chat-switcher.png`}
+										src={`${imgBase}gitlab-duo-mode-switcher.png`}
 										alt="Classic chat mode switcher in Duo Chat."
 										loading="lazy"
 										width="1200"
@@ -625,27 +495,13 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 									Mode clarity when conversational and agentic paths diverged.
 								</figcaption>
 							</figure>
-							<figure class="case-carousel-slide" data-carousel-slide aria-hidden="true">
-								<div class="case-editorial-media">
-									<img
-										src={`${imgBase}gitlab-duo-feedback-mechanism.png`}
-										alt="Feedback controls on a Duo Chat response."
-										loading="lazy"
-										width="1200"
-										height="675"
-									/>
-								</div>
-								<figcaption class="case-carousel-figcaption">
-									Lightweight feedback supported iteration and model quality over time.
-								</figcaption>
-							</figure>
 						</div>
 					</div>
 					<div class="case-carousel-toolbar">
 						<p class="case-carousel-index" aria-live="polite" aria-atomic="true">
 							<span class="case-carousel-index-current" data-carousel-index-current>01</span>
 							<span class="case-carousel-index-sep" aria-hidden="true"> — </span>
-							<span class="case-carousel-index-total" data-carousel-index-total>03</span>
+							<span class="case-carousel-index-total" data-carousel-index-total>04</span>
 						</p>
 						<div class="case-carousel-arrows">
 							<button
@@ -683,6 +539,32 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 						</div>
 					</div>
 				</div>
+
+				<div class="case-section-body case-gitlab-kd-copy case-ibm-compact-blocks case-gitlab-span-c2">
+					<h3 class="case-inline-heading">Progressive control over how work gets done</h3>
+					<p>
+						As Duo expanded beyond simple chat, we needed to support a wider range of workflows
+						without overwhelming new users. We introduced a set of controls that allow users to
+						progressively shape how work is executed, including agent selection, model choice, slash
+						commands, and mode switching. These capabilities remain unobtrusive by default, allowing
+						users to rely on Duo as a simple conversational interface, but become available as users
+						develop more intent and familiarity. This approach balanced accessibility with flexibility,
+						giving users control when they need it without forcing complexity upfront.
+					</p>
+				</div>
+
+				<figure class="case-figure case-figure-editorial case-gitlab-span-full">
+					<div class="case-editorial-media">
+						<img
+							src={`${imgBase}gitlab-duo-feedback.png`}
+							alt="Feedback controls on a Duo Chat response."
+							loading="lazy"
+							width="1200"
+							height="675"
+						/>
+					</div>
+					<figcaption>Lightweight feedback supported iteration and model quality over time.</figcaption>
+				</figure>
 
 				<div class="case-section-body case-gitlab-outcome case-ibm-compact-blocks case-gitlab-span-c2">
 					<h3 class="case-inline-heading">Outcome</h3>
@@ -983,9 +865,9 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 	.case-section-body-ibm-lead .case-role-lede {
 		max-width: none;
 		margin-bottom: 1.85rem;
-		font-size: clamp(0.98rem, 1.22vw, 1.1rem);
-		line-height: 1.68;
-		letter-spacing: -0.01em;
+		font-size: clamp(1.03rem, 1.46vw, 1.2rem);
+		line-height: 1.66;
+		letter-spacing: -0.008em;
 		color: #242424;
 	}
 
@@ -1010,9 +892,9 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 	.case-section-body-gitlab-lead .case-role-lede {
 		max-width: none;
 		margin-bottom: 1.1rem;
-		font-size: clamp(0.98rem, 1.22vw, 1.1rem);
-		line-height: 1.68;
-		letter-spacing: -0.01em;
+		font-size: clamp(1.03rem, 1.46vw, 1.2rem);
+		line-height: 1.66;
+		letter-spacing: -0.008em;
 		color: #242424;
 	}
 
@@ -1209,9 +1091,9 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 	.case-role-lede {
 		margin: 0 0 1.35rem;
 		max-width: 62ch;
-		font-size: clamp(0.98rem, 1.22vw, 1.1rem);
-		line-height: 1.78;
-		letter-spacing: -0.012em;
+		font-size: clamp(1.03rem, 1.46vw, 1.2rem);
+		line-height: 1.66;
+		letter-spacing: -0.008em;
 		color: #2c2c2c;
 	}
 
@@ -1797,7 +1679,7 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 			if (userPausedAutoplay || n <= 1 || reduceMotionMq.matches || document.hidden) return;
 			autoplayIntervalId = window.setInterval(() => {
 				go(1);
-			}, 8000);
+			}, 5000);
 		}
 
 		function apply() {
