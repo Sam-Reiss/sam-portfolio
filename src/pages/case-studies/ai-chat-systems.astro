@@ -143,73 +143,32 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 					</div>
 				</div>
 
-				<figure class="case-figure case-figure-editorial case-figure-ibm-lede">
-					<div class="case-editorial-media">
-						<img
-							src={`${imgBase}watsonx-ide-integration.png`}
-							alt="watsonx Code Assistant chat panel docked in the IDE beside editor and file tree."
-							loading="lazy"
-							width="1995"
-							height="1228"
-						/>
+				<div
+					class="case-section-body case-section-body-ibm-rest case-section-body-ibm-before-carousel case-ibm-compact-blocks"
+				>
+					<div class="case-ibm-lede-meta-row">
+						<div class="case-ibm-mini-col">
+							<h3 class="case-inline-heading">Problem</h3>
+							<p>
+								IBM had existing AI chat explorations, but they were designed for browser-based IBM
+								software, not the constraints of an IDE plugin.
+							</p>
+						</div>
+						<div class="case-ibm-mini-col">
+							<h3 class="case-inline-heading">My role</h3>
+							<p>
+								I led a team of two UX designers, delivered the high-fidelity design work, partnered
+								with engineering, and consulted with the Carbon Design System team.
+							</p>
+						</div>
+						<div class="case-ibm-mini-col">
+							<h3 class="case-inline-heading">Design challenge</h3>
+							<p>
+								Adapt Carbon AI chat patterns into a constrained IDE environment while preserving
+								brand consistency and continuity with how developers already work.
+							</p>
+						</div>
 					</div>
-					<figcaption>
-						IDE-native placement kept chat adjacent to the code users were already editing.
-					</figcaption>
-				</figure>
-
-				<div class="case-section-body case-section-body-ibm-rest case-section-body-ibm-before-carousel">
-					<h3 class="case-inline-heading">Problem</h3>
-					<p>
-						IBM had existing AI chat explorations, but they were designed for browser-based IBM
-						software, not the constraints of an IDE plugin.
-					</p>
-
-					<h3 class="case-inline-heading">My role</h3>
-					<p>
-						I led a team of two UX designers, delivered the high-fidelity design work, partnered
-						with engineering, and consulted with the Carbon Design System team.
-					</p>
-
-					<h3 class="case-inline-heading">Design challenge</h3>
-					<p>
-						Adapt Carbon AI chat patterns into a constrained IDE environment while preserving
-						brand consistency and continuity with how developers already work.
-					</p>
-
-					<figure class="case-figure case-figure-editorial">
-						<div class="case-editorial-media">
-							<img
-								src={`${imgBase}watsonx-carbon-browser-chat.png`}
-								alt="Carbon-based AI chat UI in a wide browser layout before IDE adaptation."
-								loading="lazy"
-								width="1200"
-								height="675"
-							/>
-						</div>
-						<figcaption>
-							Browser-oriented Carbon patterns were the starting point before tightening layout for
-							the IDE.
-						</figcaption>
-					</figure>
-
-					<h3 class="case-inline-heading">Exploration and concepting</h3>
-
-					<figure class="case-figure case-figure-editorial">
-						<div class="case-editorial-media">
-							<img
-								src={`${imgBase}watsonx-ux-exploration.png`}
-								alt="Mid-fidelity UX exploration screens for the IDE chat assistant."
-								loading="lazy"
-								width="1721"
-								height="758"
-							/>
-						</div>
-						<figcaption>
-							Concept frames translated constraints from engineering into a clearer panel
-							structure.
-						</figcaption>
-					</figure>
 				</div>
 
 				<div
@@ -217,7 +176,7 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 					data-case-carousel
 					role="region"
 					aria-roledescription="carousel"
-					aria-label="watsonx Code Assistant shipped UI and system views"
+					aria-label="watsonx Code Assistant shipped UI, system views, and IDE integration"
 					tabindex="0"
 				>
 						<div class="case-carousel-viewport">
@@ -227,7 +186,7 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 										<img
 											src={`${imgBase}watsonx-final-chat-ui.png`}
 											alt="Shipped watsonx Code Assistant chat interface in the IDE with responses and controls."
-											loading="lazy"
+											loading="eager"
 											width="1200"
 											height="675"
 										/>
@@ -280,6 +239,20 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 										apart.
 									</figcaption>
 								</figure>
+								<figure class="case-carousel-slide" data-carousel-slide aria-hidden="true">
+									<div class="case-editorial-media">
+										<img
+											src={`${imgBase}watsonx-ide-integration.png`}
+											alt="watsonx Code Assistant chat panel docked in the IDE beside editor and file tree."
+											loading="lazy"
+											width="1995"
+											height="1228"
+										/>
+									</div>
+									<figcaption class="case-carousel-figcaption">
+										IDE-native placement kept chat adjacent to the code users were already editing.
+									</figcaption>
+								</figure>
 							</div>
 						</div>
 						<div class="case-carousel-toolbar">
@@ -305,28 +278,35 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 									class="case-carousel-dot is-active"
 									data-carousel-dot
 									aria-pressed="true"
-									aria-label="Slide 1 of 4, shipped chat UI"
+									aria-label="Slide 1 of 5, shipped chat UI"
 								></button>
 								<button
 									type="button"
 									class="case-carousel-dot"
 									data-carousel-dot
 									aria-pressed="false"
-									aria-label="Slide 2 of 4, files and model transparency"
+									aria-label="Slide 2 of 5, files and model transparency"
 								></button>
 								<button
 									type="button"
 									class="case-carousel-dot"
 									data-carousel-dot
 									aria-pressed="false"
-									aria-label="Slide 3 of 4, session management"
+									aria-label="Slide 3 of 5, session management"
 								></button>
 								<button
 									type="button"
 									class="case-carousel-dot"
 									data-carousel-dot
 									aria-pressed="false"
-									aria-label="Slide 4 of 4, code in context"
+									aria-label="Slide 4 of 5, code in context"
+								></button>
+								<button
+									type="button"
+									class="case-carousel-dot"
+									data-carousel-dot
+									aria-pressed="false"
+									aria-label="Slide 5 of 5, IDE integration"
 								></button>
 							</div>
 							<button
@@ -348,24 +328,31 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 						</div>
 				</div>
 
-				<div class="case-section-body case-section-body-ibm-rest case-section-body-ibm-after-carousel">
-					<h3 class="case-inline-heading">Key design decisions</h3>
-					<ol class="case-numbered">
-						<li>Embedded, non-disruptive chat panel inside the IDE.</li>
-						<li>Session management as part of the workflow, not only chat history.</li>
-						<li>Feedback controls integrated directly into AI responses.</li>
-						<li>
-							File handling, generated code, loading states, and model transparency as core
-							system behaviors.
-						</li>
-					</ol>
-
-					<h3 class="case-inline-heading">Outcome</h3>
-					<p>
-						After launch, the updated chat UI saw an 87% increase in WCA downloads and enabled
-						inline feedback collection for the LLM team. Some of the work also informed Carbon
-						AI Chat components.
-					</p>
+				<div
+					class="case-section-body case-section-body-ibm-rest case-section-body-ibm-after-carousel case-ibm-compact-blocks"
+				>
+					<div class="case-ibm-outcome-row">
+						<div class="case-ibm-outcome-col">
+							<h3 class="case-inline-heading">Key design decisions</h3>
+							<ol class="case-numbered">
+								<li>Embedded, non-disruptive chat panel inside the IDE.</li>
+								<li>Session management as part of the workflow, not only chat history.</li>
+								<li>Feedback controls integrated directly into AI responses.</li>
+								<li>
+									File handling, generated code, loading states, and model transparency as core
+									system behaviors.
+								</li>
+							</ol>
+						</div>
+						<div class="case-ibm-outcome-col">
+							<h3 class="case-inline-heading">Outcome</h3>
+							<p>
+								After launch, the updated chat UI saw an 87% increase in WCA downloads and enabled
+								inline feedback collection for the LLM team. Some of the work also informed Carbon
+								AI Chat components.
+							</p>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -825,10 +812,66 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		min-width: 0;
 	}
 
+	.case-ibm-lede-meta-row {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem 1.75rem;
+		align-items: start;
+	}
+
+	.case-ibm-mini-col {
+		min-width: 0;
+	}
+
+	.case-ibm-outcome-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.25rem 2.25rem;
+		align-items: start;
+	}
+
+	.case-ibm-outcome-col {
+		min-width: 0;
+	}
+
+	/* Smaller type for IBM columnar mini-sections (one step below main case body). */
+	.case-ibm-compact-blocks .case-inline-heading {
+		font-size: clamp(0.92rem, 1.08vw, 1rem);
+		font-weight: 600;
+		margin: 0 0 0.42rem;
+		letter-spacing: -0.006em;
+	}
+
+	.case-ibm-compact-blocks .case-inline-heading:first-of-type {
+		margin-top: 0;
+	}
+
+	.case-ibm-compact-blocks .case-ibm-mini-col > p,
+	.case-ibm-compact-blocks .case-ibm-outcome-col > p {
+		color: #242424;
+		font-size: clamp(0.94rem, 1.22vw, 1.06rem);
+		line-height: 1.58;
+		letter-spacing: -0.006em;
+		margin: 0 0 0.85rem;
+	}
+
+	.case-ibm-compact-blocks .case-ibm-mini-col > p:last-child,
+	.case-ibm-compact-blocks .case-ibm-outcome-col > p:last-child {
+		margin-bottom: 0;
+	}
+
+	.case-ibm-compact-blocks .case-numbered {
+		font-size: clamp(0.94rem, 1.22vw, 1.06rem);
+		line-height: 1.58;
+		letter-spacing: -0.006em;
+		gap: 0.52rem;
+		margin-bottom: 0;
+	}
+
 	/* IBM: match AI Catalog prototype embed width (125% / −12.5% breakout on wide viewports). */
 	@media (min-width: 881px) {
 		.case-section-ibm.case-section-rich {
-			grid-template-rows: auto auto auto auto auto;
+			grid-template-rows: auto auto auto auto;
 		}
 
 		.case-section-ibm.case-section-rich > h2 {
@@ -841,25 +884,15 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 			grid-row: 1;
 		}
 
-		.case-section-ibm.case-section-rich > .case-figure-ibm-lede {
-			grid-column: 1 / -1;
-			grid-row: 2;
-			margin-top: 1.15rem;
-			width: 125%;
-			max-width: none;
-			margin-inline: -12.5%;
-			padding-inline: clamp(1.25rem, 4vw, 3.5rem);
-			box-sizing: border-box;
-		}
-
 		.case-section-ibm.case-section-rich > .case-section-body-ibm-before-carousel {
 			grid-column: 2;
-			grid-row: 3;
+			grid-row: 2;
+			margin-top: 1.15rem;
 		}
 
 		.case-section-ibm.case-section-rich > .case-figure-ibm-carousel {
 			grid-column: 1 / -1;
-			grid-row: 4;
+			grid-row: 3;
 			margin-top: 1.65rem;
 			width: 125%;
 			max-width: none;
@@ -870,12 +903,8 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 
 		.case-section-ibm.case-section-rich > .case-section-body-ibm-after-carousel {
 			grid-column: 2;
-			grid-row: 5;
+			grid-row: 4;
 		}
-	}
-
-	.case-figure-ibm-lede .case-editorial-media {
-		border-radius: 14px;
 	}
 
 	.case-section-body > p,
@@ -1313,7 +1342,6 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 
 		.case-section-ibm.case-section-rich > h2,
 		.case-section-ibm.case-section-rich > .case-section-body-ibm-lead,
-		.case-section-ibm.case-section-rich > .case-figure-ibm-lede,
 		.case-section-ibm.case-section-rich > .case-section-body-ibm-before-carousel,
 		.case-section-ibm.case-section-rich > .case-figure-ibm-carousel,
 		.case-section-ibm.case-section-rich > .case-section-body-ibm-after-carousel {
@@ -1321,7 +1349,10 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 			grid-row: auto;
 		}
 
-		.case-section-ibm.case-section-rich > .case-figure-ibm-lede,
+		.case-section-ibm.case-section-rich > .case-section-body-ibm-before-carousel {
+			margin-top: 0;
+		}
+
 		.case-section-ibm.case-section-rich > .case-figure-ibm-carousel {
 			width: 100%;
 			max-width: 100%;
@@ -1335,6 +1366,12 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 
 		.case-figure-grid {
 			grid-template-columns: 1fr;
+		}
+
+		.case-ibm-lede-meta-row,
+		.case-ibm-outcome-row {
+			grid-template-columns: 1fr;
+			gap: 1.1rem;
 		}
 	}
 </style>
@@ -1389,7 +1426,7 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		});
 	});
 
-	/** watsonx shipped UI carousel: prev / next, dots, keyboard when focused. */
+	/** watsonx case study carousel: prev / next, dots, keyboard when focused. */
 	document.querySelectorAll('[data-case-carousel]').forEach((root) => {
 		const track = root.querySelector('[data-carousel-track]');
 		const slideList = root.querySelectorAll('[data-carousel-slide]');
