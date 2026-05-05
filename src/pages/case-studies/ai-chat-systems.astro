@@ -351,20 +351,6 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 						I contributed as one of three senior designers shaping Duo Chat, focusing on interaction
 						patterns, workflow concepts, and system coherence across the experience.
 					</p>
-					<p>
-						As Duo evolved, chat was no longer just a conversational interface. It became the surface
-						where users initiate, monitor, and refine AI-driven work. My role was helping define how
-						that complexity shows up clearly and usefully in the product.
-					</p>
-					<p>
-						Duo Chat needed to support more than back-and-forth prompts. It had to act as an
-						orchestration layer for agents, sessions, structured workflows, and model choice without
-						overwhelming the user.
-					</p>
-					<p>
-						We focused on making AI-driven work legible: where it starts, how it progresses, and how
-						users stay in control.
-					</p>
 				</div>
 
 				<div
@@ -1346,19 +1332,23 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 	}
 
 	.case-figure-gitlab-carousel .case-carousel-viewport {
-		background: #f2f1ed;
+		background: #fff;
 		border: 1px solid var(--line);
 	}
 
 	.case-figure-gitlab-carousel .case-carousel-slide .case-editorial-media {
-		background: #eeede8;
+		background: #fff;
 		aspect-ratio: 16 / 9;
 		height: auto;
 		min-height: 0;
 	}
 
 	.case-figure-gitlab-carousel .case-carousel-slide .case-carousel-figcaption {
-		background: color-mix(in srgb, var(--background) 94%, rgba(255, 255, 255, 0.5));
+		display: block;
+		width: 100%;
+		max-width: none;
+		box-sizing: border-box;
+		background: #fff;
 		color: #353535;
 		border-top: 1px solid var(--line);
 	}
@@ -1417,9 +1407,9 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		justify-content: flex-start;
 		flex: 1;
 		min-width: min(12rem, 42%);
-		font-size: 0.72rem;
+		font-size: 1.25rem;
 		font-weight: 500;
-		letter-spacing: 0.16em;
+		letter-spacing: 0.14em;
 		font-variant: all-small-caps;
 		text-transform: lowercase;
 		color: color-mix(in srgb, var(--muted-strong) 88%, #111);
@@ -1746,7 +1736,7 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		});
 	});
 
-	/** Case study carousels: prev / next, editorial index, keyboard when focused. */
+	/** Case study carousels: prev / next, editorial index, keyboard when focused, timed advance until user navigates. */
 	document.querySelectorAll('[data-case-carousel]').forEach((root) => {
 		const track = root.querySelector('[data-carousel-track]');
 		const slideList = root.querySelectorAll('[data-carousel-slide]');
@@ -1760,8 +1750,31 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 		const slides = Array.from(slideList);
 		const n = slides.length;
 		let idx = 0;
+		let autoplayIntervalId = null;
+		let userPausedAutoplay = false;
+		const reduceMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 		if (indexTotal) indexTotal.textContent = pad2(n);
+
+		function clearAutoplayTimer() {
+			if (autoplayIntervalId !== null) {
+				clearInterval(autoplayIntervalId);
+				autoplayIntervalId = null;
+			}
+		}
+
+		function stopAutoplayForUser() {
+			userPausedAutoplay = true;
+			clearAutoplayTimer();
+		}
+
+		function maybeStartAutoplay() {
+			clearAutoplayTimer();
+			if (userPausedAutoplay || n <= 1 || reduceMotionMq.matches || document.hidden) return;
+			autoplayIntervalId = window.setInterval(() => {
+				go(1);
+			}, 8000);
+		}
 
 		function apply() {
 			track.style.transform = `translateX(-${idx * 100}%)`;
@@ -1781,19 +1794,41 @@ const imgBase = `${baseNormalized}images/case-studies/ai-chat/`;
 			apply();
 		}
 
-		prevBtn?.addEventListener('click', () => go(-1));
-		nextBtn?.addEventListener('click', () => go(1));
+		function userGo(delta) {
+			stopAutoplayForUser();
+			go(delta);
+		}
+
+		prevBtn?.addEventListener('click', () => userGo(-1));
+		nextBtn?.addEventListener('click', () => userGo(1));
 
 		root.addEventListener('keydown', (e) => {
 			if (e.key === 'ArrowLeft') {
 				e.preventDefault();
-				go(-1);
+				userGo(-1);
 			} else if (e.key === 'ArrowRight') {
 				e.preventDefault();
-				go(1);
+				userGo(1);
 			}
 		});
 
+		const onVisibility = () => {
+			if (document.hidden) clearAutoplayTimer();
+			else maybeStartAutoplay();
+		};
+		document.addEventListener('visibilitychange', onVisibility);
+
+		const onReduceMotionChange = () => {
+			if (reduceMotionMq.matches) clearAutoplayTimer();
+			else maybeStartAutoplay();
+		};
+		if (typeof reduceMotionMq.addEventListener === 'function') {
+			reduceMotionMq.addEventListener('change', onReduceMotionChange);
+		} else if (typeof reduceMotionMq.addListener === 'function') {
+			reduceMotionMq.addListener(onReduceMotionChange);
+		}
+
 		apply();
+		maybeStartAutoplay();
 	});
 </script>
