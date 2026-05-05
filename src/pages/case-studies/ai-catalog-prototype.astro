@@ -1,33 +1,474 @@
 ---
-import CaseStudyTemplate from '../../components/CaseStudyTemplate.astro';
 import Layout from '../../layouts/Layout.astro';
-import PrototypeEmbed from '../../components/PrototypeEmbed.astro';
 
 const prototypeSrc = 'https://sam-reiss.github.io/ai-catalog/';
 ---
 
-<Layout title="Vision Prototype: GitLab AI Catalog | Sam Reiss">
+<Layout title="Designing an AI Catalog for Enterprise Agents and Workflows | Sam Reiss">
 	<main>
 		<p class="back-link"><a href={import.meta.env.BASE_URL}>Back to homepage</a></p>
-		<CaseStudyTemplate
-			title="Vision Prototype: GitLab AI Catalog"
-			overview="I developed a forward-looking prototype exploring how AI capabilities could be organized, discovered, and composed within a developer ecosystem. The goal was to move beyond single chat interactions and toward a structured system for understanding and leveraging AI functionality."
-			problem="As AI capabilities expanded, users struggled to understand what tools were available, how they related to one another, and how to effectively use them in workflows. Existing experiences focused on chat, but lacked visibility into the broader system of capabilities."
-			myRole="I led design and prototyping end-to-end, using AI-assisted tools to rapidly generate and iterate on interface concepts. I defined the core interaction model and produced a high-fidelity prototype used to communicate product vision."
-			workflow="Instead of relying only on static design tools, I used AI to generate functional prototypes directly. My workflow involved generating UI structures with AI tools, iterating on interaction patterns through prompt-based refinement, and sharing working prototypes with engineers for faster alignment."
-			designDecisions={[
-				'Structured AI capabilities into a browsable system rather than a single chat interface',
-				'Introduced categorization and hierarchy to improve discoverability',
-				'Designed for composability, allowing users to understand how capabilities connect',
-				'Prioritized clarity and system understanding over novelty'
-			]}
-			outcome="The prototype served as a vision artifact for future product direction and demonstrated how AI-native workflows can accelerate both design and alignment across teams."
-		>
-			<PrototypeEmbed
-				slot="prototype"
-				src={prototypeSrc}
-				title="Interactive AI Catalog prototype hosted on GitHub Pages"
-			/>
-		</CaseStudyTemplate>
+
+		<article class="case-study">
+			<header class="case-study-header">
+				<p class="section-kicker">Case Study</p>
+				<div class="hero-content">
+					<h1>Designing an AI Catalog for Enterprise Agents and Workflows</h1>
+					<p class="subtitle">
+						Built with Claude Code and deployed through GitLab Pages, this prototype explores how
+						organizations can discover, understand, govern, and evolve AI agents, flows, MCP servers,
+						and other emerging AI primitives.
+					</p>
+					<div class="hero-metadata" role="list" aria-label="Case study metadata">
+						<p role="listitem"><span>Role</span>Lead Product Designer</p>
+						<p role="listitem"><span>Tools</span>Claude Code, GitLab, GitLab Pages</p>
+						<p role="listitem">
+							<span>Focus</span>AI agents, enterprise governance, agent discovery, workflow
+							configuration, permissions, versioning
+						</p>
+					</div>
+				</div>
+			</header>
+
+			<section class="case-section">
+				<h2>Overview</h2>
+				<div>
+					<p>
+						I designed a working vision prototype for GitLab&rsquo;s AI Catalog, a system-of-record for
+						discovering, understanding, and safely operationalizing AI agents and workflows across an
+						organization.
+					</p>
+					<p>
+						The project explored how teams might navigate a growing ecosystem of agents, flows, MCP
+						servers, and other AI primitives while giving different user types the right level of
+						visibility, control, and context.
+					</p>
+				</div>
+			</section>
+
+			<section class="prototype-section">
+				<div class="prototype-meta">
+					<p class="prototype-label">Interactive prototype</p>
+					<p class="prototype-copy">
+						This working prototype was built to align Product, Design, and Engineering around a shared
+						vision of how enterprise teams can discover and govern AI capabilities.
+					</p>
+				</div>
+				<div class="prototype-shell">
+					<iframe
+						class="prototype-frame"
+						src={prototypeSrc}
+						title="Interactive AI Catalog prototype"
+						loading="lazy"
+						referrerpolicy="strict-origin-when-cross-origin"
+						allow="fullscreen"
+					></iframe>
+				</div>
+				<p class="prototype-link-wrap">
+					<a href={prototypeSrc} target="_blank" rel="noopener noreferrer">Open prototype in a new tab</a>
+				</p>
+			</section>
+
+			<section class="case-section">
+				<h2>Key user flows</h2>
+				<div class="numbered-grid">
+					<article>
+						<p class="numbered-index">01</p>
+						<h3>Navigating by primitive</h3>
+						<p>
+							Organized the catalog around core AI building blocks like Agents, Flows, MCP servers,
+							and other primitives so users could understand what kind of capability they were
+							exploring.
+						</p>
+					</article>
+					<article>
+						<p class="numbered-index">02</p>
+						<h3>Role-based views</h3>
+						<p>
+							Designed the same catalog content to adapt across three user types: regular users,
+							developers, and admins or maintainers, revealing the right level of complexity for each.
+						</p>
+					</article>
+					<article>
+						<p class="numbered-index">03</p>
+						<h3>Visibility configuration</h3>
+						<p>
+							Explored how maintainers could control where an agent or flow appears, who can discover
+							it, and who can use or modify it.
+						</p>
+					</article>
+					<article>
+						<p class="numbered-index">04</p>
+						<h3>Version management</h3>
+						<p>
+							Made version history and version actions part of the core experience so teams could
+							understand how agents and flows evolve over time.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="case-section">
+				<h2>Problem / My role / Design challenge</h2>
+				<div class="three-column-grid">
+					<div>
+						<h3>Problem</h3>
+						<p>
+							As AI capabilities expand beyond single chat interactions, organizations need a clearer
+							way to discover what exists, understand how each system behaves, and govern who can use,
+							modify, or maintain it.
+						</p>
+					</div>
+					<div>
+						<h3>My role</h3>
+						<p>
+							I partnered directly with Product to shape the long-term vision, identify the most
+							important user flows, and translate the concept into a high-fidelity working prototype
+							using Claude Code.
+						</p>
+					</div>
+					<div>
+						<h3>Design challenge</h3>
+						<p>
+							How might we make a complex ecosystem of agents, flows, servers, permissions, and
+							versions feel navigable, trustworthy, and actionable across different user roles?
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="case-section">
+				<h2>AI-assisted workflow</h2>
+				<div>
+					<p>
+						This project was also an exploration in AI-assisted product design. Instead of stopping at
+						static mocks, I used Claude Code to rapidly generate and iterate on a working prototype,
+						then deployed it through GitLab Pages so stakeholders could experience the vision directly.
+					</p>
+					<p>
+						Working in code made it easier to test system-level interactions like role-based views,
+						visibility controls, and version management. It also helped close the gap between product
+						strategy, design intent, and engineering feasibility.
+					</p>
+				</div>
+			</section>
+
+			<section class="case-section">
+				<h2>Key design decisions</h2>
+				<div class="numbered-grid">
+					<article>
+						<p class="numbered-index">01</p>
+						<h3>Structure AI around reusable primitives</h3>
+						<p>
+							Treat agents, flows, MCP servers, and related capabilities as reusable primitives rather
+							than isolated features.
+						</p>
+					</article>
+					<article>
+						<p class="numbered-index">02</p>
+						<h3>Show one source of truth through multiple lenses</h3>
+						<p>
+							Keep the underlying catalog entity consistent while tailoring the interface to the needs
+							of different users.
+						</p>
+					</article>
+					<article>
+						<p class="numbered-index">03</p>
+						<h3>Make governance feel like product UX</h3>
+						<p>
+							Expose permissions, visibility, ownership, and versioning as understandable product
+							controls, not hidden admin settings.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="case-section">
+				<h2>Outcome</h2>
+				<div>
+					<p>
+						The prototype helped turn an abstract platform vision into something teams could interact
+						with, critique, and build from. It gave Product, Design, and Engineering a shared reference
+						point for how the AI Catalog could support discovery, governance, and lifecycle management
+						across GitLab&rsquo;s broader agent platform.
+					</p>
+					<p>
+						It also demonstrated my working model for AI-assisted design: using tools like Claude Code
+						not only to move faster, but to explore more realistic product behavior earlier in the
+						process.
+					</p>
+				</div>
+			</section>
+		</article>
 	</main>
 </Layout>
+
+<style>
+	.case-study {
+		max-width: 980px;
+		margin-inline: auto;
+		font-family: "Work Sans", Inter, "Helvetica Neue", Arial, sans-serif;
+	}
+
+	.case-study-header {
+		display: grid;
+		grid-template-columns: minmax(170px, 0.46fr) 1fr;
+		gap: 2.5rem;
+		padding-bottom: 2.8rem;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.section-kicker {
+		grid-column: 1;
+		font-size: 1.38rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: #111;
+		margin: 0;
+		padding-top: 0.58rem;
+	}
+
+	.hero-content {
+		grid-column: 2;
+		display: grid;
+		gap: 1.35rem;
+	}
+
+	.hero-content h1 {
+		font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+		font-size: clamp(2.7rem, 4.7vw, 4.4rem);
+		font-weight: 400;
+		line-height: 1.02;
+		letter-spacing: -0.014em;
+		max-width: 13ch;
+		margin: 0;
+	}
+
+	.subtitle {
+		color: #242424;
+		font-size: clamp(1.03rem, 1.46vw, 1.2rem);
+		line-height: 1.66;
+		letter-spacing: -0.008em;
+		margin: 0;
+		max-width: 67ch;
+	}
+
+	.hero-metadata {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem 1.25rem;
+		padding-top: 0.5rem;
+	}
+
+	.hero-metadata p {
+		margin: 0;
+		color: #1f1f1f;
+		font-size: 0.92rem;
+		line-height: 1.5;
+	}
+
+	.hero-metadata span {
+		display: block;
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-weight: 600;
+		color: var(--muted);
+		margin-bottom: 0.28rem;
+	}
+
+	.prototype-section {
+		width: 125%;
+		max-width: none;
+		margin-inline: -12.5%;
+		padding: 2.15rem clamp(1.25rem, 4vw, 3.5rem);
+		border-bottom: 1px solid var(--line);
+	}
+
+	.prototype-meta {
+		margin-bottom: 0.72rem;
+		max-width: 76ch;
+	}
+
+	.prototype-label {
+		margin: 0 0 0.32rem;
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--muted);
+	}
+
+	.prototype-copy {
+		margin: 0;
+		color: #2a2a2a;
+		font-size: clamp(0.96rem, 1.2vw, 1.08rem);
+		line-height: 1.58;
+	}
+
+	.prototype-shell {
+		border-radius: 16px;
+		border: 1px solid var(--line);
+		background: color-mix(in srgb, var(--background) 95%, var(--foreground));
+		box-shadow: 0 16px 32px rgba(17, 17, 17, 0.07);
+		overflow: hidden;
+	}
+
+	.prototype-frame {
+		display: block;
+		width: 100%;
+		height: clamp(58vh, 76vh, 84vh);
+		border: 0;
+		background: #fff;
+	}
+
+	.prototype-link-wrap {
+		margin: 0.78rem 0 0;
+		font-size: 0.82rem;
+		letter-spacing: 0.02em;
+	}
+
+	.prototype-link-wrap a {
+		color: var(--muted);
+		text-decoration: underline;
+		text-decoration-color: rgba(94, 94, 94, 0.35);
+		text-underline-offset: 0.18em;
+	}
+
+	.prototype-link-wrap a:hover {
+		color: var(--foreground);
+		text-decoration-color: rgba(24, 24, 24, 0.35);
+	}
+
+	.case-section {
+		display: grid;
+		grid-template-columns: minmax(170px, 0.46fr) 1fr;
+		gap: 0.82rem 2.5rem;
+		padding: 2.15rem 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.case-section h2 {
+		font-size: 1.38rem;
+		line-height: 1.2;
+		letter-spacing: -0.01em;
+		color: #111;
+		font-weight: 600;
+		padding-top: 0.35rem;
+		margin: 0;
+	}
+
+	.case-section p,
+	.case-section li {
+		color: #242424;
+		font-size: clamp(1.03rem, 1.46vw, 1.2rem);
+		line-height: 1.66;
+		letter-spacing: -0.008em;
+		margin: 0;
+	}
+
+	.case-section > div {
+		display: grid;
+		gap: 0.95rem;
+	}
+
+	.three-column-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem 1.35rem;
+	}
+
+	.three-column-grid h3,
+	.numbered-grid h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: #151515;
+	}
+
+	.three-column-grid p,
+	.numbered-grid p {
+		font-size: 0.98rem;
+		line-height: 1.64;
+	}
+
+	.numbered-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1.25rem 1.35rem;
+	}
+
+	.numbered-grid article {
+		padding-top: 0.15rem;
+	}
+
+	.numbered-index {
+		font-size: 1.08rem;
+		font-weight: 700;
+		line-height: 1.1;
+		letter-spacing: 0.02em;
+		color: #111;
+		margin: 0 0 0.48rem;
+	}
+
+	@media (max-width: 1024px) {
+		.case-study-header,
+		.case-section {
+			grid-template-columns: minmax(145px, 0.4fr) 1fr;
+			gap: 0.78rem 1.9rem;
+		}
+
+		.hero-metadata {
+			grid-template-columns: 1fr;
+		}
+
+		.prototype-section {
+			width: 100%;
+			margin-inline: 0;
+		}
+
+		.numbered-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 880px) {
+		.case-study-header {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+			padding-bottom: 1.4rem;
+		}
+
+		.section-kicker {
+			padding-top: 0;
+		}
+
+		.hero-content {
+			grid-column: auto;
+		}
+
+		.case-section {
+			grid-template-columns: 1fr;
+			gap: 0.65rem;
+			padding: 1.4rem 0;
+		}
+
+		.case-section h2 {
+			padding-top: 0;
+		}
+
+		.prototype-section {
+			padding: 1.4rem 1rem;
+		}
+
+		.prototype-frame {
+			height: clamp(46vh, 58vh, 68vh);
+		}
+
+		.three-column-grid,
+		.numbered-grid {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+	}
+</style>
