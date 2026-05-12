@@ -1,7 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" fill="none">
-    <path
-        d="M38 183C67 104 132 48 218 34C310 19 392 59 445 129L385 177C351 130 293 103 231 114C173 124 130 164 108 219L38 183Z"
-        transform="translate(0 380) scale(1 -1)"
-        fill="#00A95C"
-    />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+	<defs>
+		<style type="text/css">
+			<![CDATA[
+			@font-face {
+				font-family: "Instrument Serif";
+				font-style: normal;
+				font-weight: 400;
+				font-display: block;
+				src: url(data:font/woff2;base64,d09GMgABAAAAAAPoAA4AAAAAB0wAAAOUAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbdBwoBmAAPBEICoMognoLCgABNgIkAxAEIAWFKAcgGyEGyAQe/nPrvS9YIMhXSW3Gw7gKtA4185UrTNXOXhz+//vJi8IE/CU6tai3u7Zoiw6ReQNleRnuDFynAbvaIt+8xFQEYMVCQgdpJbtx3sLpxCEVFFU0YJ/oXZiCBf0zqqUiaXxwbgr5E1lK1SMhI+wSx17apXE6EjoI/kP4zTNKAjW7GjlxCCGsPTJNJSk/kMTd4lIMJZJHagHKN4tFFyEimkjjAm3YUHZxpqq6qpAXUKnXfR14SynSfS2SgCvKbQ1IH1CrFpSHJAPaZ4AAX08YzSgrrF2lvhjFKnXBYPCH4CMvKBtvJBjEUVx509AM4cuBJ1TFTZCq/TRWfY6S3OgRJrdi82J0WfpsJmuvp6np9seft3iuVP5q11VnJF6Fy2LxCPfB0HuuEQb31SEhVwu3onh9PlyflFx55f67XjzeeNtDiveag9dchevZNu+OcPstHnA1el57+sDVV4smt+I9fNyneHeE29/k9wv3juJ99YyrrqLRZfEcOOL3Wzwf4PI1+ny4Pvlk0S3L58vylCyfL8uNJ7NasnhRbj44e2Dqrnt+CLcHlH/2B54svM1sdbztUMwv9ee/u79i/7v5/S+ZFcfb6e3R8TWJ2eUDV/bKfYHCG/cP3vHFQfmVqxc+kXc/++96QWFbRVlNXXFi2E/JPCPvMz3wdP+Ior9xn02JPeeUizvj0vIy0zMG82JLE/L7UsqGWmpObB6rH5Wlq3fbzJkj+yu0oqjI0PjI5MrC5LKMgpmclNj6Jg1gGG7ngf8P/tPtyPhdduh+veb7xvLf1mbnt6nvB4IvBt7WHdB93pl6qcv0DIfsrOCLgRXdAaqiR3qpjSlJsFdcQzj3D/hkPW6MnDMk6qgYMjaZoZ1ZbzbFb4g1TKCKNkzCLiowHQVCxvTE8ClmYIEBzIhGErLjMoywwAIzzJOGE6eR388co8yw4PM15tEEXp1mjmGcVFNEBaVMMc8CcywyySBTQPWQfeQfIpo6WodZBOo1oOmm7CdomskqsWjExPZ0VGnrEL1q8gLTjDD6o6BKGEsvfZKCRgIayUSTyACJ9BFOOsMMvRw/zQTztDNeIxWNOA7vLFyvakpS64qznFVUU0Uh6VVscNKWeHI+08ywChjuAqtKHH83jjhUGhhhELUKu2qYY5oxBum/DbmNCCOdBfNew+61DzP68PuL9KHRzzSTOEXA2RENb7ijmZeG8EVOao8LVhBCBAAAAA==) format("woff2");
+			}
+			.mark {
+				font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+				font-size: 76px;
+				font-weight: 400;
+				fill: #181818;
+				letter-spacing: -0.04em;
+			}
+			]]>
+		</style>
+	</defs>
+	<rect width="128" height="128" rx="28" fill="#f8f7f4" />
+	<text class="mark" x="64" y="88" text-anchor="middle">SR</text>
 </svg>
